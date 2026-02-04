@@ -54,11 +54,13 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                     filter: 'blur(8px)'
                 }}
             />
-            <div className="absolute inset-0 z-0 bg-black/70 backdrop-blur-sm" />
+            {/* Darker overlay for better contrast */}
+            <div className="absolute inset-0 z-0 bg-black/90 backdrop-blur-sm" />
 
             {/* Main Card */}
             <div className="relative z-10 w-full max-w-md mx-4 animate-in fade-in zoom-in-95 duration-500">
-                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
+                {/* Much darker card background for readability */}
+                <div className="bg-zinc-950/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
 
                     {/* Logo Area */}
                     <div className="flex flex-col items-center mb-8">
@@ -87,7 +89,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`w-full bg-black/50 border ${error ? 'border-red-500/50 text-red-100' : 'border-white/10 text-white focus:border-[var(--industrial-blue)]/50 focus:bg-black/70'} rounded-lg px-4 py-3.5 outline-none transition-all duration-300 placeholder-neutral-600`}
+                                    className={`w-full bg-black/80 border ${error ? 'border-red-500/50 text-red-100' : 'border-white/10 text-white focus:border-[var(--industrial-blue)]/50 focus:bg-black'} rounded-lg px-4 py-3.5 outline-none transition-all duration-300 placeholder-neutral-600`}
                                     placeholder="••••••••••••••"
                                     autoFocus
                                 />
