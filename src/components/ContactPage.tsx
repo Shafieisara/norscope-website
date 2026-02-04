@@ -13,13 +13,13 @@ interface ContactPageProps {
   onContactClick?: () => void;
 }
 
-export function ContactPage({ 
-  onNavigateHome, 
-  currentLanguage, 
-  onLanguageChange, 
-  onAboutClick, 
-  onProductClick, 
-  onSolutionClick, 
+export function ContactPage({
+  onNavigateHome,
+  currentLanguage,
+  onLanguageChange,
+  onAboutClick,
+  onProductClick,
+  onSolutionClick,
   onImpactClick,
   onContactClick
 }: ContactPageProps) {
@@ -46,7 +46,7 @@ export function ContactPage({
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation 
+      <Navigation
         currentLanguage={currentLanguage}
         onLanguageChange={onLanguageChange}
         onLogoClick={onNavigateHome}
@@ -56,12 +56,12 @@ export function ContactPage({
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
       />
-      
+
       {/* Contact Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="max-w-4xl">
-            <h1 
+            <h1
               className="text-[36px] md:text-[52px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
@@ -78,18 +78,18 @@ export function ContactPage({
       <section className="py-12 md:py-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="max-w-2xl">
-            <h2 
+            <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-8 md:mb-10"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               Request a Demo
             </h2>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
-                <label 
-                  htmlFor="fullName" 
+                <label
+                  htmlFor="fullName"
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
@@ -109,8 +109,8 @@ export function ContactPage({
 
               {/* Company / Organization */}
               <div>
-                <label 
-                  htmlFor="company" 
+                <label
+                  htmlFor="company"
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
@@ -130,8 +130,8 @@ export function ContactPage({
 
               {/* Email Address */}
               <div>
-                <label 
-                  htmlFor="email" 
+                <label
+                  htmlFor="email"
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
@@ -151,8 +151,8 @@ export function ContactPage({
 
               {/* Role / Position */}
               <div>
-                <label 
-                  htmlFor="role" 
+                <label
+                  htmlFor="role"
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
@@ -172,8 +172,8 @@ export function ContactPage({
 
               {/* Message */}
               <div>
-                <label 
-                  htmlFor="message" 
+                <label
+                  htmlFor="message"
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
@@ -193,11 +193,10 @@ export function ContactPage({
 
               {/* Submit Button */}
               <div className="pt-2">
-                <button 
+                <button
                   type="submit"
-                  className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
-                  style={{ 
-                    backgroundColor: 'var(--industrial-blue)', 
+                  className="px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
+                  style={{
                     color: 'white',
                     fontWeight: 500
                   }}
@@ -217,13 +216,13 @@ export function ContactPage({
       <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="max-w-2xl">
-            <h2 
+            <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               Direct Contact
             </h2>
-            
+
             <div className="space-y-4">
               <div>
                 <p className="text-[15px] text-[#6B6B6B] mb-1">Email</p>
@@ -231,7 +230,7 @@ export function ContactPage({
                   contact@norscope.de
                 </p>
               </div>
-              
+
               <div>
                 <p className="text-[15px] text-[#6B6B6B] mb-1">Location</p>
                 <p className="text-[17px]" style={{ color: 'var(--dark-text)' }}>
@@ -250,17 +249,17 @@ export function ContactPage({
       <section className="py-12 md:py-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="max-w-2xl">
-            <h2 
+            <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               Who This Is For
             </h2>
-            
+
             <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-6">
               Typical inquiries include:
             </p>
-            
+
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
