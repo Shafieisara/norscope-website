@@ -1,5 +1,7 @@
 import { useState, useEffect, ReactNode } from 'react';
-import { Lock, ArrowRight } from 'lucide-react';
+import { ArrowRight, Lock } from 'lucide-react';
+import factoryBg from '../assets/factory-industrial-scene.png';
+import norscopeLogo from '../assets/Norscope Logo.svg';
 
 interface PasswordProtectionProps {
     children: ReactNode;
@@ -22,20 +24,20 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Hardcoded password - simple client-side protection
-        if (password.toLowerCase() === 'norscope' || password === 'start') {
+
+        // Strict password check as requested
+        if (password === 'NorscopeTeamSS2025') {
             sessionStorage.setItem('norscope_auth', 'true');
             setIsAuthenticated(true);
             setError(false);
         } else {
             setError(true);
-            // Shake animation or visual feedback could be added here
             setTimeout(() => setError(false), 2000);
         }
     };
 
     if (loading) {
-        return null; // Or a simple spinner
+        return null;
     }
 
     if (isAuthenticated) {
@@ -43,56 +45,77 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
     }
 
     return (
-        <div className="min-h-screen w-full bg-[#0a0a0a] flex flex-col items-center justify-center px-4 font-sans text-white">
-            <div className="w-full max-w-md space-y-8 animate-in fade-in zoom-in duration-500">
+        <div className="min-h-screen w-full relative flex items-center justify-center overflow-hidden font-sans">
+            {/* Background Image with Overlay */}
+            <div
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transform scale-105"
+                style={{
+                    backgroundImage: `url(${factoryBg})`,
+                    filter: 'blur(8px)'
+                }}
+            />
+            <div className="absolute inset-0 z-0 bg-black/70 backdrop-blur-sm" />
 
-                {/* Header */}
-                <div className="text-center space-y-4">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--industrial-blue)]/10 text-[var(--industrial-blue)] mb-4 ring-1 ring-[var(--industrial-blue)]/30">
-                        <Lock className="w-8 h-8" />
-                    </div>
-                    <h1 className="text-3xl font-bold tracking-tight text-white">
-                        Access Restricted
-                    </h1>
-                    <p className="text-neutral-400">
-                        This site is currently in private preview. <br />
-                        Please enter the access code to continue.
-                    </p>
-                </div>
+            {/* Main Card */}
+            <div className="relative z-10 w-full max-w-md mx-4 animate-in fade-in zoom-in-95 duration-500">
+                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-                    <div className="relative group">
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className={`w-full bg-[#1A1A1A] border ${error ? 'border-red-500 ring-1 ring-red-500' : 'border-[#333] focus:border-[var(--industrial-blue)] focus:ring-1 focus:ring-[var(--industrial-blue)]'} rounded-lg px-4 py-3.5 text-white placeholder-neutral-500 outline-none transition-all duration-200`}
-                            placeholder="Enter access code..."
-                            autoFocus
+                    {/* Logo Area */}
+                    <div className="flex flex-col items-center mb-8">
+                        <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 mb-6 shadow-glow">
+                            <Lock className="w-5 h-5 text-[var(--industrial-blue)]" />
+                        </div>
+
+                        <img
+                            src={norscopeLogo}
+                            alt="Norscope"
+                            className="h-8 mb-2 opacity-90 invert"
                         />
+                        <p className="text-sm text-neutral-400 font-medium tracking-wide">
+                            CONFIDENTIAL PREVIEW
+                        </p>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-[var(--industrial-blue)] hover:opacity-90 text-white font-semibold py-3.5 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 group"
-                        style={{ backgroundColor: '#0066CC' }}
-                    >
-                        <span>Enter Site</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="space-y-1.5">
+                            <label className="text-xs font-semibold text-neutral-300 ml-1 uppercase tracking-wider">
+                                Access Key
+                            </label>
+                            <div className="relative group">
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className={`w-full bg-black/50 border ${error ? 'border-red-500/50 text-red-100' : 'border-white/10 text-white focus:border-[var(--industrial-blue)]/50 focus:bg-black/70'} rounded-lg px-4 py-3.5 outline-none transition-all duration-300 placeholder-neutral-600`}
+                                    placeholder="••••••••••••••"
+                                    autoFocus
+                                />
+                            </div>
+                        </div>
 
-                    {error && (
-                        <p className="text-red-500 text-sm text-center animate-in slide-in-from-top-1">
-                            Incorrect access code. Please try again.
-                        </p>
-                    )}
-                </form>
+                        <button
+                            type="submit"
+                            className="w-full bg-[var(--industrial-blue)] hover:bg-blue-600 text-white font-semibold py-3.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
+                        >
+                            <span>Authenticate</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                    </form>
 
-                <div className="text-center pt-8">
-                    <p className="text-xs text-neutral-600 uppercase tracking-widest font-medium">
-                        Norscope Industrial Services
-                    </p>
+                    {/* Feedback Message */}
+                    <div className="min-h-[24px] mt-4 text-center">
+                        {error ? (
+                            <p className="text-red-400 text-xs animate-in slide-in-from-top-1 font-medium">
+                                Access denied. Invalid credentials.
+                            </p>
+                        ) : (
+                            <p className="text-neutral-500 text-xs text-center leading-relaxed">
+                                Authorized personnel only.<br />
+                                Norscope Industrial Services &copy; 2025
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
