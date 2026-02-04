@@ -128,7 +128,7 @@ export function SolutionPage({
       {/* The Norscope Solution */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -306,7 +306,7 @@ export function SolutionPage({
       {/* Designed for Industrial Reality */}
       <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -370,7 +370,7 @@ export function SolutionPage({
       {/* Resulting Benefits */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}

@@ -47,7 +47,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       {/* The Problem */}
       <section className="py-12 md:py-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -64,7 +64,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       {/* Our Solution */}
       <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -111,7 +111,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       {/* Our Mission */}
       <section className="py-12 md:py-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}

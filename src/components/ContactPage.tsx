@@ -60,7 +60,7 @@ export function ContactPage({
       {/* Contact Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h1
               className="text-[36px] md:text-[52px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}

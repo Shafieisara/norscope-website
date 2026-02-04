@@ -31,7 +31,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       {/* Product Hero */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h1
               className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -62,7 +62,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       {/* The Reality of Industrial Maintenance */}
       <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -100,7 +100,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       {/* What Norscope Does */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -237,7 +237,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       {/* Custom Software per Customer */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -284,7 +284,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       {/* Offline-First by Design */}
       <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}

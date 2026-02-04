@@ -62,7 +62,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               <span>Back</span>
             </button>
 
-            <div className="max-w-4xl">
+            <div className="max-w-4xl mx-auto">
               <h1
                 className="text-[40px] md:text-[48px] tracking-tight mb-6"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -381,7 +381,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               Typical Model Inputs (example configuration)
             </h2>
 
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl">
+            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl mx-auto">
               <div className="grid grid-cols-2 gap-x-12 gap-y-4">
                 {modelInputs.map((input, index) => (
                   <div
@@ -515,7 +515,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               Pilot Validation Plan
             </h2>
 
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl">
+            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl mx-auto">
               <ul className="space-y-4">
                 {[
                   'Measure baseline task duration per machine type',
