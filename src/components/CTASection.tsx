@@ -18,9 +18,8 @@ export function CTASection({ onContactClick }: CTASectionProps) {
 
         <button
           onClick={onContactClick}
-          className="px-8 md:px-10 py-3.5 md:py-4 rounded-md text-[15px] md:text-[16px] transition-all hover:shadow-2xl hover:scale-105"
+          className="px-8 md:px-10 py-3.5 md:py-4 rounded-md text-[15px] md:text-[16px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
           style={{
-            backgroundColor: 'var(--industrial-blue)',
             color: 'white',
             fontWeight: 500
           }}

@@ -28,7 +28,7 @@ export function ProblemSection() {
     <section className="py-12 md:py-24 bg-white">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
         <div className="text-center mb-10 md:mb-16">
-          <h2 
+          <h2
             className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
@@ -38,20 +38,20 @@ export function ProblemSection() {
             Manufacturing faces mounting pressure from complexity, workforce gaps, and rising operational costs
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {problems.map((problem, index) => (
-            <div 
+            <div
               key={index}
-              className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow"
+              className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
             >
               <div className="mb-5 md:mb-6">
-                <problem.icon 
-                  className="w-9 h-9 md:w-10 md:h-10" 
+                <problem.icon
+                  className="w-9 h-9 md:w-10 md:h-10 transition-transform duration-300 hover:scale-110"
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }}
                 />
               </div>
-              <h3 
+              <h3
                 className="text-[17px] md:text-[18px] mb-2 md:mb-3"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >

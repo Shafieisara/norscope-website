@@ -116,9 +116,8 @@ export function Navigation({ currentLanguage = 'EN', onLanguageChange, onLogoCli
           {/* CTA Button */}
           <button
             onClick={() => onContactClick?.()}
-            className="px-6 py-2.5 rounded-md text-[15px] transition-all"
+            className="px-6 py-2.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
             style={{
-              backgroundColor: 'var(--industrial-blue)',
               color: 'white',
               fontWeight: 500
             }}

@@ -7,6 +7,7 @@
 @layer base {
   :root {
     --industrial-blue: #0066CC;
+    --industrial-blue-light: #E6F2FF;
     --industrial-dark: #1A1A1A;
     --border-light: #e5e7eb;
     --dark-text: #111827;
