@@ -64,7 +64,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                         <img
                             src={norscopeLogo}
                             alt="Norscope"
-                            className="h-8 opacity-90 invert"
+                            className="h-12 opacity-90 invert"
                         />
                     </div>
 
