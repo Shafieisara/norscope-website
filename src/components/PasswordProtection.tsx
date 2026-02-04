@@ -1,6 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { ArrowRight, Lock } from 'lucide-react';
-import factoryBg from '../assets/factory-industrial-scene.png';
 import norscopeLogo from '../assets/Norscope Logo.svg';
 
 interface PasswordProtectionProps {
@@ -45,43 +44,34 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
     }
 
     return (
-        <div className="min-h-screen w-full relative flex items-center justify-center overflow-hidden font-sans">
-            {/* Background Image with Overlay */}
-            <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transform scale-105"
-                style={{
-                    backgroundImage: `url(${factoryBg})`,
-                    filter: 'blur(8px)'
-                }}
-            />
-            {/* Darker overlay for better contrast */}
-            <div className="absolute inset-0 z-0 bg-black/90 backdrop-blur-sm" />
+        <div className="min-h-screen w-full relative flex items-center justify-center overflow-hidden font-sans bg-[#050505]">
+            {/* Subtle Radial Gradient for depth, but SOLID dark background otherwise */}
+            <div className="absolute inset-0 z-0 bg-radial-gradient from-zinc-900/20 to-transparent opacity-50 pointer-events-none" />
 
             {/* Main Card */}
             <div className="relative z-10 w-full max-w-md mx-4 animate-in fade-in zoom-in-95 duration-500">
-                {/* Much darker card background for readability */}
-                <div className="bg-zinc-950/90 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl">
+                <div className="bg-[#0A0A0A] border border-white/5 rounded-2xl p-12 shadow-2xl ring-1 ring-white/5">
 
                     {/* Logo Area */}
-                    <div className="flex flex-col items-center mb-8">
-                        <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 mb-6 shadow-glow">
-                            <Lock className="w-5 h-5 text-[var(--industrial-blue)]" />
+                    <div className="flex flex-col items-center mb-10">
+                        <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 mb-8 shadow-inner">
+                            <Lock className="w-6 h-6 text-[var(--industrial-blue)]" />
                         </div>
 
                         <img
                             src={norscopeLogo}
                             alt="Norscope"
-                            className="h-8 mb-2 opacity-90 invert"
+                            className="h-9 mb-3 opacity-90 invert"
                         />
-                        <p className="text-sm text-neutral-400 font-medium tracking-wide">
-                            CONFIDENTIAL PREVIEW
+                        <p className="text-xs text-neutral-500 font-medium tracking-[0.2em] uppercase">
+                            Confidential Preview
                         </p>
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-semibold text-neutral-300 ml-1 uppercase tracking-wider">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-bold text-neutral-400 ml-1 uppercase tracking-widest">
                                 Access Key
                             </label>
                             <div className="relative group">
@@ -89,8 +79,8 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`w-full bg-black/80 border ${error ? 'border-red-500/50 text-red-100' : 'border-white/10 text-white focus:border-[var(--industrial-blue)]/50 focus:bg-black'} rounded-lg px-4 py-3.5 outline-none transition-all duration-300 placeholder-neutral-600`}
-                                    placeholder="••••••••••••••"
+                                    className={`w-full bg-[#111] border ${error ? 'border-red-900/50 text-red-100' : 'border-[#222] text-white focus:border-[var(--industrial-blue)]/50 focus:bg-[#161616]'} rounded-xl px-5 py-4 outline-none transition-all duration-300 text-lg tracking-widest`}
+                                    placeholder=""
                                     autoFocus
                                 />
                             </div>
@@ -98,23 +88,18 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
 
                         <button
                             type="submit"
-                            className="w-full bg-[var(--industrial-blue)] hover:bg-blue-600 text-white font-semibold py-3.5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/20"
+                            className="w-full bg-[var(--industrial-blue)] hover:bg-blue-600 text-white font-medium py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20"
                         >
-                            <span>Authenticate</span>
+                            <span className="tracking-wide">Authenticate</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </button>
                     </form>
 
-                    {/* Feedback Message */}
-                    <div className="min-h-[24px] mt-4 text-center">
-                        {error ? (
-                            <p className="text-red-400 text-xs animate-in slide-in-from-top-1 font-medium">
+                    {/* Error Message Only (Footer Removed) */}
+                    <div className="min-h-[24px] mt-6 text-center">
+                        {error && (
+                            <p className="text-red-400 text-xs animate-in slide-in-from-top-1 font-medium tracking-wide">
                                 Access denied. Invalid credentials.
-                            </p>
-                        ) : (
-                            <p className="text-neutral-500 text-xs text-center leading-relaxed">
-                                Authorized personnel only.<br />
-                                Norscope Industrial Services &copy; 2025
                             </p>
                         )}
                     </div>
