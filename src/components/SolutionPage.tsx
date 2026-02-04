@@ -157,9 +157,9 @@ export function SolutionPage({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
             {/* Step 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <MonitorCog className="w-6 h-6 text-white" />
@@ -176,9 +176,9 @@ export function SolutionPage({
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Shield className="w-6 h-6 text-white" />
@@ -195,9 +195,9 @@ export function SolutionPage({
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Check className="w-6 h-6 text-white" />
@@ -214,9 +214,9 @@ export function SolutionPage({
             </div>
 
             {/* Step 4 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
               <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Wifi className="w-6 h-6 text-white" />

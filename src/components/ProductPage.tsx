@@ -47,9 +47,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
             <button
               onClick={onContactClick}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
+              className="px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
               style={{
-                backgroundColor: 'var(--industrial-blue)',
                 color: 'white',
                 fontWeight: 500
               }}
@@ -157,9 +156,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto">
             {/* Step 1 */}
-            <div className="text-center">
+            <div className="text-center group">
               <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <span className="text-[24px] text-white" style={{ fontWeight: 600 }}>1</span>
@@ -176,9 +175,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
             </div>
 
             {/* Step 2 */}
-            <div className="text-center">
+            <div className="text-center group">
               <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <span className="text-[24px] text-white" style={{ fontWeight: 600 }}>2</span>
@@ -195,9 +194,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
             </div>
 
             {/* Step 3 */}
-            <div className="text-center">
+            <div className="text-center group">
               <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <span className="text-[24px] text-white" style={{ fontWeight: 600 }}>3</span>
@@ -214,9 +213,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
             </div>
 
             {/* Step 4 */}
-            <div className="text-center">
+            <div className="text-center group">
               <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <span className="text-[24px] text-white" style={{ fontWeight: 600 }}>4</span>
