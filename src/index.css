@@ -8,6 +8,8 @@
   :root {
     --industrial-blue: #0066CC;
     --industrial-dark: #1A1A1A;
+    --border-light: #e5e7eb;
+    --dark-text: #111827;
   }
 
   html {
@@ -15,6 +17,6 @@
   }
 
   body {
-    @apply bg-white text-gray-900;
+    @apply bg-white text-gray-900 antialiased;
   }
 }
