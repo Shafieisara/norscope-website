@@ -1,5 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
-import { ArrowRight, Lock, Hexagon } from 'lucide-react';
+import { ArrowRight, Lock } from 'lucide-react';
 import norscopeLogo from '../assets/Norscope Logo.svg';
 
 interface PasswordProtectionProps {
@@ -59,9 +59,13 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                 />
 
                 <div className="relative z-20 p-16 flex flex-col h-full justify-between w-full max-w-2xl">
-                    {/* Top Mark */}
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md">
-                        <Hexagon className="w-6 h-6 text-blue-400" strokeWidth={1.5} />
+                    {/* Top Mark replaced with LOGO */}
+                    <div>
+                        <img
+                            src={norscopeLogo}
+                            alt="Norscope"
+                            className="h-8 opacity-90 invert"
+                        />
                     </div>
 
                     {/* Central Typography */}
@@ -93,15 +97,11 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
 
                 <div className="w-full max-w-[380px] space-y-12 relative z-10">
 
-                    {/* Header */}
-                    <div className="text-center space-y-2">
-                        <div className="flex justify-center mb-8">
-                            <img
-                                src={norscopeLogo}
-                                alt="Norscope"
-                                className="h-8 opacity-90 invert"
-                            />
-                        </div>
+                    {/* Header (Logo Removed) */}
+                    <div className="text-left space-y-2">
+                        <h1 className="text-2xl font-medium text-white tracking-tight">
+                            Welcome back
+                        </h1>
                     </div>
 
                     {/* Form */}
@@ -136,7 +136,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                     </form>
 
                     {/* Error Message */}
-                    <div className="h-[20px] flex justify-center">
+                    <div className="h-[20px] flex justify-start">
                         {error && (
                             <p className="flex items-center gap-2 text-red-400 text-xs animate-in fade-in slide-in-from-bottom-1 font-medium bg-red-500/10 px-3 py-1 rounded-full">
                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
@@ -144,7 +144,7 @@ export function PasswordProtection({ children }: PasswordProtectionProps) {
                             </p>
                         )}
                         {!error && (
-                            <p className="text-neutral-600 text-xs text-center animate-in fade-in delay-500">
+                            <p className="text-neutral-600 text-xs animate-in fade-in delay-500">
                                 Protected Environment
                             </p>
                         )}
