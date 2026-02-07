@@ -227,7 +227,7 @@ export function ContactPage({
               <div>
                 <p className="text-[15px] text-[#6B6B6B] mb-1">Email</p>
                 <p className="text-[17px]" style={{ color: 'var(--dark-text)' }}>
-                  contact@norscope.de
+                  contact@norscope.com
                 </p>
               </div>
 
