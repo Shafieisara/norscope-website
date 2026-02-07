@@ -42,6 +42,15 @@ export function DatenschutzPage({
             <section className="pt-32 pb-16 md:pt-40 md:pb-24">
                 <div className="max-w-[1440px] mx-auto px-6 md:px-12">
                     <div className="max-w-4xl mx-auto">
+                        {/* Back Button */}
+                        <button
+                            onClick={onNavigateHome}
+                            className="flex items-center gap-2 text-[14px] md:text-[15px] mb-6 text-[#6B6B6B] hover:text-[var(--industrial-blue)] transition-colors"
+                        >
+                            <span>←</span>
+                            <span>Zurück zur Startseite</span>
+                        </button>
+
                         <h1
                             className="text-[36px] md:text-[52px] tracking-tight mb-8 md:mb-12"
                             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
