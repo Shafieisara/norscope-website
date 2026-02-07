@@ -15,8 +15,10 @@ import { AboutPage } from './components/AboutPage';
 import { ProductPage } from './components/ProductPage';
 import { SolutionPage } from './components/SolutionPage';
 import { ContactPage } from './components/ContactPage';
+import { ImpressumPage } from './components/ImpressumPage';
+import { DatenschutzPage } from './components/DatenschutzPage';
 
-type PageType = 'home-en' | 'home-de' | 'methodology-en' | 'methodology-de' | 'about-en' | 'about-de' | 'product-en' | 'product-de' | 'solution-en' | 'solution-de' | 'contact-en' | 'contact-de';
+type PageType = 'home-en' | 'home-de' | 'methodology-en' | 'methodology-de' | 'about-en' | 'about-de' | 'product-en' | 'product-de' | 'solution-en' | 'solution-de' | 'contact-en' | 'contact-de' | 'impressum-de' | 'datenschutz-de';
 
 export default function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -81,6 +83,16 @@ export default function App() {
   const navigateToContact = () => {
     const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
     setCurrentPage(currentLang === 'EN' ? 'contact-en' : 'contact-de');
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToImpressum = () => {
+    setCurrentPage('impressum-de');
+    window.scrollTo(0, 0);
+  };
+
+  const navigateToDatenschutz = () => {
+    setCurrentPage('datenschutz-de');
     window.scrollTo(0, 0);
   };
 
@@ -171,6 +183,42 @@ export default function App() {
     );
   }
 
+  // Render Impressum Page
+  if (currentPage === 'impressum-de') {
+    return (
+      <ImpressumPage
+        onNavigateHome={navigateToHome}
+        currentLanguage="DE"
+        onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
+        onAboutClick={navigateToAbout}
+        onProductClick={navigateToProduct}
+        onSolutionClick={navigateToSolution}
+        onImpactClick={navigateToMethodology}
+        onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
+      />
+    );
+  }
+
+  // Render Datenschutz Page
+  if (currentPage === 'datenschutz-de') {
+    return (
+      <DatenschutzPage
+        onNavigateHome={navigateToHome}
+        currentLanguage="DE"
+        onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
+        onAboutClick={navigateToAbout}
+        onProductClick={navigateToProduct}
+        onSolutionClick={navigateToSolution}
+        onImpactClick={navigateToMethodology}
+        onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
+      />
+    );
+  }
+
   // Render Homepage (EN or DE)
   const currentLang = currentPage === 'home-en' ? 'EN' : 'DE';
 
@@ -199,7 +247,10 @@ export default function App() {
       <BenefitsSection onNavigateToMethodology={navigateToMethodology} />
       <IndustriesSection />
       <CTASection onContactClick={navigateToContact} />
-      <Footer />
+      <Footer
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
+      />
     </div>
   );
 }

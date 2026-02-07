@@ -1,4 +1,9 @@
-export function Footer() {
+interface FooterProps {
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
+}
+
+export function Footer({ onImpressumClick, onDatenschutzClick }: FooterProps) {
   return (
     <footer className="py-12 md:py-16 border-t" style={{ backgroundColor: 'var(--dark-bg)', borderColor: 'rgba(255, 255, 255, 0.1)' }}>
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
@@ -12,7 +17,7 @@ export function Footer() {
               Industrial augmented reality for the modern factory floor
             </p>
           </div>
-          
+
           {/* Product */}
           <div>
             <h4 className="text-[13px] md:text-[14px] mb-3 md:mb-4 uppercase tracking-wide" style={{ fontWeight: 600, color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -41,7 +46,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Company */}
           <div>
             <h4 className="text-[13px] md:text-[14px] mb-3 md:mb-4 uppercase tracking-wide" style={{ fontWeight: 600, color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -70,7 +75,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Resources */}
           <div>
             <h4 className="text-[13px] md:text-[14px] mb-3 md:mb-4 uppercase tracking-wide" style={{ fontWeight: 600, color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -99,7 +104,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Legal */}
           <div>
             <h4 className="text-[13px] md:text-[14px] mb-3 md:mb-4 uppercase tracking-wide" style={{ fontWeight: 600, color: 'rgba(255, 255, 255, 0.9)' }}>
@@ -117,19 +122,27 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                <button
+                  onClick={onImpressumClick}
+                  className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer"
+                  style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                >
                   Impressum
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                <button
+                  onClick={onDatenschutzClick}
+                  className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer"
+                  style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                >
                   Datenschutz
-                </a>
+                </button>
               </li>
             </ul>
           </div>
         </div>
-        
+
         <div className="pt-6 md:pt-8 border-t" style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}>
           <p className="text-[12px] md:text-[13px] text-center" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
             © 2026 Norscope. All rights reserved.
