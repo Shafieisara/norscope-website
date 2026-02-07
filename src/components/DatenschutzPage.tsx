@@ -155,11 +155,12 @@ export function DatenschutzPage({
                                 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
                             </p>
                             <div className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed space-y-1 mb-4">
-                                <p>Sara Shafiei Sarvestani</p>
+                                <p>Sara Shafiei Sarvestani, Siddhant Rebello</p>
                                 <p>Rollplatz 23</p>
                                 <p>38678 Clausthal-Zellerfeld</p>
                                 <p className="mt-3">Telefon: +49 1525 2993422</p>
-                                <p>E-Mail: Norscope.com@gmail.com</p>
+                                <p>E-Mail: sara.shafiei.sarvestani@tu-clausthal.de</p>
+                                <p>E-Mail: siddhant.jude.rebello@tu-clausthal.de</p>
                             </div>
                             <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
                                 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.

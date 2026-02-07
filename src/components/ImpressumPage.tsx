@@ -146,7 +146,7 @@ export function ImpressumPage({
                             <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
                                 Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{' '}
                                 <a
-                                    href="https://ec.europa.eu/consumers/odr"
+                                    href="https://ec.europa.eu/consumers/odr/main/?event=main.home.howitworks"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-[var(--industrial-blue)] hover:underline"
