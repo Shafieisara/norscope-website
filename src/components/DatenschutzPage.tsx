@@ -301,6 +301,11 @@ export function DatenschutzPage({
             </section>
 
             <Footer
+                onAboutClick={onAboutClick}
+                onProductClick={onProductClick}
+                onSolutionClick={onSolutionClick}
+                onImpactClick={onImpactClick}
+                onContactClick={onContactClick}
                 onImpressumClick={onImpressumClick}
                 onDatenschutzClick={onDatenschutzClick}
             />
