@@ -752,7 +752,13 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
       </ImpactModal>
 
-      <Footer />
+      <Footer
+        onAboutClick={onAboutClick}
+        onProductClick={onProductClick}
+        onSolutionClick={onSolutionClick}
+        onImpactClick={onImpactClick}
+        onContactClick={onContactClick}
+      />
     </div>
   );
 }

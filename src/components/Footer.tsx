@@ -1,9 +1,14 @@
 interface FooterProps {
+  onAboutClick?: () => void;
+  onProductClick?: () => void;
+  onSolutionClick?: () => void;
+  onImpactClick?: () => void;
+  onContactClick?: () => void;
   onImpressumClick?: () => void;
   onDatenschutzClick?: () => void;
 }
 
-export function Footer({ onImpressumClick, onDatenschutzClick }: FooterProps) {
+export function Footer({ onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: FooterProps) {
   return (
     <footer className="py-12 md:py-16 border-t" style={{ backgroundColor: 'var(--dark-bg)', borderColor: 'rgba(255, 255, 255, 0.1)' }}>
       <div className="max-w-[1440px] mx-auto px-6 md:px-12">
@@ -25,25 +30,21 @@ export function Footer({ onImpressumClick, onDatenschutzClick }: FooterProps) {
             </h4>
             <ul className="space-y-2 md:space-y-2.5">
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-                  AR Glasses
-                </a>
+                <button onClick={onProductClick} className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                  Product
+                </button>
               </li>
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-                  Platform
-                </a>
+                <button onClick={onSolutionClick} className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                  Solution
+                </button>
               </li>
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-                  Features
-                </a>
+                <button onClick={onImpactClick} className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                  Impact
+                </button>
               </li>
-              <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-                  Pricing
-                </a>
-              </li>
+
             </ul>
           </div>
 
@@ -54,9 +55,9 @@ export function Footer({ onImpressumClick, onDatenschutzClick }: FooterProps) {
             </h4>
             <ul className="space-y-2 md:space-y-2.5">
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                <button onClick={onAboutClick} className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
                   About
-                </a>
+                </button>
               </li>
               <li>
                 <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
@@ -69,9 +70,9 @@ export function Footer({ onImpressumClick, onDatenschutzClick }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-[13px] md:text-[14px] hover:text-white transition-colors" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                <button onClick={onContactClick} className="text-[13px] md:text-[14px] hover:text-white transition-colors cursor-pointer" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
