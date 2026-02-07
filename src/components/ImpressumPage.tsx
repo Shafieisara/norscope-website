@@ -135,26 +135,6 @@ export function ImpressumPage({
                             </p>
                         </div>
 
-                        {/* EU-Streitschlichtung */}
-                        <div className="mb-10">
-                            <h2
-                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
-                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                            >
-                                EU-Streitschlichtung
-                            </h2>
-                            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
-                                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{' '}
-                                <a
-                                    href="https://ec.europa.eu/consumers/odr/main/?event=main.home.howitworks"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[var(--industrial-blue)] hover:underline"
-                                >
-                                    https://ec.europa.eu/consumers/odr
-                                </a>
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
