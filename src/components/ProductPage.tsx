@@ -12,9 +12,11 @@ interface ProductPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
-export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLanguage, onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick }: ProductPageProps) {
+export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLanguage, onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: ProductPageProps) {
   return (
     <div className="min-h-screen bg-white">
       <Navigation
@@ -26,6 +28,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        activePage="product"
       />
 
       {/* Product Hero */}
@@ -489,6 +492,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
       />
     </div>
   );

@@ -11,6 +11,8 @@ interface ContactPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
 export function ContactPage({
@@ -21,7 +23,9 @@ export function ContactPage({
   onProductClick,
   onSolutionClick,
   onImpactClick,
-  onContactClick
+  onContactClick,
+  onImpressumClick,
+  onDatenschutzClick
 }: ContactPageProps) {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -55,6 +59,7 @@ export function ContactPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        activePage="contact"
       />
 
       {/* Contact Hero */}
@@ -311,6 +316,8 @@ export function ContactPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
       />
     </div>
   );

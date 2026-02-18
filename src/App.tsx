@@ -109,6 +109,8 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
       />
     );
   }
@@ -126,6 +128,8 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
       />
     );
   }
@@ -144,6 +148,8 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
       />
     );
   }
@@ -162,6 +168,8 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
       />
     );
   }
@@ -179,6 +187,8 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        onImpressumClick={navigateToImpressum}
+        onDatenschutzClick={navigateToDatenschutz}
       />
     );
   }
@@ -233,6 +243,7 @@ export default function App() {
         onSolutionClick={navigateToSolution}
         onImpactClick={navigateToMethodology}
         onContactClick={navigateToContact}
+        activePage="home"
       />
       <HeroSection
         scrollY={scrollY}

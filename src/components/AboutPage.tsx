@@ -13,9 +13,11 @@ interface AboutPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
-export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick }: AboutPageProps) {
+export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: AboutPageProps) {
   return (
     <div className="min-h-screen bg-white">
       <Navigation
@@ -27,6 +29,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        activePage="about"
       />
 
       {/* About Hero */}
@@ -227,6 +230,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
       />
     </div>
   );

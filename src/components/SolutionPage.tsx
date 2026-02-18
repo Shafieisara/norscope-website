@@ -20,6 +20,8 @@ interface SolutionPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
 export function SolutionPage({
@@ -31,7 +33,9 @@ export function SolutionPage({
   onProductClick,
   onSolutionClick,
   onImpactClick,
-  onContactClick
+  onContactClick,
+  onImpressumClick,
+  onDatenschutzClick
 }: SolutionPageProps) {
   return (
     <div className="min-h-screen bg-white">
@@ -44,6 +48,7 @@ export function SolutionPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        activePage="solution"
       />
 
       {/* Solution Hero */}
@@ -452,6 +457,7 @@ export function SolutionPage({
               View Product
             </button>
             <button
+              onClick={onContactClick}
               className="px-8 py-3.5 rounded-md text-[15px] transition-all"
               style={{
                 backgroundColor: 'transparent',
@@ -472,6 +478,8 @@ export function SolutionPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
       />
     </div>
   );

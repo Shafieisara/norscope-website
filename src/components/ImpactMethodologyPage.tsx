@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImpactModal, ModalSection, ModalTable, ModalFormula } from './ImpactModal';
@@ -19,10 +19,72 @@ interface ImpactMethodologyPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
-export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick }: ImpactMethodologyPageProps) {
+/**
+ * Animates a number from 0 to `target` when the returned ref enters the viewport.
+ * Runs only once per page load. Respects prefers-reduced-motion.
+ */
+function useCountUp(target: number, duration = 1200): [React.RefObject<HTMLDivElement>, number] {
+  const ref = useRef<HTMLDivElement>(null);
+  const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setCount(target);
+      return;
+    }
+
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasRun.current) {
+          hasRun.current = true;
+          observer.disconnect();
+
+          const startTime = performance.now();
+
+          const tick = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return [ref, count];
+}
+
+export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: ImpactMethodologyPageProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
+
+  // Count-up animation refs and values for the three numeric metric cards
+  const [repairsRef, repairsCount] = useCountUp(40);
+  const [trainingRef, trainingCount] = useCountUp(3);
+  const [errorsRef, errorsCount] = useCountUp(95);
+
+  // Count-up animation refs and values for the Section 3 metric cards
+  const [s3MttrRef, s3MttrCount] = useCountUp(40);
+  const [s3ErrorsRef, s3ErrorsCount] = useCountUp(95);
+  const [s3FixRef, s3FixCount] = useCountUp(85);
+  const [s3TrainingRef, s3TrainingCount] = useCountUp(3);
 
   const modelInputs = [
     { label: 'Average maintenance task duration', value: '50 minutes' },
@@ -46,6 +108,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        activePage="methodology"
       />
 
       {/* Main Content */}
@@ -340,17 +403,17 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               {/* Metric Cards */}
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { metric: '↓ 40%', label: 'MTTR', detail: 'Mean Time To Repair', color: '#0066CC' },
-                  { metric: '↓ 95%', label: 'Errors', detail: 'Procedural errors', color: '#059669' },
-                  { metric: '↑ 85%', label: 'First-Time Fix', detail: 'Success rate', color: '#0066CC' },
-                  { metric: '3×', label: 'Training Speed', detail: 'Faster onboarding', color: '#059669' }
+                  { ref: s3MttrRef, count: s3MttrCount, prefix: '↓ ', suffix: '%', label: 'MTTR', detail: 'Mean Time To Repair', color: '#0066CC' },
+                  { ref: s3ErrorsRef, count: s3ErrorsCount, prefix: '↓ ', suffix: '%', label: 'Errors', detail: 'Procedural errors', color: '#059669' },
+                  { ref: s3FixRef, count: s3FixCount, prefix: '↑ ', suffix: '%', label: 'First-Time Fix', detail: 'Success rate', color: '#0066CC' },
+                  { ref: s3TrainingRef, count: s3TrainingCount, prefix: '', suffix: '×', label: 'Training Speed', detail: 'Faster onboarding', color: '#059669' },
                 ].map((item, index) => (
-                  <div key={index} className="bg-white border border-[var(--border-light)] rounded-lg p-6">
+                  <div key={index} ref={item.ref} className="bg-white border border-[var(--border-light)] rounded-lg p-6">
                     <div
                       className="text-[36px] mb-2"
                       style={{ fontWeight: 700, color: item.color }}
                     >
-                      {item.metric}
+                      {item.prefix}{item.count}{item.suffix}
                     </div>
                     <div
                       className="text-[16px] mb-1"
@@ -411,12 +474,12 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
           <div className="max-w-[1440px] mx-auto px-12">
             <div className="grid grid-cols-4 gap-6">
               {/* Card 1: Faster repairs */}
-              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={repairsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
                 <div
                   className="text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
-                  40%
+                  {repairsCount}%
                 </div>
                 <div
                   className="text-[18px] mb-6"
@@ -434,12 +497,12 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Card 2: Quicker training */}
-              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={trainingRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
                 <div
                   className="text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
-                  3×
+                  {trainingCount}×
                 </div>
                 <div
                   className="text-[18px] mb-6"
@@ -457,12 +520,12 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Card 3: Error reduction */}
-              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={errorsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
                 <div
                   className="text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
-                  95%
+                  {errorsCount}%
                 </div>
                 <div
                   className="text-[18px] mb-6"
@@ -758,6 +821,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
       />
     </div>
   );

@@ -37,6 +37,7 @@ export function ImpressumPage({
                 onSolutionClick={onSolutionClick}
                 onImpactClick={onImpactClick}
                 onContactClick={onContactClick}
+                activePage="impressum"
             />
 
             <section className="pt-32 pb-16 md:pt-40 md:pb-24">
