@@ -20,230 +20,201 @@ import { DatenschutzPage } from './components/DatenschutzPage';
 
 type PageType = 'home-en' | 'home-de' | 'methodology-en' | 'methodology-de' | 'about-en' | 'about-de' | 'product-en' | 'product-de' | 'solution-en' | 'solution-de' | 'contact-en' | 'contact-de' | 'impressum-de' | 'datenschutz-de';
 
+// Map URL paths → PageType
+const PATH_TO_PAGE: Record<string, PageType> = {
+  '/': 'home-en',
+  '/home': 'home-en',
+  '/about': 'about-en',
+  '/product': 'product-en',
+  '/solution': 'solution-en',
+  '/impact': 'methodology-en',
+  '/contact': 'contact-en',
+  '/impressum': 'impressum-de',
+  '/datenschutz': 'datenschutz-de',
+};
+
+// Map PageType → URL path
+const PAGE_TO_PATH: Record<PageType, string> = {
+  'home-en': '/',
+  'home-de': '/',
+  'about-en': '/about',
+  'about-de': '/about',
+  'product-en': '/product',
+  'product-de': '/product',
+  'solution-en': '/solution',
+  'solution-de': '/solution',
+  'methodology-en': '/impact',
+  'methodology-de': '/impact',
+  'contact-en': '/contact',
+  'contact-de': '/contact',
+  'impressum-de': '/impressum',
+  'datenschutz-de': '/datenschutz',
+};
+
+function pageFromPath(pathname: string): PageType {
+  return PATH_TO_PAGE[pathname] ?? 'home-en';
+}
+
 export default function App() {
   const [scrollY, setScrollY] = useState(0);
-  const [currentPage, setCurrentPage] = useState<PageType>('home-en');
 
+  // Initialise from the current URL so direct links and refreshes work
+  const [currentPage, setCurrentPage] = useState<PageType>(() =>
+    pageFromPath(window.location.pathname)
+  );
+
+  // Scroll listener
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Listen to browser back / forward
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      const page: PageType = e.state?.page ?? pageFromPath(window.location.pathname);
+      setCurrentPage(page);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Navigate helper — pushes a real history entry
+  const navigate = (page: PageType) => {
+    const path = PAGE_TO_PATH[page];
+    history.pushState({ page }, '', path);
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
   const handleLanguageChange = (lang: 'EN' | 'DE', fromPage: 'home' | 'methodology' | 'about' | 'product' | 'solution' | 'contact') => {
-    if (fromPage === 'home') {
-      setCurrentPage(lang === 'EN' ? 'home-en' : 'home-de');
-    } else if (fromPage === 'methodology') {
-      setCurrentPage(lang === 'EN' ? 'methodology-en' : 'methodology-de');
-    } else if (fromPage === 'about') {
-      setCurrentPage(lang === 'EN' ? 'about-en' : 'about-de');
-    } else if (fromPage === 'product') {
-      setCurrentPage(lang === 'EN' ? 'product-en' : 'product-de');
-    } else if (fromPage === 'solution') {
-      setCurrentPage(lang === 'EN' ? 'solution-en' : 'solution-de');
-    } else {
-      setCurrentPage(lang === 'EN' ? 'contact-en' : 'contact-de');
-    }
-    window.scrollTo(0, 0);
+    const suffix = lang === 'EN' ? 'en' : 'de';
+    navigate(`${fromPage === 'methodology' ? 'methodology' : fromPage}-${suffix}` as PageType);
   };
 
-  const navigateToMethodology = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'methodology-en' : 'methodology-de');
-    window.scrollTo(0, 0);
-  };
+  const navigateToHome = () => navigate(currentPage.includes('en') ? 'home-en' : 'home-de');
+  const navigateToAbout = () => navigate(currentPage.includes('en') ? 'about-en' : 'about-de');
+  const navigateToProduct = () => navigate(currentPage.includes('en') ? 'product-en' : 'product-de');
+  const navigateToSolution = () => navigate(currentPage.includes('en') ? 'solution-en' : 'solution-de');
+  const navigateToMethodology = () => navigate(currentPage.includes('en') ? 'methodology-en' : 'methodology-de');
+  const navigateToContact = () => navigate(currentPage.includes('en') ? 'contact-en' : 'contact-de');
+  const navigateToImpressum = () => navigate('impressum-de');
+  const navigateToDatenschutz = () => navigate('datenschutz-de');
 
-  const navigateToHome = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'home-en' : 'home-de');
-    window.scrollTo(0, 0);
+  // Shared footer & nav props
+  const sharedNavProps = {
+    onAboutClick: navigateToAbout,
+    onProductClick: navigateToProduct,
+    onSolutionClick: navigateToSolution,
+    onImpactClick: navigateToMethodology,
+    onContactClick: navigateToContact,
   };
-
-  const navigateToAbout = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'about-en' : 'about-de');
-    window.scrollTo(0, 0);
+  const sharedFooterProps = {
+    ...sharedNavProps,
+    onImpressumClick: navigateToImpressum,
+    onDatenschutzClick: navigateToDatenschutz,
   };
+  const currentLang = currentPage.includes('en') ? 'EN' as const : 'DE' as const;
 
-  const navigateToProduct = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'product-en' : 'product-de');
-    window.scrollTo(0, 0);
-  };
+  // ── Page rendering ──────────────────────────────────────────────────────────
 
-  const navigateToSolution = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'solution-en' : 'solution-de');
-    window.scrollTo(0, 0);
-  };
-
-  const navigateToContact = () => {
-    const currentLang = currentPage.includes('en') ? 'EN' : 'DE';
-    setCurrentPage(currentLang === 'EN' ? 'contact-en' : 'contact-de');
-    window.scrollTo(0, 0);
-  };
-
-  const navigateToImpressum = () => {
-    setCurrentPage('impressum-de');
-    window.scrollTo(0, 0);
-  };
-
-  const navigateToDatenschutz = () => {
-    setCurrentPage('datenschutz-de');
-    window.scrollTo(0, 0);
-  };
-
-  // Render About Pages
   if (currentPage === 'about-en' || currentPage === 'about-de') {
-    const currentLang = currentPage === 'about-en' ? 'EN' : 'DE';
     return (
       <AboutPage
         onNavigateHome={navigateToHome}
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'about')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Methodology Pages
   if (currentPage === 'methodology-en' || currentPage === 'methodology-de') {
-    const currentLang = currentPage === 'methodology-en' ? 'EN' : 'DE';
     return (
       <ImpactMethodologyPage
         onNavigateHome={navigateToHome}
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'methodology')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Product Pages
   if (currentPage === 'product-en' || currentPage === 'product-de') {
-    const currentLang = currentPage === 'product-en' ? 'EN' : 'DE';
     return (
       <ProductPage
         onNavigateHome={navigateToHome}
         onNavigateToMethodology={navigateToMethodology}
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'product')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Solution Pages
   if (currentPage === 'solution-en' || currentPage === 'solution-de') {
-    const currentLang = currentPage === 'solution-en' ? 'EN' : 'DE';
     return (
       <SolutionPage
         onNavigateHome={navigateToHome}
         onNavigateToProduct={navigateToProduct}
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'solution')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Contact Pages
   if (currentPage === 'contact-en' || currentPage === 'contact-de') {
-    const currentLang = currentPage === 'contact-en' ? 'EN' : 'DE';
     return (
       <ContactPage
         onNavigateHome={navigateToHome}
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'contact')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Impressum Page
   if (currentPage === 'impressum-de') {
     return (
       <ImpressumPage
         onNavigateHome={navigateToHome}
         currentLanguage="DE"
         onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Datenschutz Page
   if (currentPage === 'datenschutz-de') {
     return (
       <DatenschutzPage
         onNavigateHome={navigateToHome}
         currentLanguage="DE"
         onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedNavProps}
+        {...sharedFooterProps}
       />
     );
   }
 
-  // Render Homepage (EN or DE)
-  const currentLang = currentPage === 'home-en' ? 'EN' : 'DE';
-
+  // Homepage (default)
   return (
     <div className="min-h-screen bg-white">
       <Navigation
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
-        onLogoClick={() => setCurrentPage('home-en')}
-        onAboutClick={navigateToAbout}
-        onProductClick={navigateToProduct}
-        onSolutionClick={navigateToSolution}
-        onImpactClick={navigateToMethodology}
-        onContactClick={navigateToContact}
+        onLogoClick={navigateToHome}
         activePage="home"
+        {...sharedNavProps}
       />
       <HeroSection
         scrollY={scrollY}
