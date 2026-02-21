@@ -23,63 +23,66 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white border-b border-[var(--border-light)] z-50">
       {/* Top bar */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
 
-        {/* Left: Logo + Desktop nav links */}
-        <div className="flex items-center gap-8 lg:gap-16">
-          <div className="cursor-pointer flex items-center" onClick={onLogoClick}>
-            {!logoError ? (
-              <img
-                src={logo}
-                alt="Norscope Logo"
-                className="w-32 md:w-40 h-auto"
-                onError={() => setLogoError(true)}
-              />
-            ) : (
-              <div className="text-xl md:text-2xl tracking-tight" style={{ fontWeight: 600 }}>
-                NORSCOPE
-              </div>
-            )}
-          </div>
+        {/* Logo – centered on mobile, left-aligned on desktop */}
+        <div
+          className="cursor-pointer flex items-center
+                     absolute left-1/2 -translate-x-1/2
+                     lg:static lg:translate-x-0"
+          onClick={onLogoClick}
+        >
+          {!logoError ? (
+            <img
+              src={logo}
+              alt="Norscope Logo"
+              className="w-32 md:w-40 h-auto"
+              onError={() => setLogoError(true)}
+            />
+          ) : (
+            <div className="text-xl md:text-2xl tracking-tight" style={{ fontWeight: 600 }}>
+              NORSCOPE
+            </div>
+          )}
+        </div>
 
-          {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-8">
-            <button
-              onClick={(e) => { e.preventDefault(); onProductClick?.(); }}
-              className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-              style={{ fontWeight: activePage === 'product' ? 700 : 400 }}
-            >
-              Product
-            </button>
-            <button
-              onClick={(e) => { e.preventDefault(); onSolutionClick?.(); }}
-              className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-              style={{ fontWeight: activePage === 'solution' ? 700 : 400 }}
-            >
-              Solutions
-            </button>
-            <button
-              onClick={(e) => { e.preventDefault(); onImpactClick?.(); }}
-              className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-              style={{ fontWeight: activePage === 'methodology' ? 700 : 400 }}
-            >
-              Impact &amp; Methodology
-            </button>
-            <button
-              onClick={(e) => { e.preventDefault(); onAboutClick?.(); }}
-              className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-              style={{ fontWeight: activePage === 'about' ? 700 : 400 }}
-            >
-              About
-            </button>
-            <button
-              onClick={(e) => { e.preventDefault(); onContactClick?.(); }}
-              className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-              style={{ fontWeight: activePage === 'contact' ? 700 : 400 }}
-            >
-              Contact
-            </button>
-          </div>
+        {/* Desktop nav links */}
+        <div className="hidden lg:flex items-center gap-8">
+          <button
+            onClick={(e) => { e.preventDefault(); onProductClick?.(); }}
+            className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
+            style={{ fontWeight: activePage === 'product' ? 700 : 400 }}
+          >
+            Product
+          </button>
+          <button
+            onClick={(e) => { e.preventDefault(); onSolutionClick?.(); }}
+            className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
+            style={{ fontWeight: activePage === 'solution' ? 700 : 400 }}
+          >
+            Solutions
+          </button>
+          <button
+            onClick={(e) => { e.preventDefault(); onImpactClick?.(); }}
+            className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
+            style={{ fontWeight: activePage === 'methodology' ? 700 : 400 }}
+          >
+            Impact &amp; Methodology
+          </button>
+          <button
+            onClick={(e) => { e.preventDefault(); onAboutClick?.(); }}
+            className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
+            style={{ fontWeight: activePage === 'about' ? 700 : 400 }}
+          >
+            About
+          </button>
+          <button
+            onClick={(e) => { e.preventDefault(); onContactClick?.(); }}
+            className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
+            style={{ fontWeight: activePage === 'contact' ? 700 : 400 }}
+          >
+            Contact
+          </button>
         </div>
 
         {/* Right: Desktop CTA + Mobile hamburger */}
@@ -165,6 +168,6 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
           </button>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }

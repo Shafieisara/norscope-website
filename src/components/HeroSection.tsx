@@ -1,23 +1,33 @@
+import { useRef, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import headsetImage from '../assets/hero-headset.png';
+import headsetImage from '../assets/hero-headset.webp';
 
 interface HeroSectionProps {
-  scrollY: number;
   onContactClick?: () => void;
   onProductClick?: () => void;
 }
 
-export function HeroSection({ scrollY, onContactClick, onProductClick }: HeroSectionProps) {
-  // Calculate parallax offset
-  const parallaxOffset = scrollY * 0.5;
+export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps) {
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  // Parallax via direct DOM mutation — no React re-renders on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section className="relative flex items-center overflow-hidden bg-white">
       {/* Subtle blueprint background with parallax */}
       <div
+        ref={bgRef}
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          transform: `translateY(${parallaxOffset}px)`,
           backgroundImage: `
             linear-gradient(rgba(0, 102, 204, 0.3) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0, 102, 204, 0.3) 1px, transparent 1px)
@@ -76,6 +86,8 @@ export function HeroSection({ scrollY, onContactClick, onProductClick }: HeroSec
                 src={headsetImage}
                 alt="Norscope AR Glasses"
                 className="w-full h-[400px] md:h-[480px] lg:h-[560px] object-cover object-center"
+                fetchPriority="high"
+                loading="eager"
               />
               {/* Subtle gradient overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />

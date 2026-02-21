@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { SplineProduct3DViewer } from './components/SplineProduct3DViewer';
@@ -10,13 +10,15 @@ import { BenefitsSection } from './components/BenefitsSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
-import { ImpactMethodologyPage } from './components/ImpactMethodologyPage';
-import { AboutPage } from './components/AboutPage';
-import { ProductPage } from './components/ProductPage';
-import { SolutionPage } from './components/SolutionPage';
-import { ContactPage } from './components/ContactPage';
-import { ImpressumPage } from './components/ImpressumPage';
-import { DatenschutzPage } from './components/DatenschutzPage';
+
+// Lazy-loaded page components — each gets its own JS chunk
+const ImpactMethodologyPage = lazy(() => import('./components/ImpactMethodologyPage').then(m => ({ default: m.ImpactMethodologyPage })));
+const AboutPage = lazy(() => import('./components/AboutPage').then(m => ({ default: m.AboutPage })));
+const ProductPage = lazy(() => import('./components/ProductPage').then(m => ({ default: m.ProductPage })));
+const SolutionPage = lazy(() => import('./components/SolutionPage').then(m => ({ default: m.SolutionPage })));
+const ContactPage = lazy(() => import('./components/ContactPage').then(m => ({ default: m.ContactPage })));
+const ImpressumPage = lazy(() => import('./components/ImpressumPage').then(m => ({ default: m.ImpressumPage })));
+const DatenschutzPage = lazy(() => import('./components/DatenschutzPage').then(m => ({ default: m.DatenschutzPage })));
 
 type PageType = 'home-en' | 'home-de' | 'methodology-en' | 'methodology-de' | 'about-en' | 'about-de' | 'product-en' | 'product-de' | 'solution-en' | 'solution-de' | 'contact-en' | 'contact-de' | 'impressum-de' | 'datenschutz-de';
 
@@ -55,20 +57,23 @@ function pageFromPath(pathname: string): PageType {
   return PATH_TO_PAGE[pathname] ?? 'home-en';
 }
 
-export default function App() {
-  const [scrollY, setScrollY] = useState(0);
+// Minimal spinner shown while a lazy page chunk is loading
+function PageFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div
+        className="w-8 h-8 rounded-full border-2 border-[var(--industrial-blue)] border-t-transparent animate-spin"
+        aria-label="Loading..."
+      />
+    </div>
+  );
+}
 
+export default function App() {
   // Initialise from the current URL so direct links and refreshes work
   const [currentPage, setCurrentPage] = useState<PageType>(() =>
     pageFromPath(window.location.pathname)
   );
-
-  // Scroll listener
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Listen to browser back / forward
   useEffect(() => {
@@ -122,87 +127,101 @@ export default function App() {
 
   if (currentPage === 'about-en' || currentPage === 'about-de') {
     return (
-      <AboutPage
-        onNavigateHome={navigateToHome}
-        currentLanguage={currentLang}
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'about')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <AboutPage
+          onNavigateHome={navigateToHome}
+          currentLanguage={currentLang}
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'about')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'methodology-en' || currentPage === 'methodology-de') {
     return (
-      <ImpactMethodologyPage
-        onNavigateHome={navigateToHome}
-        currentLanguage={currentLang}
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'methodology')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <ImpactMethodologyPage
+          onNavigateHome={navigateToHome}
+          currentLanguage={currentLang}
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'methodology')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'product-en' || currentPage === 'product-de') {
     return (
-      <ProductPage
-        onNavigateHome={navigateToHome}
-        onNavigateToMethodology={navigateToMethodology}
-        currentLanguage={currentLang}
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'product')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <ProductPage
+          onNavigateHome={navigateToHome}
+          onNavigateToMethodology={navigateToMethodology}
+          currentLanguage={currentLang}
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'product')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'solution-en' || currentPage === 'solution-de') {
     return (
-      <SolutionPage
-        onNavigateHome={navigateToHome}
-        onNavigateToProduct={navigateToProduct}
-        currentLanguage={currentLang}
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'solution')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <SolutionPage
+          onNavigateHome={navigateToHome}
+          onNavigateToProduct={navigateToProduct}
+          currentLanguage={currentLang}
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'solution')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'contact-en' || currentPage === 'contact-de') {
     return (
-      <ContactPage
-        onNavigateHome={navigateToHome}
-        currentLanguage={currentLang}
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'contact')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <ContactPage
+          onNavigateHome={navigateToHome}
+          currentLanguage={currentLang}
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'contact')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'impressum-de') {
     return (
-      <ImpressumPage
-        onNavigateHome={navigateToHome}
-        currentLanguage="DE"
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <ImpressumPage
+          onNavigateHome={navigateToHome}
+          currentLanguage="DE"
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
   if (currentPage === 'datenschutz-de') {
     return (
-      <DatenschutzPage
-        onNavigateHome={navigateToHome}
-        currentLanguage="DE"
-        onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
-        {...sharedNavProps}
-        {...sharedFooterProps}
-      />
+      <Suspense fallback={<PageFallback />}>
+        <DatenschutzPage
+          onNavigateHome={navigateToHome}
+          currentLanguage="DE"
+          onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
+          {...sharedNavProps}
+          {...sharedFooterProps}
+        />
+      </Suspense>
     );
   }
 
@@ -217,7 +236,6 @@ export default function App() {
         {...sharedNavProps}
       />
       <HeroSection
-        scrollY={scrollY}
         onContactClick={navigateToContact}
         onProductClick={navigateToProduct}
       />

@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import factoryImage from '../assets/factory-industrial-scene.png';
+import factoryImage from '../assets/factory-industrial-scene.webp';
 
 const STYLES = `
   .ss-left { transform: translateX(-60px); transition: transform 550ms cubic-bezier(0.16,1,0.3,1); }

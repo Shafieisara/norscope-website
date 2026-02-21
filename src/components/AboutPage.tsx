@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
-import saraImg from '../assets/Sara Sarvestani.png';
-import siddhantImg from '../assets/siddhant-rebello.png';
+import saraImg from '../assets/Sara Sarvestani.webp';
+import siddhantImg from '../assets/siddhant-rebello.webp';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 

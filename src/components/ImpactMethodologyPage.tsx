@@ -2,13 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImpactModal, ModalSection, ModalTable, ModalFormula } from './ImpactModal';
-import { ArrowDown, ArrowLeft, Clock, AlertTriangle, Users, TrendingDown, CheckCircle, TrendingUp, Mic, Hand } from 'lucide-react';
+import { ArrowDown, Clock, AlertTriangle, Users, TrendingDown, CheckCircle, TrendingUp, Mic, Hand } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 // Import local images
-import manualProblems from '../assets/impact-manual-problems.png';
-import arWorkflowImage from '../assets/impact-ar-workflow.png';
-import successImage from '../assets/impact-success.png';
+import manualProblems from '../assets/impact-manual-problems.webp';
+import arWorkflowImage from '../assets/impact-ar-workflow.webp';
+import successImage from '../assets/impact-success.webp';
 
 interface ImpactMethodologyPageProps {
   onNavigateHome: () => void;
@@ -116,15 +116,6 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         {/* Header Section */}
         <section className="py-12 md:py-16 border-b border-[var(--border-light)]">
           <div className="max-w-[1200px] mx-auto px-8 md:px-12">
-            {/* Back Button */}
-            <button
-              onClick={onNavigateHome}
-              className="flex items-center gap-2 text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back</span>
-            </button>
-
             <div className="max-w-4xl mx-auto">
               <h1
                 className="text-[40px] md:text-[48px] tracking-tight mb-6"

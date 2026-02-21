@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import arHeadsetImage from '../assets/ar-headset-product.png';
-import workerWeldingImage from '../assets/industrial-worker-welding.png';
-import maintenanceTechImage from '../assets/factory-maintenance-tech.png';
+import arHeadsetImage from '../assets/ar-headset-product.webp';
+import workerWeldingImage from '../assets/industrial-worker-welding.webp';
+import maintenanceTechImage from '../assets/factory-maintenance-tech.webp';
 
 const STYLES = `
   .cs-left { transform: translateX(-60px); transition: transform 550ms cubic-bezier(0.16,1,0.3,1); }

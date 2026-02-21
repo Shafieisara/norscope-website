@@ -4,11 +4,11 @@ import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 // Import local images
-import heroImage from '../assets/hero-headset.png';
-import problemImage from '../assets/problem-paper-manual.png';
-import maintenanceImage from '../assets/solution-active-maintenance.png';
-import customMachineryImage from '../assets/solution-custom-machinery.png';
-import factoryRealityImage from '../assets/solution-factory-reality.png';
+import heroImage from '../assets/hero-headset.webp';
+import problemImage from '../assets/problem-paper-manual.webp';
+import maintenanceImage from '../assets/solution-active-maintenance.webp';
+import customMachineryImage from '../assets/solution-custom-machinery.webp';
+import factoryRealityImage from '../assets/solution-factory-reality.webp';
 
 interface SolutionPageProps {
   onNavigateHome: () => void;

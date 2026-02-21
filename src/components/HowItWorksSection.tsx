@@ -55,11 +55,13 @@ export function HowItWorksSection() {
                 className={`relative text-center hw-card${visible ? ' hw-visible' : ''}`}
                 style={{ '--sd': `${index * 90}ms` } as React.CSSProperties}
               >
-                <div
-                  className="w-8 h-8 mx-auto mb-3 rounded-full inline-flex items-center justify-center text-[14px]"
-                  style={{ backgroundColor: 'var(--industrial-blue)', color: 'white', fontWeight: 600 }}
-                >
-                  {index + 1}
+                <div className="flex justify-center mb-3">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-[14px]"
+                    style={{ backgroundColor: 'var(--industrial-blue)', color: 'white', fontWeight: 600 }}
+                  >
+                    {index + 1}
+                  </div>
                 </div>
                 <div
                   className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 md:mb-6 rounded-full flex items-center justify-center bg-white border-2"
