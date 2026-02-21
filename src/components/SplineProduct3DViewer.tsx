@@ -80,7 +80,7 @@ export function SplineProduct3DViewer({
 
                 {sceneUrl && (
                     <p className="text-center text-[13px] text-[#6B6B6B] mt-4 md:mt-6">
-                        Powered by Spline • Drag to rotate, scroll to zoom
+                        Powered by Spline • Drag to rotate
                     </p>
                 )}
             </div>
