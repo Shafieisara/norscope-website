@@ -49,7 +49,7 @@ export function ProblemSection() {
             {problems.map((problem, index) => (
               <div
                 key={index}
-                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 hover:-translate-y-2 cursor-pointer ps-card${visible ? ' ps-visible' : ''}`}
+                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 md:hover:-translate-y-2 ps-card${visible ? ' ps-visible' : ''}`}
                 style={{ '--sd': `${index * 100}ms` } as React.CSSProperties}
               >
                 <div className="mb-5 md:mb-6">

@@ -50,7 +50,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
             <button
               onClick={onContactClick}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
+              className="w-full md:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
               style={{
                 color: 'white',
                 fontWeight: 500
@@ -461,7 +461,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={onContactClick}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
               style={{
                 backgroundColor: 'var(--industrial-blue)',
                 color: 'white',
@@ -472,7 +472,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
             </button>
             <button
               onClick={onContactClick}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all"
               style={{
                 backgroundColor: 'transparent',
                 border: '1px solid var(--border-light)',

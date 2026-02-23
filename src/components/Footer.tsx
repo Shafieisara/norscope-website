@@ -8,7 +8,7 @@ interface FooterProps {
   onDatenschutzClick?: () => void;
 }
 
-export function Footer({ onAboutClick, onProductClick, onContactClick, onImpressumClick, onDatenschutzClick }: FooterProps) {
+export function Footer({ onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: FooterProps) {
   const linkStyle: React.CSSProperties = {
     color: 'rgba(255, 255, 255, 0.6)',
     background: 'none',
@@ -52,6 +52,24 @@ export function Footer({ onAboutClick, onProductClick, onContactClick, onImpress
             onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
           >
             Product
+          </button>
+          <span>|</span>
+          <button
+            onClick={onSolutionClick}
+            style={linkStyle}
+            onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+          >
+            Solution
+          </button>
+          <span>|</span>
+          <button
+            onClick={onImpactClick}
+            style={linkStyle}
+            onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+          >
+            Impact
           </button>
           <span>|</span>
           <button

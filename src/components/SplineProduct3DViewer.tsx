@@ -22,7 +22,8 @@ export function SplineProduct3DViewer({
                         {title}
                     </h2>
                     <p className="text-[15px] md:text-[17px] text-[#4A4A4A]">
-                        {subtitle}
+                        <span className="md:hidden">Interactive 3D Model - Use two fingers to rotate</span>
+                        <span className="hidden md:inline">{subtitle}</span>
                     </p>
                 </div>
 
@@ -80,7 +81,9 @@ export function SplineProduct3DViewer({
 
                 {sceneUrl && (
                     <p className="text-center text-[13px] text-[#6B6B6B] mt-4 md:mt-6">
-                        Powered by Spline • Drag to rotate
+                        Powered by Spline •
+                        <span className="md:hidden"> Use two fingers to rotate</span>
+                        <span className="hidden md:inline"> Drag to rotate</span>
                     </p>
                 )}
             </div>

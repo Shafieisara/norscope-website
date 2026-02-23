@@ -127,7 +127,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group impact-card-reveal${isVisible ? ' impact-visible' : ''}`}
+                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group impact-card-reveal${isVisible ? ' impact-visible' : ''}`}
                 style={{ '--stagger-delay': `${STAGGER_DELAYS[index]}ms` } as React.CSSProperties}
               >
                 <div className="mb-5 md:mb-6">

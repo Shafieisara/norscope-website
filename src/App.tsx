@@ -248,8 +248,7 @@ export default function App() {
       <IndustriesSection />
       <CTASection onContactClick={navigateToContact} />
       <Footer
-        onImpressumClick={navigateToImpressum}
-        onDatenschutzClick={navigateToDatenschutz}
+        {...sharedFooterProps}
       />
     </div>
   );

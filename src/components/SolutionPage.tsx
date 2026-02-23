@@ -160,9 +160,9 @@ export function SolutionPage({
             How the Solution Works
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
             {/* Step 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
@@ -181,7 +181,7 @@ export function SolutionPage({
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
@@ -200,7 +200,7 @@ export function SolutionPage({
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
@@ -219,7 +219,7 @@ export function SolutionPage({
             </div>
 
             {/* Step 4 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group">
+            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
@@ -447,7 +447,7 @@ export function SolutionPage({
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={onNavigateToProduct}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
               style={{
                 backgroundColor: 'var(--industrial-blue)',
                 color: 'white',
@@ -458,7 +458,7 @@ export function SolutionPage({
             </button>
             <button
               onClick={onContactClick}
-              className="px-8 py-3.5 rounded-md text-[15px] transition-all"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all"
               style={{
                 backgroundColor: 'transparent',
                 border: '1px solid var(--border-light)',

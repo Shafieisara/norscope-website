@@ -115,10 +115,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
       <main className="pt-20">
         {/* Header Section */}
         <section className="py-12 md:py-16 border-b border-[var(--border-light)]">
-          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="max-w-4xl mx-auto">
               <h1
-                className="text-[40px] md:text-[48px] tracking-tight mb-6"
+                className="text-[32px] md:text-[48px] tracking-tight mb-6"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
                 Impact Methodology
@@ -138,7 +138,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 1 - Baseline (Before AR) */}
         <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <div
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -238,7 +238,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 2 - AR Intervention */}
         <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <div
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -355,7 +355,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 3 - Measured Impact */}
         <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
             <div className="text-center mb-12">
               <div
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -392,16 +392,16 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Metric Cards */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { ref: s3MttrRef, count: s3MttrCount, prefix: '↓ ', suffix: '%', label: 'MTTR', detail: 'Mean Time To Repair', color: '#0066CC' },
                   { ref: s3ErrorsRef, count: s3ErrorsCount, prefix: '↓ ', suffix: '%', label: 'Errors', detail: 'Procedural errors', color: '#059669' },
                   { ref: s3FixRef, count: s3FixCount, prefix: '↑ ', suffix: '%', label: 'First-Time Fix', detail: 'Success rate', color: '#0066CC' },
                   { ref: s3TrainingRef, count: s3TrainingCount, prefix: '', suffix: '×', label: 'Training Speed', detail: 'Faster onboarding', color: '#059669' },
                 ].map((item, index) => (
-                  <div key={index} ref={item.ref} className="bg-white border border-[var(--border-light)] rounded-lg p-6">
+                  <div key={index} ref={item.ref} className="bg-white border border-[var(--border-light)] rounded-lg p-5 md:p-6">
                     <div
-                      className="text-[36px] mb-2"
+                      className="text-[32px] md:text-[36px] mb-2"
                       style={{ fontWeight: 700, color: item.color }}
                     >
                       {item.prefix}{item.count}{item.suffix}
@@ -427,24 +427,24 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Model Inputs Panel */}
         <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1440px] mx-auto px-12">
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
             <h2
-              className="text-[32px] tracking-tight mb-8"
+              className="text-[28px] md:text-[32px] tracking-tight mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               Typical Model Inputs (example configuration)
             </h2>
 
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl mx-auto">
-              <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+            <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                 {modelInputs.map((input, index) => (
                   <div
                     key={index}
                     className="flex justify-between items-baseline py-3 border-b border-[var(--border-light)]"
                   >
-                    <span className="text-[15px] text-[#4A4A4A]">{input.label}</span>
+                    <span className="text-[14px] md:text-[15px] text-[#4A4A4A]">{input.label}</span>
                     <span
-                      className="text-[15px] ml-4"
+                      className="text-[14px] md:text-[15px] ml-4 text-right"
                       style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                     >
                       {input.value}
@@ -462,25 +462,25 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Impact Metric Cards */}
         <section className="py-16 md:py-24 border-t border-[var(--border-light)]">
-          <div className="max-w-[1440px] mx-auto px-12">
-            <div className="grid grid-cols-4 gap-6">
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1: Faster repairs */}
-              <div ref={repairsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={repairsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
                 <div
-                  className="text-[48px] mb-2"
+                  className="text-[40px] md:text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
                   {repairsCount}%
                 </div>
                 <div
-                  className="text-[18px] mb-6"
+                  className="text-[16px] md:text-[18px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
                   Faster repairs
                 </div>
                 <button
                   onClick={() => setOpenModal('repairs')}
-                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
                   View calculation
@@ -488,22 +488,22 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Card 2: Quicker training */}
-              <div ref={trainingRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={trainingRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
                 <div
-                  className="text-[48px] mb-2"
+                  className="text-[40px] md:text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
                   {trainingCount}×
                 </div>
                 <div
-                  className="text-[18px] mb-6"
+                  className="text-[16px] md:text-[18px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
                   Quicker training
                 </div>
                 <button
                   onClick={() => setOpenModal('training')}
-                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
                   View calculation
@@ -511,22 +511,22 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Card 3: Error reduction */}
-              <div ref={errorsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div ref={errorsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
                 <div
-                  className="text-[48px] mb-2"
+                  className="text-[40px] md:text-[48px] mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
                   {errorsCount}%
                 </div>
                 <div
-                  className="text-[18px] mb-6"
+                  className="text-[16px] md:text-[18px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
                   Error reduction
                 </div>
                 <button
                   onClick={() => setOpenModal('errors')}
-                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
                   View calculation
@@ -534,22 +534,22 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Card 4: Compliance tracking */}
-              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
                 <div
-                  className="text-[28px] leading-tight mb-2"
+                  className="text-[24px] md:text-[28px] leading-tight mb-2"
                   style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
                 >
                   System-enforced
                 </div>
                 <div
-                  className="text-[18px] mb-6"
+                  className="text-[16px] md:text-[18px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
                   Compliance tracking
                 </div>
                 <button
                   onClick={() => setOpenModal('compliance')}
-                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
                   View calculation
@@ -569,7 +569,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               Pilot Validation Plan
             </h2>
 
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl mx-auto">
+            <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 max-w-4xl mx-auto">
               <ul className="space-y-4">
                 {[
                   'Measure baseline task duration per machine type',
@@ -581,12 +581,12 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <span
-                      className="inline-flex w-6 h-6 rounded-full mr-3 flex-shrink-0 items-center justify-center text-white text-[13px]"
+                      className="inline-flex w-5 h-5 md:w-6 md:h-6 rounded-full mr-3 flex-shrink-0 items-center justify-center text-white text-[12px] md:text-[13px]"
                       style={{ backgroundColor: 'var(--industrial-blue)', fontWeight: 600 }}
                     >
                       {index + 1}
                     </span>
-                    <span className="text-[15px] text-[#4A4A4A] leading-relaxed pt-0.5">
+                    <span className="text-[14px] md:text-[15px] text-[#4A4A4A] leading-relaxed pt-0.5">
                       {item}
                     </span>
                   </li>

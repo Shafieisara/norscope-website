@@ -46,11 +46,11 @@ export function IndustriesSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 hover:border-[var(--industrial-blue)] hover:-translate-y-2 group is-card${visible ? ' is-visible' : ''}`}
+                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 hover:border-[var(--industrial-blue)] md:hover:-translate-y-2 group is-card${visible ? ' is-visible' : ''}`}
                 style={{ '--sd': `${index * 80}ms` } as React.CSSProperties}
               >
                 <div className="flex flex-col items-center text-center">

@@ -56,7 +56,7 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
               <button
                 onClick={onContactClick}
-                className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:shadow-lg"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:shadow-lg"
                 style={{
                   backgroundColor: 'var(--industrial-blue)',
                   color: 'white',
@@ -67,7 +67,7 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
               </button>
               <button
                 onClick={onProductClick}
-                className="px-8 py-3.5 rounded-md text-[15px] border-2 transition-all hover:border-[var(--industrial-blue)]"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] border-2 transition-all hover:border-[var(--industrial-blue)]"
                 style={{
                   borderColor: 'var(--border-light)',
                   color: 'var(--dark-text)',

@@ -143,7 +143,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             Founding Team
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
             {/* Founder Card 1 - Siddhant */}
             <div className="bg-white border border-[var(--border-light)] rounded-lg overflow-hidden">
               <div className="aspect-square overflow-hidden">
@@ -212,7 +212,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
 
           <button
             onClick={onContactClick}
-            className="px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
+            className="w-full md:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
             style={{
               backgroundColor: 'var(--industrial-blue)',
               color: 'white',
