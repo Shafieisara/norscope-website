@@ -22,7 +22,7 @@ const DatenschutzPage = lazy(() => import('./components/DatenschutzPage').then(m
 
 type PageType = 'home-en' | 'home-de' | 'methodology-en' | 'methodology-de' | 'about-en' | 'about-de' | 'product-en' | 'product-de' | 'solution-en' | 'solution-de' | 'contact-en' | 'contact-de' | 'impressum-de' | 'datenschutz-de';
 
-// Map URL paths → PageType
+// Map logical paths → PageType
 const PATH_TO_PAGE: Record<string, PageType> = {
   '/': 'home-en',
   '/home': 'home-en',
@@ -35,7 +35,7 @@ const PATH_TO_PAGE: Record<string, PageType> = {
   '/datenschutz': 'datenschutz-de',
 };
 
-// Map PageType → URL path
+// Map PageType → logical path
 const PAGE_TO_PATH: Record<PageType, string> = {
   'home-en': '/',
   'home-de': '/',
@@ -52,6 +52,16 @@ const PAGE_TO_PATH: Record<PageType, string> = {
   'impressum-de': '/impressum',
   'datenschutz-de': '/datenschutz',
 };
+
+// Derive the current logical path from the URL hash (fallback to '/')
+function getPathFromLocation(): string {
+  const { hash } = window.location;
+  if (hash && hash.length > 1) {
+    const raw = hash.slice(1); // e.g. "/impressum" or "impressum"
+    return raw.startsWith('/') ? raw : `/${raw}`;
+  }
+  return '/';
+}
 
 function pageFromPath(pathname: string): PageType {
   return PATH_TO_PAGE[pathname] ?? 'home-en';
@@ -70,27 +80,37 @@ function PageFallback() {
 }
 
 export default function App() {
-  // Initialise from the current URL so direct links and refreshes work
+  // Initialise from the current hash-based URL so refreshes work on static hosting
   const [currentPage, setCurrentPage] = useState<PageType>(() =>
-    pageFromPath(window.location.pathname)
+    pageFromPath(getPathFromLocation())
   );
 
-  // Listen to browser back / forward
+  // Listen to hash changes (back / forward and in-app navigation)
   useEffect(() => {
-    const handlePopState = (e: PopStateEvent) => {
-      const page: PageType = e.state?.page ?? pageFromPath(window.location.pathname);
+    const handleHashChange = () => {
+      const page: PageType = pageFromPath(getPathFromLocation());
       setCurrentPage(page);
       window.scrollTo(0, 0);
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+
+    // Ensure state matches initial hash on mount
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Navigate helper — pushes a real history entry
+  // Navigate helper — uses hash-based routing so refreshes work without server rewrites
   const navigate = (page: PageType) => {
     const path = PAGE_TO_PATH[page];
-    history.pushState({ page }, '', path);
-    setCurrentPage(page);
+    const newHash = path === '/' ? '' : path;
+    if (newHash !== window.location.hash.slice(1)) {
+      window.location.hash = newHash;
+    } else {
+      // If hash is the same, still ensure state and scroll are correct
+      setCurrentPage(page);
+      window.scrollTo(0, 0);
+    }
     window.scrollTo(0, 0);
   };
 
