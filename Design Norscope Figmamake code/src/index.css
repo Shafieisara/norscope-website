@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --industrial-blue: #0066CC;
+    --industrial-blue-light: #E6F2FF;
+    --industrial-dark: #1A1A1A;
+    --border-light: #e5e7eb;
+    --dark-text: #111827;
+    --light-gray: #F7F8FA;
+    --dark-bg: #0A0A0A;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
