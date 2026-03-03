@@ -69,7 +69,7 @@ export function ImpressumPage({
                             </h2>
                             <div className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed space-y-1">
                                 <p><strong>Norscope</strong></p>
-                                <p>Projektinitiative (in Gründung)</p>
+                                <p>Projektinitiative</p>
                                 <p>Rollplatz 23</p>
                                 <p>38678 Clausthal-Zellerfeld</p>
                             </div>
