@@ -37,8 +37,16 @@ export function ContactPage({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission would be handled here
-    console.log('Form submitted:', formData);
+    const subject = encodeURIComponent('Contact request from Norscope website');
+    const body = encodeURIComponent(
+      `Full Name: ${formData.fullName}\n` +
+      `Company: ${formData.company}\n` +
+      `Email: ${formData.email}\n` +
+      `Role: ${formData.role}\n\n` +
+      `Message:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:contact@norscope.com?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
