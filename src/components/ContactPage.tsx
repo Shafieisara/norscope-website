@@ -35,18 +35,42 @@ export function ContactPage({
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent('Contact request from Norscope website');
-    const body = encodeURIComponent(
-      `Full Name: ${formData.fullName}\n` +
-      `Company: ${formData.company}\n` +
-      `Email: ${formData.email}\n` +
-      `Role: ${formData.role}\n\n` +
-      `Message:\n${formData.message}`
-    );
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
 
-    window.location.href = `mailto:contact@norscope.com?subject=${subject}&body=${body}`;
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const data = await response.json().catch(() => null);
+          throw new Error(data?.error || 'Failed to send message');
+        }
+        setSubmitSuccess(true);
+        setFormData({
+          fullName: '',
+          company: '',
+          email: '',
+          role: '',
+          message: ''
+        });
+      })
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : 'Failed to send message';
+        setSubmitError(message);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
