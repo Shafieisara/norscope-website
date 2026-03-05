@@ -35,42 +35,25 @@ export function ContactPage({
     message: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError(null);
-    setSubmitSuccess(false);
 
-    fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          const data = await response.json().catch(() => null);
-          throw new Error(data?.error || 'Failed to send message');
-        }
-        setSubmitSuccess(true);
-        setFormData({
-          fullName: '',
-          company: '',
-          email: '',
-          role: '',
-          message: ''
-        });
-      })
-      .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : 'Failed to send message';
-        setSubmitError(message);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    const subject = `Norscope contact request from ${formData.fullName || 'website visitor'}`;
+    const bodyLines = [
+      `Full Name: ${formData.fullName}`,
+      `Company / Organization: ${formData.company}`,
+      `Email: ${formData.email}`,
+      `Role / Position: ${formData.role}`,
+      '',
+      'Message:',
+      formData.message,
+    ];
+
+    const mailto = `mailto:contact@norscope.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+      bodyLines.join('\n')
+    )}`;
+
+    window.location.href = mailto;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
