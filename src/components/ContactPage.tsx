@@ -34,26 +34,41 @@ export function ContactPage({
     role: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage('');
 
-    const subject = `Norscope contact request from ${formData.fullName || 'website visitor'}`;
-    const bodyLines = [
-      `Full Name: ${formData.fullName}`,
-      `Company / Organization: ${formData.company}`,
-      `Email: ${formData.email}`,
-      `Role / Position: ${formData.role}`,
-      '',
-      'Message:',
-      formData.message,
-    ];
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'a0c7aed0-52ce-462e-92f1-edaf91787f9e',
+          subject: `Norscope Contact: ${formData.fullName || 'website visitor'}`,
+          ...formData
+        })
+      });
 
-    const mailto = `mailto:contact@norscope.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-      bodyLines.join('\n')
-    )}`;
-
-    window.location.href = mailto;
+      const result = await response.json();
+      if (response.status === 200) {
+        setIsSuccess(true);
+        setFormData({ fullName: '', company: '', email: '', role: '', message: '' });
+      } else {
+        setErrorMessage(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setErrorMessage('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -99,9 +114,32 @@ export function ContactPage({
               Request a Demo
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Full Name */}
-              <div>
+            {isSuccess ? (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center text-green-800">
+                <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <h3 className="text-[20px] font-semibold mb-3">Message Sent Successfully!</h3>
+                <p className="text-[16px] mb-6 inline-block opacity-90">Thank you for reaching out. We have received your request and will respond shortly.</p>
+                <div>
+                    <button 
+                    onClick={() => setIsSuccess(false)}
+                    className="btn-outline px-6 py-2.5 bg-white text-green-700 border-green-600 hover:bg-green-50"
+                    >
+                    Send Another Message
+                    </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {errorMessage && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-[15px]">
+                    {errorMessage}
+                  </div>
+                )}
+                
+                {/* Full Name */}
+                <div>
                 <label
                   htmlFor="fullName"
                   className="block text-[15px] mb-2"
@@ -209,19 +247,29 @@ export function ContactPage({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:-translate-y-1 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800 disabled:opacity-75 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:-translate-y-0"
                   style={{
                     color: 'white',
                     fontWeight: 500
                   }}
                 >
-                  Submit Request
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                       <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : 'Submit Request'}
                 </button>
                 <p className="text-[13px] text-[#6B6B6B] mt-4">
                   We will respond within a reasonable timeframe.
                 </p>
               </div>
             </form>
+            )}
           </div>
         </div>
       </section>
