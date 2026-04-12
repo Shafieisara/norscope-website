@@ -74,7 +74,7 @@ export function ContactPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
-        activePage="contact"
+        currentPage="contact"
       />
 
       {/* Contact Hero */}
@@ -85,7 +85,7 @@ export function ContactPage({
               className="text-[36px] md:text-[52px] tracking-tight mb-4 md:mb-6"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
-              Contact & Request Demo
+              Contact & Discuss a Pilot
             </h1>
             <p className="text-[16px] md:text-[18px] text-[#4A4A4A] leading-relaxed">
               Get in touch to discuss your maintenance workflows or request a product demonstration.

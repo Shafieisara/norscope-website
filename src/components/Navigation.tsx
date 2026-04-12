@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/Norscope Logo.svg';
 
-type ActivePage = 'home' | 'product' | 'solution' | 'methodology' | 'about' | 'contact' | 'impressum' | 'datenschutz';
-
 interface NavigationProps {
   currentLanguage?: 'EN' | 'DE';
   onLanguageChange?: (lang: 'EN' | 'DE') => void;
@@ -13,10 +11,10 @@ interface NavigationProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
-  activePage?: ActivePage;
+  currentPage?: string;
 }
 
-export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, activePage }: NavigationProps) {
+export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, currentPage }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
 
@@ -51,35 +49,35 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
           <button
             onClick={(e) => { e.preventDefault(); onProductClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-            style={{ fontWeight: activePage === 'product' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('product') ? 700 : 400 }}
           >
             Product
           </button>
           <button
             onClick={(e) => { e.preventDefault(); onSolutionClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-            style={{ fontWeight: activePage === 'solution' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('solution') ? 700 : 400 }}
           >
             Solutions
           </button>
           <button
             onClick={(e) => { e.preventDefault(); onImpactClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-            style={{ fontWeight: activePage === 'methodology' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('methodology') ? 700 : 400 }}
           >
-            Impact &amp; Methodology
+            Approach
           </button>
           <button
             onClick={(e) => { e.preventDefault(); onAboutClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-            style={{ fontWeight: activePage === 'about' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('about') ? 700 : 400 }}
           >
             About
           </button>
           <button
             onClick={(e) => { e.preventDefault(); onContactClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors"
-            style={{ fontWeight: activePage === 'contact' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('contact') ? 700 : 400 }}
           >
             Contact
           </button>
@@ -93,7 +91,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
             className="hidden lg:block px-6 py-2.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
             style={{ color: 'white', fontWeight: 500 }}
           >
-            Request Demo
+            Discuss a Pilot
           </button>
 
           {/* Mobile hamburger */}
@@ -126,35 +124,35 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
           <button
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onProductClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors py-2 text-left"
-            style={{ fontWeight: activePage === 'product' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('product') ? 700 : 400 }}
           >
             Product
           </button>
           <button
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onSolutionClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors py-2 text-left"
-            style={{ fontWeight: activePage === 'solution' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('solution') ? 700 : 400 }}
           >
             Solutions
           </button>
           <button
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onImpactClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors py-2 text-left"
-            style={{ fontWeight: activePage === 'methodology' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('methodology') ? 700 : 400 }}
           >
-            Impact &amp; Methodology
+            Approach
           </button>
           <button
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onAboutClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors py-2 text-left"
-            style={{ fontWeight: activePage === 'about' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('about') ? 700 : 400 }}
           >
             About
           </button>
           <button
             onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); onContactClick?.(); }}
             className="text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors py-2 text-left"
-            style={{ fontWeight: activePage === 'contact' ? 700 : 400 }}
+            style={{ fontWeight: currentPage?.startsWith('contact') ? 700 : 400 }}
           >
             Contact
           </button>
@@ -164,7 +162,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
             className="px-6 py-2.5 rounded-md text-[15px] transition-all mt-2"
             style={{ backgroundColor: 'var(--industrial-blue)', color: 'white', fontWeight: 500 }}
           >
-            Request Demo
+            Discuss a Pilot
           </button>
         </div>
       </div>

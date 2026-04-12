@@ -2,8 +2,6 @@ import { Check, Shield, Wifi, MonitorCog, ArrowRight } from 'lucide-react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-// Import local images
 import heroImage from '../assets/hero-headset.webp';
 import problemImage from '../assets/problem-paper-manual.webp';
 import maintenanceImage from '../assets/solution-active-maintenance.webp';
@@ -20,26 +18,24 @@ interface SolutionPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
-  onImpressumClick?: () => void;
-  onDatenschutzClick?: () => void;
 }
 
-export function SolutionPage({
-  onNavigateHome,
-  onNavigateToProduct,
-  currentLanguage,
-  onLanguageChange,
-  onAboutClick,
+export function SolutionPage({ 
+  onNavigateHome, 
+  onNavigateToProduct, 
+  currentLanguage, 
+  onLanguageChange, 
+  onAboutClick, 
   onProductClick,
   onSolutionClick,
   onImpactClick,
-  onContactClick,
-  onImpressumClick,
-  onDatenschutzClick
+  onContactClick
 }: SolutionPageProps) {
+  const currentPage = currentLanguage === 'EN' ? 'solution-en' : 'solution-de';
+  
   return (
     <div className="min-h-screen bg-white">
-      <Navigation
+      <Navigation 
         currentLanguage={currentLanguage}
         onLanguageChange={onLanguageChange}
         onLogoClick={onNavigateHome}
@@ -48,15 +44,15 @@ export function SolutionPage({
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
-        activePage="solution"
+        currentPage={currentPage}
       />
-
+      
       {/* Solution Hero */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1
+              <h1 
                 className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -66,7 +62,7 @@ export function SolutionPage({
                 Structured, offline-capable AR software for real maintenance tasks
               </p>
             </div>
-            <div className="relative h-[500px] md:h-[600px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={heroImage}
                 alt="Technician wearing AR headset in industrial environment"
@@ -82,7 +78,7 @@ export function SolutionPage({
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2
+              <h2 
                 className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -91,7 +87,7 @@ export function SolutionPage({
               <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-8">
                 Industrial maintenance operations face persistent challenges that impact efficiency, quality, and knowledge retention. Documentation is often inaccessible during work, expertise is concentrated in individuals rather than systems, and procedures vary inconsistently across locations.
               </p>
-
+              
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
@@ -119,7 +115,7 @@ export function SolutionPage({
                 </div>
               </div>
             </div>
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={problemImage}
                 alt="Technician working with manual documentation in industrial setting"
@@ -133,8 +129,8 @@ export function SolutionPage({
       {/* The Norscope Solution */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <h2
+          <div className="max-w-4xl">
+            <h2 
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
@@ -153,23 +149,23 @@ export function SolutionPage({
       {/* How the Solution Works */}
       <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <h2
+          <h2 
             className="text-[28px] md:text-[40px] tracking-tight mb-12 md:mb-16 text-center"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
             How the Solution Works
           </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
             {/* Step 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+            <div className="card-hover bg-white p-8 rounded-lg">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <MonitorCog className="w-6 h-6 text-white" />
               </div>
-              <h3
+              <h3 
                 className="text-[18px] md:text-[20px] mb-3"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -181,14 +177,14 @@ export function SolutionPage({
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+            <div className="bg-white p-8 rounded-lg">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Shield className="w-6 h-6 text-white" />
               </div>
-              <h3
+              <h3 
                 className="text-[18px] md:text-[20px] mb-3"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -200,14 +196,14 @@ export function SolutionPage({
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+            <div className="bg-white p-8 rounded-lg">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Check className="w-6 h-6 text-white" />
               </div>
-              <h3
+              <h3 
                 className="text-[18px] md:text-[20px] mb-3"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -219,14 +215,14 @@ export function SolutionPage({
             </div>
 
             {/* Step 4 */}
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-2xl transition-all duration-300 md:hover:-translate-y-2 group">
-              <div
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+            <div className="bg-white p-8 rounded-lg">
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
                 style={{ backgroundColor: 'var(--industrial-blue)' }}
               >
                 <Wifi className="w-6 h-6 text-white" />
               </div>
-              <h3
+              <h3 
                 className="text-[18px] md:text-[20px] mb-3"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -239,7 +235,7 @@ export function SolutionPage({
           </div>
 
           {/* Process Image */}
-          <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden max-w-5xl mx-auto shadow-xl">
+          <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden max-w-5xl mx-auto">
             <ImageWithFallback
               src={maintenanceImage}
               alt="Technician performing maintenance work in industrial environment"
@@ -254,7 +250,7 @@ export function SolutionPage({
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2
+              <h2 
                 className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -266,11 +262,11 @@ export function SolutionPage({
               <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-8">
                 This approach ensures that workflows align with existing maintenance procedures, terminology matches organizational standards, and validation steps reflect actual quality requirements.
               </p>
-
+              
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <ArrowRight
-                    className="w-5 h-5 mt-0.5 flex-shrink-0"
+                  <ArrowRight 
+                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
                   <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -278,8 +274,8 @@ export function SolutionPage({
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <ArrowRight
-                    className="w-5 h-5 mt-0.5 flex-shrink-0"
+                  <ArrowRight 
+                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
                   <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -287,8 +283,8 @@ export function SolutionPage({
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <ArrowRight
-                    className="w-5 h-5 mt-0.5 flex-shrink-0"
+                  <ArrowRight 
+                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
                   <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -297,7 +293,7 @@ export function SolutionPage({
                 </div>
               </div>
             </div>
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={customMachineryImage}
                 alt="Close-up of industrial equipment and machinery"
@@ -311,8 +307,8 @@ export function SolutionPage({
       {/* Designed for Industrial Reality */}
       <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <h2
+          <div className="max-w-4xl">
+            <h2 
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
@@ -321,10 +317,10 @@ export function SolutionPage({
             <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-8">
               Norscope is built to function in real industrial environments, accounting for the practical constraints and operational requirements of shop floor work.
             </p>
-
+            
             <div className="space-y-6 mb-12">
               <div>
-                <h3
+                <h3 
                   className="text-[18px] mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
@@ -336,7 +332,7 @@ export function SolutionPage({
               </div>
 
               <div>
-                <h3
+                <h3 
                   className="text-[18px] mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
@@ -348,7 +344,7 @@ export function SolutionPage({
               </div>
 
               <div>
-                <h3
+                <h3 
                   className="text-[18px] mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
@@ -361,7 +357,7 @@ export function SolutionPage({
             </div>
 
             {/* Optional workshop image */}
-            <div className="relative h-[350px] md:h-[450px] rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-[350px] md:h-[450px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={factoryRealityImage}
                 alt="Factory floor with workers in industrial environment"
@@ -375,8 +371,8 @@ export function SolutionPage({
       {/* Resulting Benefits */}
       <section className="py-16 md:py-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="max-w-4xl mx-auto">
-            <h2
+          <div className="max-w-4xl">
+            <h2 
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
@@ -385,11 +381,11 @@ export function SolutionPage({
             <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-8">
               Organizations implementing Norscope typically observe improvements in several operational areas:
             </p>
-
+            
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Check
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
+                <Check 
+                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
                 <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -397,8 +393,8 @@ export function SolutionPage({
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <Check
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
+                <Check 
+                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
                 <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -406,8 +402,8 @@ export function SolutionPage({
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <Check
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
+                <Check 
+                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
                 <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -415,8 +411,8 @@ export function SolutionPage({
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <Check
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
+                <Check 
+                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
                 <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -424,8 +420,8 @@ export function SolutionPage({
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <Check
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
+                <Check 
+                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
                 <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
@@ -443,44 +439,36 @@ export function SolutionPage({
           <p className="text-[18px] md:text-[20px] text-[#4A4A4A] leading-relaxed mb-10 max-w-3xl mx-auto">
             Learn more about how Norscope is implemented in industrial environments.
           </p>
-
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
+            <button 
               onClick={onNavigateToProduct}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
-              style={{
-                backgroundColor: 'var(--industrial-blue)',
+              className="btn-primary px-8 py-3.5 rounded-md text-[15px]"
+              style={{ 
+                backgroundColor: 'var(--industrial-blue)', 
                 color: 'white',
                 fontWeight: 500
               }}
             >
               View Product
             </button>
-            <button
+            <button 
               onClick={onContactClick}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all"
-              style={{
+              className="btn-outline px-8 py-3.5 rounded-md text-[15px] transition-all"
+              style={{ 
                 backgroundColor: 'transparent',
                 border: '1px solid var(--border-light)',
                 color: 'var(--dark-text)',
                 fontWeight: 500
               }}
             >
-              Request Demo
+              Discuss a Pilot
             </button>
           </div>
         </div>
       </section>
 
-      <Footer
-        onAboutClick={onAboutClick}
-        onProductClick={onProductClick}
-        onSolutionClick={onSolutionClick}
-        onImpactClick={onImpactClick}
-        onContactClick={onContactClick}
-        onImpressumClick={onImpressumClick}
-        onDatenschutzClick={onDatenschutzClick}
-      />
+      <Footer />
     </div>
   );
 }

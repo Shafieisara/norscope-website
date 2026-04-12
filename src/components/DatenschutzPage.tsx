@@ -37,7 +37,7 @@ export function DatenschutzPage({
                 onSolutionClick={onSolutionClick}
                 onImpactClick={onImpactClick}
                 onContactClick={onContactClick}
-                activePage="datenschutz"
+                currentPage="datenschutz"
             />
 
             <section className="pt-32 pb-16 md:pt-40 md:pb-24">

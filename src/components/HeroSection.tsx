@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import headsetImage from '../assets/hero-headset.webp';
+import headsetImage from '../assets/hero-headset-figma.png';
 
 interface HeroSectionProps {
   onContactClick?: () => void;
@@ -22,15 +22,28 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
   }, []);
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-white">
+    <section className="relative flex items-center min-h-[80vh] overflow-hidden">
+      {/* Full-width background image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${headsetImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/30" />
+      </div>
+
       {/* Subtle blueprint background with parallax */}
       <div
         ref={bgRef}
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.05] pointer-events-none z-[1]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(0, 102, 204, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 102, 204, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px'
         }}
@@ -41,13 +54,13 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
           {/* Left Column - Content */}
           <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             <h1
-              className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+              className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight text-white"
+              style={{ fontWeight: 600 }}
             >
-              AR Glasses for Industrial Machine Maintenance
+              Offline AR Guidance for Industrial Maintenance
             </h1>
 
-            <p className="text-[16px] md:text-[18px] leading-relaxed text-[#4A4A4A] max-w-[520px] mx-auto lg:mx-0">
+            <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-200 max-w-[520px] mx-auto lg:mx-0">
               Offline augmented reality platform for industrial servicing and training.
               Reduce downtime, accelerate knowledge transfer, and eliminate errors in
               complex maintenance operations.
@@ -63,14 +76,14 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
                   fontWeight: 500
                 }}
               >
-                Request Demo
+                Discuss a Pilot
               </button>
               <button
                 onClick={onProductClick}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] border-2 transition-all hover:border-[var(--industrial-blue)]"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] border-2 transition-all hover:bg-white/10"
                 style={{
-                  borderColor: 'var(--border-light)',
-                  color: 'var(--dark-text)',
+                  borderColor: 'rgba(255,255,255,0.4)',
+                  color: 'white',
                   fontWeight: 500
                 }}
               >
@@ -79,19 +92,9 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
             </div>
           </div>
 
-          {/* Right Column - Image */}
+          {/* Right Column - Keep empty to retain layout structure */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative rounded-lg overflow-hidden shadow-2xl w-full max-w-[440px] lg:max-w-[520px]">
-              <img
-                src={headsetImage}
-                alt="Norscope AR Glasses"
-                className="w-full h-[400px] md:h-[480px] lg:h-[560px] object-cover object-center"
-                fetchPriority="high"
-                loading="eager"
-              />
-              {/* Subtle gradient overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
-            </div>
+            {/* The image has been moved to the background */}
           </div>
         </div>
       </div>

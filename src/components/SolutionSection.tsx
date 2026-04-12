@@ -8,8 +8,25 @@ const STYLES = `
   .ss-left.ss-visible { transform: translateX(0); }
   .ss-right { transform: translateX(60px); transition: transform 550ms cubic-bezier(0.16,1,0.3,1) 80ms; }
   .ss-right.ss-visible { transform: translateX(0); }
+
+  /* Feature row hover */
+  .ss-feature-row {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    margin-left: -10px;
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+  .ss-feature-row:hover {
+    background-color: var(--industrial-blue-light);
+    border-left-color: var(--industrial-blue);
+  }
+  .ss-feature-row:hover svg { transform: scale(1.15); }
+  .ss-feature-row svg { transition: transform 200ms ease; }
+
   @media (prefers-reduced-motion: reduce) {
     .ss-left, .ss-right { transform: none; transition: none; }
+    .ss-feature-row, .ss-feature-row svg { transition: none; }
   }
 `;
 
@@ -66,7 +83,7 @@ export function SolutionSection() {
               </div>
               <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">
                 {features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                  <div key={index} className="ss-feature-row flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }} />
                     <span className="text-[14px] md:text-[16px] text-[var(--dark-text)]">{feature}</span>
                   </div>

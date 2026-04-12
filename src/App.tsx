@@ -252,7 +252,7 @@ export default function App() {
         currentLanguage={currentLang}
         onLanguageChange={(lang) => handleLanguageChange(lang, 'home')}
         onLogoClick={navigateToHome}
-        activePage="home"
+        currentPage="home"
         {...sharedNavProps}
       />
       <HeroSection

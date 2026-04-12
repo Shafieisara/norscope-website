@@ -6,8 +6,24 @@ const STYLES = `
   .hw-reveal.hw-visible { transform: translateY(0); }
   .hw-card { transform: translateY(90px); transition: transform 560ms cubic-bezier(0.16,1,0.3,1) var(--sd,0ms); }
   .hw-card.hw-visible { transform: translateY(0); }
+
+  /* Hover: card lifts */
+  .hw-card.hw-visible:hover { transform: translateY(-6px); transition: transform 250ms ease-out; }
+
+  /* Hover: icon circle fills and scales */
+  .hw-card.hw-visible:hover .hw-icon-ring {
+    background-color: var(--industrial-blue) !important;
+    border-color: var(--industrial-blue) !important;
+    transform: scale(1.08);
+  }
+  .hw-icon-ring { transition: background-color 250ms ease, border-color 250ms ease, transform 250ms ease; }
+  .hw-card.hw-visible:hover .hw-icon-ring svg { color: white !important; }
+  .hw-icon-ring svg { transition: color 250ms ease; }
+
   @media (prefers-reduced-motion: reduce) {
     .hw-reveal, .hw-card { transform: none; transition: none; }
+    .hw-card.hw-visible:hover { transform: none; }
+    .hw-icon-ring, .hw-icon-ring svg { transition: none; }
   }
 `;
 
@@ -64,7 +80,7 @@ export function HowItWorksSection() {
                   </div>
                 </div>
                 <div
-                  className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 md:mb-6 rounded-full flex items-center justify-center bg-white border-2"
+                  className="hw-icon-ring w-20 h-20 md:w-24 md:h-24 mx-auto mb-5 md:mb-6 rounded-full flex items-center justify-center bg-white border-2"
                   style={{ borderColor: 'var(--industrial-blue)' }}
                 >
                   <step.icon className="w-9 h-9 md:w-10 md:h-10" style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }} />

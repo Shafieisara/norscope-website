@@ -29,7 +29,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
-        activePage="about"
+        currentPage="about"
       />
 
       {/* About Hero */}
@@ -145,8 +145,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
             {/* Founder Card 1 - Siddhant */}
-            <div className="bg-white border border-[var(--border-light)] rounded-lg overflow-hidden">
-              <div className="aspect-square overflow-hidden">
+            <div className="card-hover bg-white rounded-lg overflow-hidden">
+              <div className="img-hover-zoom aspect-square">
                 <img
                   src={siddhantImg}
                   alt="Siddhant Rebello"
@@ -173,8 +173,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             </div>
 
             {/* Founder Card 2 - Sara */}
-            <div className="bg-white border border-[var(--border-light)] rounded-lg overflow-hidden">
-              <div className="aspect-square overflow-hidden">
+            <div className="card-hover bg-white rounded-lg overflow-hidden">
+              <div className="img-hover-zoom aspect-square">
                 <img
                   src={saraImg}
                   alt="Sara Shafiei"
@@ -212,14 +212,14 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
 
           <button
             onClick={onContactClick}
-            className="w-full md:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:opacity-90"
+            className="btn-primary w-full md:w-auto px-8 py-3.5 rounded-md text-[15px]"
             style={{
               backgroundColor: 'var(--industrial-blue)',
               color: 'white',
               fontWeight: 500
             }}
           >
-            Request Demo
+            Discuss a Pilot
           </button>
         </div>
       </section>

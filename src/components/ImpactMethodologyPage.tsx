@@ -1,14 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
+import { ArrowRight, CheckCircle, Clock, AlertTriangle, ArrowDown, X, Users, TrendingDown, Mic, Hand, ArrowLeft } from 'lucide-react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
-import { ImpactModal, ModalSection, ModalTable, ModalFormula } from './ImpactModal';
-import { ArrowDown, Clock, AlertTriangle, Users, TrendingDown, CheckCircle, TrendingUp, Mic, Hand } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-
-// Import local images
+import { AnimatedCounter } from './AnimatedCounter';
 import manualProblems from '../assets/impact-manual-problems.webp';
 import arWorkflowImage from '../assets/impact-ar-workflow.webp';
 import successImage from '../assets/impact-success.webp';
+import { ImpactModal, ModalSection, ModalTable, ModalFormula } from './ImpactModal';
 
 interface ImpactMethodologyPageProps {
   onNavigateHome: () => void;
@@ -19,72 +18,11 @@ interface ImpactMethodologyPageProps {
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
-  onImpressumClick?: () => void;
-  onDatenschutzClick?: () => void;
 }
 
-/**
- * Animates a number from 0 to `target` when the returned ref enters the viewport.
- * Runs only once per page load. Respects prefers-reduced-motion.
- */
-function useCountUp(target: number, duration = 1200): [React.RefObject<HTMLDivElement>, number] {
-  const ref = useRef<HTMLDivElement>(null);
-  const [count, setCount] = useState(0);
-  const hasRun = useRef(false);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      setCount(target);
-      return;
-    }
-
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasRun.current) {
-          hasRun.current = true;
-          observer.disconnect();
-
-          const startTime = performance.now();
-
-          const tick = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // ease-out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * target));
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-
-          requestAnimationFrame(tick);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return [ref, count];
-}
-
-export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick, onImpressumClick, onDatenschutzClick }: ImpactMethodologyPageProps) {
+export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', onLanguageChange, onAboutClick, onProductClick, onSolutionClick, onImpactClick, onContactClick }: ImpactMethodologyPageProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
-
-  // Count-up animation refs and values for the three numeric metric cards
-  const [repairsRef, repairsCount] = useCountUp(40);
-  const [trainingRef, trainingCount] = useCountUp(3);
-  const [errorsRef, errorsCount] = useCountUp(95);
-
-  // Count-up animation refs and values for the Section 3 metric cards
-  const [s3MttrRef, s3MttrCount] = useCountUp(40);
-  const [s3ErrorsRef, s3ErrorsCount] = useCountUp(95);
-  const [s3FixRef, s3FixCount] = useCountUp(85);
-  const [s3TrainingRef, s3TrainingCount] = useCountUp(3);
+  const currentPage = currentLanguage === 'EN' ? 'methodology-en' : 'methodology-de';
 
   const modelInputs = [
     { label: 'Average maintenance task duration', value: '50 minutes' },
@@ -99,7 +37,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation
+      <Navigation 
         currentLanguage={currentLanguage}
         onLanguageChange={onLanguageChange}
         onLogoClick={onNavigateHome}
@@ -108,26 +46,35 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         onSolutionClick={onSolutionClick}
         onImpactClick={onImpactClick}
         onContactClick={onContactClick}
-        activePage="methodology"
+        currentPage={currentPage}
       />
-
+      
       {/* Main Content */}
       <main className="pt-20">
         {/* Header Section */}
         <section className="py-12 md:py-16 border-b border-[var(--border-light)]">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-            <div className="max-w-4xl mx-auto">
-              <h1
-                className="text-[32px] md:text-[48px] tracking-tight mb-6"
+          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+            {/* Back Button */}
+            <button
+              onClick={onNavigateHome}
+              className="flex items-center gap-2 text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors mb-8"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+
+            <div className="max-w-4xl">
+              <h1 
+                className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight mb-3 md:mb-4" 
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
-                Impact Methodology
+                Approach
               </h1>
               <p className="text-[18px] md:text-[20px] text-[#4A4A4A] mb-4 leading-relaxed">
-                A process-based model for quantifying operational improvements in industrial AR-assisted maintenance
+                A structured framework for evaluating operational improvement in industrial maintenance
               </p>
               <p className="text-[13px] text-[#6B6B6B] leading-relaxed max-w-3xl">
-                All values shown are modeled estimates based on standard industrial maintenance processes and published benchmark ranges.
+                All values shown are modeled estimates based on standard industrial maintenance processes and published benchmark ranges. 
                 Actual results depend on machine complexity, operator skill level, and workflow standardization.
               </p>
             </div>
@@ -135,18 +82,18 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Three-Section Vertical Flow */}
-
+        
         {/* Section 1 - Baseline (Before AR) */}
         <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
-              <div
+              <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
                 style={{ backgroundColor: '#FFF4E6', color: '#CC7722', fontSize: '14px', fontWeight: 600 }}
               >
                 SECTION 1
               </div>
-              <h2
+              <h2 
                 className="text-[32px] md:text-[40px] tracking-tight mb-4"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -159,7 +106,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
               {/* Image */}
-              <div className="relative h-[650px] rounded-lg overflow-hidden order-2 lg:order-1">
+              <div className="relative h-[400px] rounded-lg overflow-hidden order-2 lg:order-1">
                 <ImageWithFallback
                   src={manualProblems}
                   alt="Technician using paper manuals near industrial machine"
@@ -188,7 +135,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
               {/* Challenges */}
               <div className="order-1 lg:order-2">
-                <h3
+                <h3 
                   className="text-[24px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
@@ -196,14 +143,14 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 </h3>
                 <div className="space-y-4">
                   {[
-                    { icon: Clock, label: 'Extended repair times', detail: 'Average 50 minutes per task' },
-                    { icon: AlertTriangle, label: 'High error rates', detail: '20 errors per 100 jobs' },
-                    { icon: Users, label: 'Long training periods', detail: '12 weeks to independence' },
-                    { icon: TrendingDown, label: 'Inconsistent execution', detail: 'Procedural variation across teams' }
+                    { icon: Clock, label: 'Extended repair times', detail: 'Manual lookup, interpretation, and troubleshooting slow task completion.' },
+                    { icon: AlertTriangle, label: 'Higher error risk', detail: 'Critical steps may be skipped, repeated, or performed inconsistently.' },
+                    { icon: Users, label: 'Long onboarding cycles', detail: 'New technicians require more time to reach independent execution.' },
+                    { icon: TrendingDown, label: 'Inconsistent execution', detail: 'Procedures vary across operators, teams, and shifts.' }
                   ].map((item, index) => (
-                    <div key={index} className="bg-white border border-[var(--border-light)] rounded-lg p-5">
+                    <div key={index} className="card-hover bg-white rounded-lg p-5">
                       <div className="flex items-start gap-3">
-                        <div
+                        <div 
                           className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                           style={{ backgroundColor: 'var(--light-gray)' }}
                         >
@@ -238,15 +185,15 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 2 - AR Intervention */}
         <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
-              <div
+              <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
                 style={{ backgroundColor: 'var(--industrial-blue-light)', color: 'var(--industrial-blue)', fontSize: '14px', fontWeight: 600 }}
               >
                 SECTION 2
               </div>
-              <h2
+              <h2 
                 className="text-[32px] md:text-[40px] tracking-tight mb-4"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
@@ -260,7 +207,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
               {/* AR Features */}
               <div>
-                <h3
+                <h3 
                   className="text-[24px] mb-6"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
@@ -274,8 +221,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                     { label: 'Hands-free operation', detail: 'Voice commands and gesture control' }
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle
-                        className="w-5 h-5 mt-0.5 flex-shrink-0"
+                      <CheckCircle 
+                        className="w-5 h-5 mt-0.5 flex-shrink-0" 
                         style={{ color: 'var(--industrial-blue)' }}
                       />
                       <div>
@@ -310,17 +257,17 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                   alt="Technician wearing AR smart glasses in industrial setting"
                   className="w-full h-full object-cover"
                 />
-
+                
                 {/* AR Overlay Examples (subtle, semi-transparent) */}
-                <div className="absolute top-16 right-8 bg-white/95 backdrop-blur-sm border-2 border-blue-300 px-4 py-2 rounded-md shadow-md">
-                  <div className="text-[14px] font-bold text-blue-900">STEP 4/8</div>
-                  <div className="text-[12px] text-blue-800">Tighten Bolt B7</div>
+                <div className="absolute top-16 right-8 bg-blue-500/20 backdrop-blur-sm border-2 border-blue-400/60 px-4 py-2 rounded-md">
+                  <div className="text-[14px] font-bold text-blue-900">STEP 3/8</div>
+                  <div className="text-[12px] text-blue-800">Remove bolt A3</div>
                 </div>
-
+                
                 <div className="absolute top-40 right-8">
-                  <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-md border border-blue-300 shadow-md">
+                  <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-md border border-blue-300">
                     <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                    <span className="text-[12px] font-semibold text-blue-900">Flange Assembly</span>
+                    <span className="text-[12px] font-semibold text-blue-900">Component A3</span>
                   </div>
                   <svg className="absolute -left-8 top-2" width="32" height="24" viewBox="0 0 32 24">
                     <path d="M0 12 L28 12" stroke="#3B82F6" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
@@ -332,10 +279,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                   </svg>
                 </div>
 
-                <div className="absolute bottom-16 right-8 bg-white/95 backdrop-blur-sm border-2 border-amber-300 px-4 py-2 rounded-md shadow-md">
+                <div className="absolute bottom-16 right-8 bg-amber-500/20 backdrop-blur-sm border-2 border-amber-400/60 px-4 py-2 rounded-md">
                   <div className="flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4 text-amber-900" />
-                    <span className="text-[12px] font-semibold text-amber-900">Torque: 120 Nm</span>
+                    <span className="text-[12px] font-semibold text-amber-900">Torque: 45 Nm</span>
                   </div>
                 </div>
               </div>
@@ -355,22 +302,22 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 3 - Measured Impact */}
         <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
-              <div
+              <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
                 style={{ backgroundColor: '#DCFCE7', color: '#059669', fontSize: '14px', fontWeight: 600 }}
               >
                 SECTION 3
               </div>
-              <h2
+              <h2 
                 className="text-[32px] md:text-[40px] tracking-tight mb-4"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
-                Measured Operational Impact
+                Illustrative Impact Benchmarks
               </h2>
               <p className="text-[17px] text-[#4A4A4A] max-w-3xl mx-auto">
-                Quantifiable improvements in maintenance efficiency and quality metrics
+                Published examples from industrial AR task-support studies
               </p>
             </div>
 
@@ -392,34 +339,58 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Metric Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {[
-                  { ref: s3MttrRef, count: s3MttrCount, prefix: '↓ ', suffix: '%', label: 'MTTR', detail: 'Mean Time To Repair', color: '#0066CC' },
-                  { ref: s3ErrorsRef, count: s3ErrorsCount, prefix: '↓ ', suffix: '%', label: 'Errors', detail: 'Procedural errors', color: '#059669' },
-                  { ref: s3FixRef, count: s3FixCount, prefix: '↑ ', suffix: '%', label: 'First-Time Fix', detail: 'Success rate', color: '#0066CC' },
-                  { ref: s3TrainingRef, count: s3TrainingCount, prefix: '', suffix: '×', label: 'Training Speed', detail: 'Faster onboarding', color: '#059669' },
+                  { value: 21, prefix: '', suffix: '%', superscript: '¹', label: 'Faster task completion', detail: 'Peer-reviewed industrial repair-task study', color: '#0066CC' },
+                  { value: 26, prefix: '', suffix: '%', superscript: '¹', label: 'Lower perceived workload', detail: 'Peer-reviewed industrial repair-task study', color: '#059669' },
+                  { value: 13, prefix: '', suffix: '%', superscript: '²', label: 'Less maintenance time', detail: 'Industrial maintenance AR case study', color: '#0066CC' },
+                  { value: 25, prefix: '', suffix: '%', superscript: '²', label: 'Fewer errors', detail: 'Industrial maintenance AR case study', color: '#059669' }
                 ].map((item, index) => (
-                  <div key={index} ref={item.ref} className="bg-white border border-[var(--border-light)] rounded-lg p-5 md:p-6">
-                    <div
-                      className="text-[32px] md:text-[36px] mb-2"
-                      style={{ fontWeight: 700, color: item.color }}
-                    >
-                      {item.prefix}{item.count}{item.suffix}
+                  <div key={index} className="card-hover bg-white rounded-lg p-6">
+                    <div className="text-[36px] mb-2" style={{ fontWeight: 700, color: item.color }}>
+                      <AnimatedCounter
+                        end={item.value}
+                        prefix={item.prefix}
+                        suffix={item.suffix}
+                        className="inline"
+                      />
+                      <sup className="text-[18px] ml-0.5" style={{ fontWeight: 600 }}>{item.superscript}</sup>
                     </div>
-                    <div
-                      className="text-[16px] mb-1"
+                    <div 
+                      className="text-[16px] mb-2"
                       style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                     >
                       {item.label}
                     </div>
-                    <div className="text-[13px] text-[#6B6B6B]">
+                    <div className="text-[13px] text-[#6B6B6B] leading-relaxed">
                       {item.detail}
-                    </div>
-                    <div className="mt-3 pt-3 border-t border-[var(--border-light)]">
-                      <CheckCircle className="w-4 h-4" style={{ color: item.color }} />
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Sources Block */}
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="bg-white border border-[var(--border-light)] rounded-lg p-6">
+                <h4 className="text-[15px] mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
+                  Sources
+                </h4>
+                <div className="space-y-3">
+                  <p className="text-[13px] text-[#4A4A4A] leading-relaxed">
+                    <span style={{ fontWeight: 600 }}>1.</span> Eversberg, L. et al. (2023), <em>Evaluating digital work instructions with augmented reality versus paper-based documents for manual object-specific repair tasks in a case study with experienced workers.</em> The International Journal of Advanced Manufacturing Technology. Reported 21% faster task completion and 26% lower perceived workload.
+                  </p>
+                  <p className="text-[13px] text-[#4A4A4A] leading-relaxed">
+                    <span style={{ fontWeight: 600 }}>2.</span> <em>Augmented Industrial Maintenance (AIM): A Case Study for Evaluating and Comparing with Paper and Video Media Supports.</em> Reported 13% less maintenance time using AR glasses and 25% fewer errors than paper-based maintenance in the cited case-study summary.
+                  </p>
+                </div>
+              </div>
+
+              {/* Disclaimer Note */}
+              <div className="bg-white border border-[var(--border-light)] rounded-lg p-5">
+                <p className="text-[13px] text-[#6B6B6B] leading-relaxed text-center">
+                  These figures are published reference examples from industrial AR studies and do not represent validated Norscope pilot results. Outcomes depend on workflow design, equipment, operator experience, and deployment conditions.
+                </p>
               </div>
             </div>
           </div>
@@ -427,132 +398,215 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Model Inputs Panel */}
         <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <h2
-              className="text-[28px] md:text-[32px] tracking-tight mb-8"
+          <div className="max-w-[1440px] mx-auto px-12">
+            <h2 
+              className="text-[32px] tracking-tight mb-3"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
-              Typical Model Inputs (example configuration)
+              What Shapes Deployment Impact
             </h2>
-
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-                {modelInputs.map((input, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-baseline py-3 border-b border-[var(--border-light)]"
-                  >
-                    <span className="text-[14px] md:text-[15px] text-[#4A4A4A]">{input.label}</span>
-                    <span
-                      className="text-[14px] md:text-[15px] ml-4 text-right"
-                      style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                    >
-                      {input.value}
-                    </span>
-                  </div>
-                ))}
+            <p className="text-[17px] text-[#4A4A4A] mb-12 max-w-3xl">
+              Operational outcomes depend on workflow structure, task complexity, operator experience, and deployment conditions.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px]">
+              {/* Card 1: Task Complexity */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <div className="w-6 h-6 rounded" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Task Complexity
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  Complex, multi-step procedures create more room for guided support and error reduction.
+                </p>
               </div>
 
-              <p className="text-[13px] text-[#6B6B6B] mt-6">
-                Input values are adjusted per customer environment during deployment planning.
-              </p>
+              {/* Card 2: Workflow Standardization */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <div className="grid grid-cols-2 gap-1 w-6 h-6">
+                    <div className="rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                  </div>
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Workflow Standardization
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  Repeatable and well-defined processes are easier to digitize and scale across teams.
+                </p>
+              </div>
+
+              {/* Card 3: Operator Experience */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <Users className="w-6 h-6" style={{ color: 'var(--industrial-blue)' }} />
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Operator Experience
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  Structured guidance is especially valuable where onboarding time or skill variation is high.
+                </p>
+              </div>
+
+              {/* Card 4: Information Accessibility */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <div className="w-6 h-6 flex flex-col gap-1">
+                    <div className="h-1 rounded-full" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="h-1 rounded-full w-4/5" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="h-1 rounded-full" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="h-1 rounded-full w-3/5" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                  </div>
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Information Accessibility
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  The more a task depends on manuals, memory, or external lookup, the more contextual AR support can help.
+                </p>
+              </div>
+
+              {/* Card 5: Deployment Environment */}
+              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <div className="relative w-6 h-6">
+                    <div className="absolute inset-0 border-2 rounded" style={{ borderColor: 'var(--industrial-blue)' }}></div>
+                    <div className="absolute top-1/2 left-0 w-full h-0.5" style={{ backgroundColor: 'var(--industrial-blue)', transform: 'translateY(-50%)' }}></div>
+                  </div>
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Deployment Environment
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  Connectivity, noise, safety constraints, and physical access influence system design and usability.
+                </p>
+              </div>
+
+              {/* Card 6: Equipment Consistency */}
+              <div className="bg-white border border-[var(--border-light)] rounded-lg p-8">
+                <div className="w-12 h-12 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: 'var(--industrial-blue-light)' }}>
+                  <div className="flex gap-1 items-end w-6 h-6">
+                    <div className="w-1.5 h-4 rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="w-1.5 h-5 rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                    <div className="w-1.5 h-6 rounded-sm" style={{ backgroundColor: 'var(--industrial-blue)' }}></div>
+                  </div>
+                </div>
+                <h3 
+                  className="text-[18px] mb-3"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Equipment Consistency
+                </h3>
+                <p className="text-[15px] text-[#4A4A4A] leading-relaxed">
+                  Standardized equipment and repeatable layouts are easier to support than highly variable machine setups.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Impact Metric Cards */}
         <section className="py-16 md:py-24 border-t border-[var(--border-light)]">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Card 1: Faster repairs */}
-              <div ref={repairsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
-                <div
-                  className="text-[40px] md:text-[48px] mb-2"
-                  style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
-                >
-                  {repairsCount}%
-                </div>
-                <div
-                  className="text-[16px] md:text-[18px] mb-6"
+          <div className="max-w-[1440px] mx-auto px-12">
+            <div className="grid grid-cols-4 gap-6">
+              {/* Card 1: Faster Repair Workflows */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div 
+                  className="text-[22px] leading-tight mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
-                  Faster repairs
+                  Faster Repair Workflows
                 </div>
+                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                  Reduced document lookup and more guided execution
+                </p>
                 <button
                   onClick={() => setOpenModal('repairs')}
-                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
-                  View calculation
+                  View model
                 </button>
               </div>
 
-              {/* Card 2: Quicker training */}
-              <div ref={trainingRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
-                <div
-                  className="text-[40px] md:text-[48px] mb-2"
-                  style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
-                >
-                  {trainingCount}×
-                </div>
-                <div
-                  className="text-[16px] md:text-[18px] mb-6"
+              {/* Card 2: Accelerated Technician Training */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div 
+                  className="text-[22px] leading-tight mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
-                  Quicker training
+                  Accelerated Technician Training
                 </div>
+                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                  Structured guidance for faster task learning
+                </p>
                 <button
                   onClick={() => setOpenModal('training')}
-                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
-                  View calculation
+                  View model
                 </button>
               </div>
 
-              {/* Card 3: Error reduction */}
-              <div ref={errorsRef} className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
-                <div
-                  className="text-[40px] md:text-[48px] mb-2"
-                  style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
-                >
-                  {errorsCount}%
-                </div>
-                <div
-                  className="text-[16px] md:text-[18px] mb-6"
+              {/* Card 3: Lower Execution Error Risk */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div 
+                  className="text-[22px] leading-tight mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
-                  Error reduction
+                  Lower Execution Error Risk
                 </div>
+                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                  Step-based workflows reduce procedural ambiguity
+                </p>
                 <button
                   onClick={() => setOpenModal('errors')}
-                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
-                  View calculation
+                  View model
                 </button>
               </div>
 
-              {/* Card 4: Compliance tracking */}
-              <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow">
-                <div
-                  className="text-[24px] md:text-[28px] leading-tight mb-2"
-                  style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}
-                >
-                  System-enforced
-                </div>
-                <div
-                  className="text-[16px] md:text-[18px] mb-6"
+              {/* Card 4: System-Enforced Compliance */}
+              <div className="card-hover bg-white rounded-lg p-8">
+                <div 
+                  className="text-[22px] leading-tight mb-3"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
-                  Compliance tracking
+                  System-Enforced Compliance
                 </div>
+                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                  Traceable workflow steps and digital confirmations
+                </p>
                 <button
                   onClick={() => setOpenModal('compliance')}
-                  className="w-full md:w-auto px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
+                  className="px-4 py-2 rounded-md text-[14px] border border-[var(--industrial-blue)] hover:bg-[var(--industrial-blue-light)] transition-colors"
                   style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
                 >
-                  View calculation
+                  View model
                 </button>
               </div>
             </div>
@@ -562,14 +616,14 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         {/* Validation Plan Section */}
         <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
           <div className="max-w-[1440px] mx-auto px-12">
-            <h2
+            <h2 
               className="text-[32px] tracking-tight mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               Pilot Validation Plan
             </h2>
-
-            <div className="bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white border border-[var(--border-light)] rounded-lg p-8 max-w-4xl">
               <ul className="space-y-4">
                 {[
                   'Measure baseline task duration per machine type',
@@ -580,13 +634,13 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                   'Compare deltas after 4, 8, and 12 weeks'
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
-                    <span
-                      className="inline-flex w-5 h-5 md:w-6 md:h-6 rounded-full mr-3 flex-shrink-0 items-center justify-center text-white text-[12px] md:text-[13px]"
+                    <span 
+                      className="inline-block w-6 h-6 rounded-full mr-3 flex-shrink-0 flex items-center justify-center text-white text-[13px]"
                       style={{ backgroundColor: 'var(--industrial-blue)', fontWeight: 600 }}
                     >
                       {index + 1}
                     </span>
-                    <span className="text-[14px] md:text-[15px] text-[#4A4A4A] leading-relaxed pt-0.5">
+                    <span className="text-[15px] text-[#4A4A4A] leading-relaxed pt-0.5">
                       {item}
                     </span>
                   </li>
@@ -600,170 +654,174 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
       {/* Modals */}
       {/* Repairs Modal */}
       <ImpactModal isOpen={openModal === 'repairs'} onClose={() => setOpenModal(null)}>
-        <h3
+        <h3 
           className="text-[24px] mb-6"
           style={{ fontWeight: 600, color: 'var(--dark-text)' }}
         >
-          Repair Time Reduction – Calculation Model
+          Repair Time Reduction – Illustrative Model
         </h3>
 
-        <ModalSection title="Baseline process model:">
-          <ModalTable rows={[
-            { label: 'Fault diagnosis', value: '15 min' },
-            { label: 'Manual / document lookup', value: '10 min' },
-            { label: 'Repair execution', value: '25 min' },
-          ]} />
-          <div className="mt-3 text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            Total baseline: 50 minutes
-          </div>
-        </ModalSection>
-
-        <ModalSection title="AR-assisted process model:">
-          <ModalTable rows={[
-            { label: 'Visual diagnosis support', value: '8 min' },
-            { label: 'Contextual AR instructions', value: '2 min' },
-            { label: 'Guided execution', value: '20 min' },
-          ]} />
-          <div className="mt-3 text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            Total with AR: 30 minutes
-          </div>
-        </ModalSection>
-
-        <ModalSection title="Formula:">
-          <ModalFormula
-            formula="(50 − 30) / 50 = 0.40"
-            result="40% faster task completion"
-          />
-        </ModalSection>
-
-        <ModalSection title="Assumptions:">
+        <ModalSection title="Traditional workflow">
           <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
-            <li className="list-disc">Digital step-by-step guidance removes most document lookup</li>
-            <li className="list-disc">Visual overlays reduce diagnostic iteration</li>
-            <li className="list-disc">Rework probability decreases</li>
-            <li className="list-disc">Technician follows standardized workflow</li>
+            <li className="list-disc">Fault diagnosis</li>
+            <li className="list-disc">Manual document lookup</li>
+            <li className="list-disc">Interpretation of instructions</li>
+            <li className="list-disc">Repair execution</li>
+            <li className="list-disc">Rework or repeated checks</li>
           </ul>
         </ModalSection>
 
-        <ModalSection title="Conservative pilot target:">
+        <ModalSection title="AR-assisted workflow">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Visual diagnostic support</li>
+            <li className="list-disc">Contextual instructions at point of use</li>
+            <li className="list-disc">Guided execution</li>
+            <li className="list-disc">Reduced need for manual lookup</li>
+            <li className="list-disc">Fewer repeated checks</li>
+          </ul>
+        </ModalSection>
+
+        <ModalSection title="Published indication">
           <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
-            25–35% reduction expected during first deployments<br />
-            40% achievable for standardized repeatable tasks
+            Peer-reviewed industrial case studies report faster task completion with AR-assisted digital work instructions.
           </p>
         </ModalSection>
+
+        <ModalSection title="Expected impact">
+          <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
+            Reduced task time through faster diagnosis, less document handling, and more consistent execution.
+          </p>
+        </ModalSection>
+
+        <ModalSection title="Conditions">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Procedures are digitized</li>
+            <li className="list-disc">Workflow steps are repeatable</li>
+            <li className="list-disc">Instructions are clear and machine-specific</li>
+            <li className="list-disc">Operators follow the guided process</li>
+          </ul>
+        </ModalSection>
+
+        <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
+          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+            This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
+          </p>
+        </div>
       </ImpactModal>
 
       {/* Training Modal */}
       <ImpactModal isOpen={openModal === 'training'} onClose={() => setOpenModal(null)}>
-        <h3
+        <h3 
           className="text-[24px] mb-6"
           style={{ fontWeight: 600, color: 'var(--dark-text)' }}
         >
-          Technician Training Acceleration – Calculation Model
+          Technician Training Acceleration – Capability Logic
         </h3>
 
-        <ModalSection title="Baseline training structure:">
-          <ModalTable rows={[
-            { label: 'Classroom / documentation', value: '2 weeks' },
-            { label: 'Shadowing experienced technician', value: '6 weeks' },
-            { label: 'Supervised execution', value: '4 weeks' },
-          ]} />
-          <div className="mt-3 text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            Total: 12 weeks
-          </div>
-        </ModalSection>
-
-        <ModalSection title="AR-assisted training structure:">
-          <ModalTable rows={[
-            { label: 'Digital procedure walkthrough', value: '1 week' },
-            { label: 'Guided execution with AR', value: '2 weeks' },
-            { label: 'Supervised verification', value: '1 week' },
-          ]} />
-          <div className="mt-3 text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            Total: 4 weeks
-          </div>
-        </ModalSection>
-
-        <ModalSection title="Formula:">
-          <ModalFormula
-            formula="12 / 4 = 3"
-            result="3× faster onboarding"
-          />
-        </ModalSection>
-
-        <ModalSection title="Assumptions:">
+        <ModalSection title="Traditional training">
           <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
-            <li className="list-disc">Procedures are digitized</li>
-            <li className="list-disc">Workflows are repeatable</li>
-            <li className="list-disc">AR system enforces correct sequencing</li>
-            <li className="list-disc">Supervisor involvement decreases</li>
+            <li className="list-disc">Documentation study</li>
+            <li className="list-disc">Shadowing experienced staff</li>
+            <li className="list-disc">Supervised execution</li>
+            <li className="list-disc">Gradual independence</li>
           </ul>
         </ModalSection>
 
-        <ModalSection title="Conservative pilot target:">
-          <p className="text-[14px] text-[#4A4A4A]">
-            2× to 2.5× improvement in first deployment phase
+        <ModalSection title="AR-supported training">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Guided walkthroughs</li>
+            <li className="list-disc">Contextual visual instructions</li>
+            <li className="list-disc">Step confirmation during execution</li>
+            <li className="list-disc">Reduced dependency on constant supervision</li>
+          </ul>
+        </ModalSection>
+
+        <ModalSection title="Published indication">
+          <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
+            Industrial AR training research indicates improved support for task learning and faster progression in structured workflows.
           </p>
         </ModalSection>
+
+        <ModalSection title="Expected impact">
+          <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
+            Faster progression toward independent task execution in structured maintenance environments.
+          </p>
+        </ModalSection>
+
+        <ModalSection title="Conditions">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Procedures are standardized</li>
+            <li className="list-disc">Guidance content is well prepared</li>
+            <li className="list-disc">Repetitive task patterns exist</li>
+            <li className="list-disc">Supervisors use the system consistently</li>
+          </ul>
+        </ModalSection>
+
+        <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
+          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+            This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
+          </p>
+        </div>
       </ImpactModal>
 
       {/* Errors Modal */}
       <ImpactModal isOpen={openModal === 'errors'} onClose={() => setOpenModal(null)}>
-        <h3
+        <h3 
           className="text-[24px] mb-6"
           style={{ fontWeight: 600, color: 'var(--dark-text)' }}
         >
-          Human Error Reduction – Calculation Model
+          Human Error Reduction – Control Logic
         </h3>
 
-        <ModalSection title="Baseline:">
-          <p className="text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            20 errors per 100 jobs
+        <ModalSection title="Common sources of error">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Missed process steps</li>
+            <li className="list-disc">Incorrect part identification</li>
+            <li className="list-disc">Wrong tool or sequence selection</li>
+            <li className="list-disc">Inconsistent execution across operators</li>
+          </ul>
+        </ModalSection>
+
+        <ModalSection title="Norscope control mechanisms">
+          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
+            <li className="list-disc">Step-by-step workflow guidance</li>
+            <li className="list-disc">Visual part and task confirmation</li>
+            <li className="list-disc">Mandatory step acknowledgment</li>
+            <li className="list-disc">Embedded sequence control</li>
+          </ul>
+        </ModalSection>
+
+        <ModalSection title="Published indication">
+          <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
+            Industrial AR studies report reduced execution errors in guided task environments, especially for structured and repeatable procedures.
           </p>
         </ModalSection>
 
-        <ModalSection title="AR-assisted workflow:">
+        <ModalSection title="Expected impact">
+          <p className="text-[14px] text-[#4A4A4A] leading-relaxed">
+            Lower execution error risk through guided workflows, clearer task context, and reduced procedural ambiguity.
+          </p>
+        </ModalSection>
+
+        <ModalSection title="Conditions">
           <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
-            <li className="list-disc">Mandatory step confirmation</li>
-            <li className="list-disc">Visual part identification</li>
-            <li className="list-disc">Tool validation</li>
-            <li className="list-disc">Safety gate enforcement</li>
-          </ul>
-          <div className="mt-4 text-[15px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-            Expected: 1–4 errors per 100 jobs
-          </div>
-        </ModalSection>
-
-        <ModalSection title="Formula (best case):">
-          <ModalFormula
-            formula="(20 − 1) / 20 = 95%"
-            result="Up to 95% reduction"
-          />
-        </ModalSection>
-
-        <ModalSection title="Realistic deployment expectation:">
-          <div className="bg-[var(--light-gray)] rounded-md p-4">
-            <ModalTable rows={[
-              { label: 'Pilot', value: '60–70%' },
-              { label: 'Mature deployment', value: '75–85%' },
-              { label: 'Highly standardized processes', value: 'up to 95%' },
-            ]} />
-          </div>
-        </ModalSection>
-
-        <ModalSection title="Assumptions:">
-          <ul className="text-[14px] text-[#4A4A4A] space-y-2 ml-5">
-            <li className="list-disc">Procedures fully digitized</li>
-            <li className="list-disc">Operators follow system prompts</li>
-            <li className="list-disc">No hardware failures</li>
-            <li className="list-disc">Controlled environment</li>
+            <li className="list-disc">Procedures are digitized correctly</li>
+            <li className="list-disc">Operators follow prompts</li>
+            <li className="list-disc">Hardware and recognition systems function reliably</li>
+            <li className="list-disc">Workflow design matches the real task</li>
           </ul>
         </ModalSection>
+
+        <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
+          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+            This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
+          </p>
+        </div>
       </ImpactModal>
 
       {/* Compliance Modal */}
       <ImpactModal isOpen={openModal === 'compliance'} onClose={() => setOpenModal(null)}>
-        <h3
+        <h3 
           className="text-[24px] mb-6"
           style={{ fontWeight: 600, color: 'var(--dark-text)' }}
         >
@@ -806,15 +864,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
       </ImpactModal>
 
-      <Footer
-        onAboutClick={onAboutClick}
-        onProductClick={onProductClick}
-        onSolutionClick={onSolutionClick}
-        onImpactClick={onImpactClick}
-        onContactClick={onContactClick}
-        onImpressumClick={onImpressumClick}
-        onDatenschutzClick={onDatenschutzClick}
-      />
+      <Footer />
     </div>
   );
 }

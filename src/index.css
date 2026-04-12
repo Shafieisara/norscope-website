@@ -7,19 +7,102 @@
 @layer base {
   :root {
     --industrial-blue: #0066CC;
+    --industrial-blue-dark: #004C99;
     --industrial-blue-light: #E6F2FF;
     --industrial-dark: #1A1A1A;
-    --border-light: #e5e7eb;
+    --border-light: #E5E7EB;
     --dark-text: #111827;
     --light-gray: #F7F8FA;
     --dark-bg: #0A0A0A;
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+    --muted-foreground: #6b6b6b;
+    --font-size: 16px;
   }
 
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    font-size: var(--font-size);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-white text-gray-900 antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ─── Global interaction & hover utilities ───────────────────────────────── */
+@layer components {
+
+  /* Primary CTA button — blue fill */
+  .btn-primary {
+    @apply transition-all duration-200;
+  }
+  .btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.25);
+  }
+
+  /* Outlined / ghost button */
+  .btn-outline:hover {
+    background-color: var(--industrial-blue-light);
+  }
+
+  /* Image hover zoom */
+  .img-hover-zoom {
+    @apply overflow-hidden;
+  }
+  .img-hover-zoom img {
+    @apply transition-transform duration-500;
+  }
+  .img-hover-zoom:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Generic interactive card */
+  .card-hover {
+    @apply transition-all duration-300;
+    border: 1px solid var(--border-light);
+  }
+  .card-hover:hover {
+    border-color: var(--industrial-blue);
+    box-shadow: 0 4px 16px rgba(0, 102, 204, 0.10);
+    transform: translateY(-3px);
+  }
+
+  /* Text link */
+  .link-blue {
+    color: var(--industrial-blue);
+    @apply transition-colors duration-200;
+  }
+  .link-blue:hover {
+    color: var(--industrial-blue-dark);
+    text-decoration: underline;
+  }
+
+  /* Impact modal View-model button */
+  .btn-modal:hover {
+    background-color: var(--industrial-blue-light) !important;
+  }
+
+  /* Inline arrow link (e.g. "See how we calculate impact →") */
+  .inline-arrow-link {
+    @apply inline-flex items-center gap-2 transition-all duration-200;
+  }
+  .inline-arrow-link:hover {
+    gap: 0.75rem;
+    color: var(--industrial-blue-dark);
+  }
+}
+
+/* ─── Smooth scroll for in-page anchor jumps ─────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }

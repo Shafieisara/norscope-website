@@ -1,75 +1,208 @@
-import { useRef, useEffect, useState } from 'react';
-import { Factory, Zap, Car, Hammer, Workflow } from 'lucide-react';
-
-const STYLES = `
-  .is-reveal { transform: translateY(60px); transition: transform 500ms cubic-bezier(0.16,1,0.3,1); }
-  .is-reveal.is-visible { transform: translateY(0); }
-  .is-card { transform: translateY(80px); transition: transform 580ms cubic-bezier(0.16,1,0.3,1) var(--sd,0ms); }
-  .is-card.is-visible { transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .is-reveal, .is-card { transform: none; transition: none; }
-  }
-`;
+import { Factory, Cog, Droplet, Mountain, Ship } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const industries = [
-  { icon: Factory, name: 'Manufacturing' },
-  { icon: Zap, name: 'Energy' },
-  { icon: Car, name: 'Automotive' },
-  { icon: Hammer, name: 'Heavy Machinery' },
-  { icon: Workflow, name: 'Process Industry' }
+  {
+    icon: Factory,
+    name: 'Manufacturing',
+    description: 'Assembly, servicing, and technician guidance'
+  },
+  {
+    icon: Cog,
+    name: 'Industrial Machinery',
+    description: 'Step-by-step support for machine maintenance'
+  },
+  {
+    icon: Droplet,
+    name: 'Process Industries',
+    description: 'Guided workflows for complex plant equipment'
+  },
+  {
+    icon: Mountain,
+    name: 'Mining',
+    description: 'Offline support in remote operating environments'
+  },
+  {
+    icon: Ship,
+    name: 'Maritime',
+    description: 'Maintenance guidance for onboard technical systems'
+  }
 ];
 
 export function IndustriesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setVisible(true); return; }
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.25 });
-    obs.observe(el);
-    return () => obs.disconnect();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      hasTriggeredRef.current = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTriggeredRef.current) {
+            setIsVisible(true);
+            hasTriggeredRef.current = true;
+          }
+        });
+      },
+      {
+        threshold: 0.25,
+      }
+    );
+
+    const currentSection = sectionRef.current;
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
   }, []);
 
   return (
-    <>
-      <style>{STYLES}</style>
-      <section ref={sectionRef} className="py-12 md:py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className={`text-center mb-10 md:mb-16 is-reveal${visible ? ' is-visible' : ''}`}>
-            <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-              Trusted Across Industries
-            </h2>
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] max-w-2xl mx-auto">
-              Norscope serves the world's most demanding industrial sectors
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-            {industries.map((industry, index) => (
-              <div
-                key={index}
-                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 hover:border-[var(--industrial-blue)] md:hover:-translate-y-2 group is-card${visible ? ' is-visible' : ''}`}
-                style={{ '--sd': `${index * 80}ms` } as React.CSSProperties}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div
-                    className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-4 transition-all duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: 'var(--industrial-blue-light)' }}
-                  >
-                    <industry.icon
-                      className="w-7 h-7 md:w-8 md:h-8 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
-                      style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }}
-                    />
-                  </div>
-                  <h3 className="text-[15px] md:text-[16px]" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{industry.name}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
+    <section ref={sectionRef} className="py-20 md:py-32" style={{ backgroundColor: '#F8F9FA' }}>
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+        <div className={`text-center mb-16 md:mb-20 section-header ${isVisible ? 'section-visible' : ''}`}>
+          <h2 
+            className="text-[32px] md:text-[44px] tracking-tight mb-4 md:mb-5"
+            style={{ fontWeight: 600, color: 'var(--dark-text)', lineHeight: 1.2 }}
+          >
+            Trusted Across Industries
+          </h2>
+          <p 
+            className="text-[16px] md:text-[18px] max-w-3xl mx-auto"
+            style={{ color: '#5A5A5A', lineHeight: 1.6 }}
+          >
+            Designed for sectors where maintenance guidance must work reliably, including in low-connectivity and remote operating conditions.
+          </p>
         </div>
-      </section>
-    </>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
+          {industries.map((industry, index) => (
+            <div 
+              key={index}
+              className={`industry-card bg-white rounded-lg p-7 md:p-8 group section-card ${isVisible ? 'section-visible' : ''}`}
+              style={{
+                transitionDelay: isVisible ? `${index * 80}ms` : '0ms',
+                border: '1px solid #E0E0E0',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)'
+              }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div 
+                  className="w-16 h-16 md:w-18 md:h-18 rounded-full flex items-center justify-center mb-5 transition-all duration-300"
+                  style={{ backgroundColor: '#F0F4F8' }}
+                >
+                  <industry.icon 
+                    className="w-8 h-8 md:w-9 md:h-9 transition-all duration-300" 
+                    style={{ color: '#2C5F8D', strokeWidth: 1.5 }}
+                  />
+                </div>
+                <h3 
+                  className="text-[16px] md:text-[17px] mb-2"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  {industry.name}
+                </h3>
+                <p 
+                  className="industry-description text-[14px] md:text-[15px] leading-relaxed"
+                  style={{ color: '#6B6B6B' }}
+                >
+                  {industry.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .section-header {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 600ms ease-out, transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section-header.section-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .section-card {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 600ms ease-out, transform 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease-out, border-color 250ms ease-out;
+        }
+
+        .section-card.section-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .industry-card {
+          position: relative;
+          cursor: pointer;
+          min-height: 240px;
+        }
+
+        .industry-description {
+          opacity: 0;
+          transition: opacity 300ms ease-out;
+        }
+
+        .industry-card:hover {
+          border-color: var(--industrial-blue) !important;
+          box-shadow: 0 4px 12px rgba(44, 95, 141, 0.12) !important;
+          transform: translateY(-4px);
+        }
+
+        .industry-card:hover .industry-description {
+          opacity: 1;
+        }
+
+        .industry-card:hover div[style*="backgroundColor"] {
+          background-color: var(--industrial-blue-light) !important;
+        }
+
+        .industry-card:hover svg {
+          color: var(--industrial-blue) !important;
+          transform: scale(1.05);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .section-header,
+          .section-card,
+          .industry-description,
+          .industry-card,
+          .industry-card svg,
+          .industry-card div[style*="backgroundColor"] {
+            transition: none !important;
+          }
+          
+          .section-header,
+          .section-card {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .industry-description {
+            opacity: 1;
+            max-height: 100px;
+          }
+        }
+      `}</style>
+    </section>
   );
 }

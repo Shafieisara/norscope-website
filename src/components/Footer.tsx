@@ -69,7 +69,7 @@ export function Footer({ onAboutClick, onProductClick, onSolutionClick, onImpact
             onMouseEnter={e => (e.currentTarget.style.color = 'white')}
             onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
           >
-            Impact
+            Approach
           </button>
           <span>|</span>
           <button
