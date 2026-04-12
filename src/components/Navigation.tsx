@@ -21,7 +21,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white border-b border-[var(--border-light)] z-50">
       {/* Top bar */}
-      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
+      <div className="section-container h-20 flex items-center justify-between relative">
 
         {/* Logo – centered on mobile, left-aligned on desktop */}
         <div
@@ -88,8 +88,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
           {/* Desktop CTA */}
           <button
             onClick={() => onContactClick?.()}
-            className="hidden lg:block px-6 py-2.5 rounded-md text-[15px] transition-all duration-300 hover:shadow-lg hover:scale-105 bg-gradient-to-r from-[var(--industrial-blue)] to-blue-700 hover:from-blue-600 hover:to-blue-800"
-            style={{ color: 'white', fontWeight: 500 }}
+            className="btn-primary hidden lg:inline-flex px-6 py-2.5"
           >
             Discuss a Pilot
           </button>
@@ -159,8 +158,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
 
           <button
             onClick={() => { setIsMenuOpen(false); onContactClick?.(); }}
-            className="px-6 py-2.5 rounded-md text-[15px] transition-all mt-2"
-            style={{ backgroundColor: 'var(--industrial-blue)', color: 'white', fontWeight: 500 }}
+            className="btn-primary w-full py-2.5 mt-2"
           >
             Discuss a Pilot
           </button>

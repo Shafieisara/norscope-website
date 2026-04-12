@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import headsetImage from '../assets/hero-headset-figma.png';
+import headsetImage from '../assets/hero-headset-figma.webp';
 
 interface HeroSectionProps {
   onContactClick?: () => void;
@@ -49,14 +49,11 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
         }}
       />
 
-      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-[var(--section-py-md)] w-full relative z-10">
+      <div className="section-container py-32 md:py-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left Column - Content */}
           <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-            <h1
-              className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight text-white"
-              style={{ fontWeight: 600 }}
-            >
+            <h1 className="h1-hero text-white">
               Offline AR Guidance for Industrial Maintenance
             </h1>
 
@@ -69,23 +66,13 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
               <button
                 onClick={onContactClick}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] transition-all hover:shadow-lg"
-                style={{
-                  backgroundColor: 'var(--industrial-blue)',
-                  color: 'white',
-                  fontWeight: 500
-                }}
+                className="btn-primary w-full sm:w-auto px-8 py-3.5"
               >
                 Discuss a Pilot
               </button>
               <button
                 onClick={onProductClick}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-md text-[15px] border-2 transition-all hover:bg-white/10"
-                style={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: 'white',
-                  fontWeight: 500
-                }}
+                className="btn-outline w-full sm:w-auto px-8 py-3.5 text-white border-white/40 hover:bg-white/10 hover:border-white/60 hover:text-white"
               >
                 Product Overview
               </button>

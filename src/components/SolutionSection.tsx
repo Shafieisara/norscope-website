@@ -55,8 +55,8 @@ export function SolutionSection() {
   return (
     <>
       <style>{STYLES}</style>
-      <section ref={sectionRef} className="py-12 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+      <section ref={sectionRef} className="py-12 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
             {/* Left Column - Image slides in from left */}
             <div className={`relative order-2 lg:order-1 ss-left${visible ? ' ss-visible' : ''}`}>
@@ -72,10 +72,10 @@ export function SolutionSection() {
             {/* Right Column - Content slides in from right */}
             <div className={`space-y-6 md:space-y-8 order-1 lg:order-2 ss-right${visible ? ' ss-visible' : ''}`}>
               <div>
-                <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
+                <h2 className="h2-section mb-3 md:mb-4">
                   Enterprise AR Platform
                 </h2>
-                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--text-main)]">
+                <p className="p-body">
                   Norscope delivers a robust augmented reality solution designed specifically
                   for industrial environments. Our platform works anywhere, with any machine,
                   ensuring your team has instant access to critical maintenance information.

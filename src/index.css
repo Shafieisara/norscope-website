@@ -47,19 +47,65 @@
 /* ─── Global interaction & hover utilities ───────────────────────────────── */
 @layer components {
 
-  /* Primary CTA button — blue fill */
+  /* Primary CTA button */
   .btn-primary {
-    @apply transition-all duration-200;
+    @apply transition-all duration-300 rounded-md inline-flex items-center justify-center;
+    background-color: var(--industrial-blue);
+    color: white;
+    font-weight: 500;
   }
   .btn-primary:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
+    opacity: 0.9;
+    transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 102, 204, 0.25);
   }
 
   /* Outlined / ghost button */
+  .btn-outline {
+    @apply transition-all duration-300 rounded-md border inline-flex items-center justify-center bg-transparent;
+    border-color: var(--border-light);
+    color: var(--dark-text);
+    font-weight: 500;
+  }
   .btn-outline:hover {
     background-color: var(--industrial-blue-light);
+    border-color: var(--industrial-blue);
+    color: var(--industrial-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+  }
+
+  /* Layout and Typography utilities */
+  .section-container {
+    @apply max-w-[var(--container-max)] mx-auto px-6 md:px-12 w-full;
+  }
+  
+  .h1-hero {
+    @apply text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight;
+    font-weight: 600;
+  }
+  
+  .h1-page {
+    @apply text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8;
+    font-weight: 600;
+    color: var(--dark-text);
+  }
+  
+  .h2-section {
+    @apply text-[28px] md:text-[36px] tracking-tight;
+    font-weight: 600;
+    color: var(--dark-text);
+  }
+  
+  .h3-component {
+    @apply text-[18px] md:text-[20px];
+    font-weight: 600;
+    color: var(--dark-text);
+  }
+  
+  .p-body {
+    @apply text-[15px] md:text-[17px] leading-relaxed;
+    color: var(--text-main);
   }
 
   /* Image hover zoom */

@@ -2,7 +2,7 @@ import { Check, X, ArrowRight, ChevronRight, FileText, Settings, ClipboardCheck,
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import heroImage from '../assets/product-hero-figma.png';
+import heroImage from '../assets/product-hero-figma.webp';
 import problemImage from '../assets/problem-paper-manual.webp';
 import controlInterface from '../assets/solution-custom-machinery.webp';
 
@@ -37,31 +37,23 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       
       {/* Product Hero */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-[var(--section-py-lg)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
             <div className="max-w-2xl">
-              <h1 
-                className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h1 className="h1-page">
                 AR Software for Industrial Machine Maintenance
               </h1>
               <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed mb-6">
                 Offline-capable guidance for real maintenance and servicing tasks.
               </p>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed mb-10">
+              <p className="p-body text-[var(--text-muted)] mb-10">
                 Configured for each customer's machines, workflows, and environment.
               </p>
               
               <button 
                 onClick={onContactClick}
-                className="btn-primary px-8 py-3.5 rounded-md text-[15px]"
-                style={{ 
-                  backgroundColor: 'var(--industrial-blue)', 
-                  color: 'white',
-                  fontWeight: 500
-                }}
+                className="btn-primary px-8 py-3.5"
               >
                 Discuss a Pilot
               </button>
@@ -82,18 +74,15 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* The Reality of Industrial Maintenance */}
-      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
             <div className="max-w-2xl">
-              <h2 
-                className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-6 md:mb-8">
                 The Reality of Industrial Maintenance
               </h2>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+              <p className="p-body mb-8">
                 Industrial maintenance still depends heavily on manuals, memory, and individual experience. This leads to slow execution, inconsistent quality, and difficult knowledge transfer.
               </p>
               
@@ -135,7 +124,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
       {/* What Norscope Does */}
       <section className="py-16 md:py-[var(--section-py-md)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Product Capability Visual */}
             <div className="order-2 lg:order-1">
@@ -150,13 +139,10 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
             {/* Right: Text Content */}
             <div className="max-w-2xl order-1 lg:order-2">
-              <h2 
-                className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-6 md:mb-8">
                 What Norscope Does
               </h2>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+              <p className="p-body mb-8">
                 Norscope guides technicians step by step at the machine with contextual instructions, visual references, and validation steps.
               </p>
               
@@ -195,12 +181,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* How It Works */}
-      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
-          <h2 
-            className="text-[28px] md:text-[40px] tracking-tight mb-12 md:mb-16 text-center"
-            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-          >
+      <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+        <div className="section-container">
+          <h2 className="h2-section mb-12 md:mb-16 text-center">
             How It Works
           </h2>
           
@@ -286,11 +269,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
       {/* Built for Industrial Environments */}
       <section className="py-16 md:py-[var(--section-py-md)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
-          <h2 
-            className="text-[28px] md:text-[36px] tracking-tight mb-12 md:mb-16 text-center"
-            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-          >
+        <div className="section-container">
+          <h2 className="h2-section mb-12 md:mb-16 text-center">
             Built for Industrial Environments
           </h2>
           
@@ -375,12 +355,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* What Norscope Is Designed For */}
-      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
-          <h2 
-            className="text-[28px] md:text-[36px] tracking-tight mb-12 md:mb-16 text-center"
-            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-          >
+      <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+        <div className="section-container">
+          <h2 className="h2-section mb-12 md:mb-16 text-center">
             What Norscope Is Designed For
           </h2>
           
@@ -487,16 +464,13 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* Measurable Impact */}
-      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 
-              className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               Measurable Impact
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+            <p className="p-body mb-8">
               Norscope focuses on measurable operational improvements such as reduced downtime, faster onboarding, and fewer procedural errors. These metrics are derived using structured modeling and conservative assumptions.
             </p>
             
@@ -514,32 +488,21 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
 
       {/* Closing CTA */}
       <section className="py-16 md:py-[var(--section-py-lg)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 text-center">
-          <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed mb-10 max-w-3xl mx-auto">
+        <div className="section-container text-center">
+          <p className="p-body mb-10 max-w-3xl mx-auto text-[18px] md:text-[20px]">
             Interested in seeing how Norscope works in your environment?
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
               onClick={onContactClick}
-              className="btn-primary px-8 py-3.5 rounded-md text-[15px]"
-              style={{ 
-                backgroundColor: 'var(--industrial-blue)', 
-                color: 'white',
-                fontWeight: 500
-              }}
+              className="btn-primary px-8 py-3.5"
             >
               Discuss a Pilot
             </button>
             <button 
               onClick={onContactClick}
-              className="btn-outline px-8 py-3.5 rounded-md text-[15px] transition-all"
-              style={{ 
-                backgroundColor: 'transparent',
-                color: 'var(--industrial-blue)',
-                fontWeight: 500,
-                border: '1.5px solid var(--industrial-blue)'
-              }}
+              className="btn-outline px-8 py-3.5 border-[1.5px] border-[var(--industrial-blue)] text-[var(--industrial-blue)]"
             >
               Get in Touch
             </button>

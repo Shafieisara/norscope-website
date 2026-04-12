@@ -2,7 +2,7 @@ import { Check, Shield, Wifi, MonitorCog, ArrowRight } from 'lucide-react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import heroImage from '../assets/solution-hero-new.png';
+import heroImage from '../assets/woman working with norscope.webp';
 import problemImage from '../assets/problem-paper-manual.webp';
 import maintenanceImage from '../assets/solution-active-maintenance.webp';
 import customMachineryImage from '../assets/solution-custom-machinery.webp';
@@ -49,23 +49,20 @@ export function SolutionPage({
       
       {/* Solution Hero */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-[var(--section-py-lg)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 
-                className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h1 className="h1-page">
                 A Practical AR Platform for Industrial Maintenance
               </h1>
-              <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed">
+              <p className="p-body">
                 Structured, offline-capable AR software for real maintenance tasks
               </p>
             </div>
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={heroImage}
-                alt="Technician wearing AR headset interacting with holographic machine diagnostics in a high-tech facility"
+                alt="Woman working with Norscope AR guidance"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -74,17 +71,14 @@ export function SolutionPage({
       </section>
 
       {/* The Core Problem */}
-      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 
-                className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-6 md:mb-8">
                 The Core Problem
               </h2>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+              <p className="p-body mb-8">
                 Industrial maintenance operations face persistent challenges that impact efficiency, quality, and knowledge retention. Documentation is often inaccessible during work, expertise is concentrated in individuals rather than systems, and procedures vary inconsistently across locations.
               </p>
               
@@ -128,18 +122,15 @@ export function SolutionPage({
 
       {/* The Norscope Solution */}
       <section className="py-16 md:py-[var(--section-py-md)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-4xl">
-            <h2 
-              className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               The Norscope Solution
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-6">
+            <p className="p-body mb-6">
               Norscope is an augmented reality software platform designed specifically for industrial maintenance workflows. It provides technicians with structured, step-by-step guidance directly in their field of view while they work on machines.
             </p>
-            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
+            <p className="p-body">
               Rather than offering a generic AR viewer, Norscope is configured individually for each customer's specific machines, procedures, and operational requirements. The system is designed to function reliably offline, addressing the connectivity constraints common in industrial environments.
             </p>
           </div>
@@ -147,12 +138,9 @@ export function SolutionPage({
       </section>
 
       {/* How the Solution Works */}
-      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
-          <h2 
-            className="text-[28px] md:text-[40px] tracking-tight mb-12 md:mb-16 text-center"
-            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-          >
+      <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+        <div className="section-container">
+          <h2 className="h2-section mb-12 md:mb-16 text-center">
             How the Solution Works
           </h2>
           
@@ -247,19 +235,16 @@ export function SolutionPage({
 
       {/* Custom Software per Customer */}
       <section className="py-16 md:py-[var(--section-py-md)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 
-                className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-6 md:mb-8">
                 Custom Software per Customer
               </h2>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+              <p className="p-body mb-8">
                 Industrial environments vary significantly in their equipment, procedures, safety requirements, and organizational structures. Norscope is therefore configured specifically for each customer rather than deployed as a generic solution.
               </p>
-              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+              <p className="p-body mb-8">
                 This approach ensures that workflows align with existing maintenance procedures, terminology matches organizational standards, and validation steps reflect actual quality requirements.
               </p>
               
@@ -305,16 +290,13 @@ export function SolutionPage({
       </section>
 
       {/* Designed for Industrial Reality */}
-      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="max-w-4xl">
-            <h2 
-              className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               Designed for Industrial Reality
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+            <p className="p-body mb-8">
               Norscope is built to function in real industrial environments, accounting for the practical constraints and operational requirements of shop floor work.
             </p>
             
@@ -355,30 +337,27 @@ export function SolutionPage({
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Optional workshop image */}
-            <div className="relative h-[350px] md:h-[450px] rounded-lg overflow-hidden">
-              <ImageWithFallback
-                src={factoryRealityImage}
-                alt="Factory floor with workers in industrial environment"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Optional workshop image */}
+          <div className="relative h-[350px] md:h-[450px] rounded-lg overflow-hidden max-w-5xl mx-auto">
+            <ImageWithFallback
+              src={factoryRealityImage}
+              alt="Factory floor with workers in industrial environment"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
 
       {/* Resulting Benefits */}
       <section className="py-16 md:py-[var(--section-py-md)]">
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-4xl">
-            <h2 
-              className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               Resulting Benefits
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
+            <p className="p-body mb-8">
               Organizations implementing Norscope typically observe improvements in several operational areas:
             </p>
             
@@ -434,33 +413,22 @@ export function SolutionPage({
       </section>
 
       {/* Closing CTA */}
-      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 text-center">
-          <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed mb-10 max-w-3xl mx-auto">
+      <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+        <div className="section-container text-center">
+          <p className="p-body mb-10 max-w-3xl mx-auto">
             Learn more about how Norscope is implemented in industrial environments.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
               onClick={onNavigateToProduct}
-              className="btn-primary px-8 py-3.5 rounded-md text-[15px]"
-              style={{ 
-                backgroundColor: 'var(--industrial-blue)', 
-                color: 'white',
-                fontWeight: 500
-              }}
+              className="btn-primary px-8 py-3.5"
             >
               View Product
             </button>
             <button 
               onClick={onContactClick}
-              className="btn-outline px-8 py-3.5 rounded-md text-[15px] transition-all"
-              style={{ 
-                backgroundColor: 'transparent',
-                border: '1px solid var(--border-light)',
-                color: 'var(--dark-text)',
-                fontWeight: 500
-              }}
+              className="btn-outline px-8 py-3.5"
             >
               Discuss a Pilot
             </button>

@@ -79,15 +79,12 @@ export function ContactPage({
 
       {/* Contact Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-4xl mx-auto">
-            <h1
-              className="text-[36px] md:text-[52px] tracking-tight mb-4 md:mb-6"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h1 className="h1-page mb-4 md:mb-6">
               Contact & Discuss a Pilot
             </h1>
-            <p className="text-[16px] md:text-[18px] text-[#4A4A4A] leading-relaxed">
+            <p className="p-body text-[var(--text-main)]">
               Get in touch to discuss your maintenance workflows or request a product demonstration.
             </p>
           </div>
@@ -96,12 +93,9 @@ export function ContactPage({
 
       {/* Contact Form */}
       <section className="py-12 md:py-16">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-2xl">
-            <h2
-              className="text-[24px] md:text-[32px] tracking-tight mb-8 md:mb-10"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-8 md:mb-10">
               Request a Demo
             </h2>
 
@@ -233,13 +227,10 @@ export function ContactPage({
       </section>
 
       {/* Alternative Contact Information */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="py-12 md:py-16 bg-[var(--light-gray)]">
+        <div className="section-container">
           <div className="max-w-2xl">
-            <h2
-              className="text-[24px] md:text-[32px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               Direct Contact
             </h2>
 
@@ -271,16 +262,13 @@ export function ContactPage({
 
       {/* Who This Is For */}
       <section className="py-12 md:py-16">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-2xl">
-            <h2
-              className="text-[24px] md:text-[32px] tracking-tight mb-6 md:mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="h2-section mb-6 md:mb-8">
               Who This Is For
             </h2>
 
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-6">
+            <p className="p-body text-[var(--text-main)] mb-6">
               Typical inquiries include:
             </p>
 
@@ -316,9 +304,9 @@ export function ContactPage({
 
       {/* Closing Note */}
       <section className="py-12 md:py-16 border-t border-[var(--border-light)]">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+        <div className="section-container">
           <div className="max-w-2xl">
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
+            <p className="p-body text-[var(--text-main)]">
               Norscope focuses on practical industrial deployments and meaningful collaboration. Please provide relevant context so we can respond efficiently.
             </p>
           </div>

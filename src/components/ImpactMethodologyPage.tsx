@@ -53,7 +53,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
       <main className="pt-20">
         {/* Header Section */}
         <section className="py-12 md:py-16 border-b border-[var(--border-light)]">
-          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
+          <div className="section-container">
             {/* Back Button */}
             <button
               onClick={onNavigateHome}
@@ -64,10 +64,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
             </button>
 
             <div className="max-w-4xl">
-              <h1 
-                className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight mb-3 md:mb-4" 
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h1 className="h1-page mb-3 md:mb-4">
                 Approach
               </h1>
               <p className="text-[18px] md:text-[20px] text-[var(--text-main)] mb-4 leading-relaxed">
@@ -84,8 +81,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         {/* Three-Section Vertical Flow */}
         
         {/* Section 1 - Baseline (Before AR) */}
-        <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
+        <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+          <div className="section-container">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -93,13 +90,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               >
                 SECTION 1
               </div>
-              <h2 
-                className="text-[32px] md:text-[40px] tracking-tight mb-4"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-4">
                 Baseline: Traditional Maintenance Workflow
               </h2>
-              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
+              <p className="p-body max-w-3xl mx-auto">
                 Current state of industrial maintenance operations before AR implementation
               </p>
             </div>
@@ -185,7 +179,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Section 2 - AR Intervention */}
         <section className="py-16 md:py-[var(--section-py-md)] bg-white">
-          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
+          <div className="section-container">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -193,13 +187,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               >
                 SECTION 2
               </div>
-              <h2 
-                className="text-[32px] md:text-[40px] tracking-tight mb-4"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-4">
                 AR-Assisted Maintenance Workflow
               </h2>
-              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
+              <p className="p-body max-w-3xl mx-auto">
                 Norscope platform provides contextual, step-by-step guidance through optical AR smart glasses
               </p>
             </div>
@@ -301,8 +292,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </div>
 
         {/* Section 3 - Measured Impact */}
-        <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
+        <section className="py-16 md:py-[var(--section-py-md)] bg-[var(--light-gray)]">
+          <div className="section-container">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -310,13 +301,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               >
                 SECTION 3
               </div>
-              <h2 
-                className="text-[32px] md:text-[40px] tracking-tight mb-4"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
+              <h2 className="h2-section mb-4">
                 Illustrative Impact Benchmarks
               </h2>
-              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
+              <p className="p-body max-w-3xl mx-auto">
                 Published examples from industrial AR task-support studies
               </p>
             </div>
@@ -397,15 +385,12 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Model Inputs Panel */}
-        <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[var(--container-max)] mx-auto px-12">
-            <h2 
-              className="text-[32px] tracking-tight mb-3"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+        <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+          <div className="section-container">
+            <h2 className="h2-section mb-3">
               What Shapes Deployment Impact
             </h2>
-            <p className="text-[17px] text-[var(--text-main)] mb-12 max-w-3xl">
+            <p className="p-body mb-12 max-w-3xl">
               Operational outcomes depend on workflow structure, task complexity, operator experience, and deployment conditions.
             </p>
             
@@ -528,7 +513,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Impact Metric Cards */}
         <section className="py-16 md:py-[var(--section-py-lg)] border-t border-[var(--border-light)]">
-          <div className="max-w-[var(--container-max)] mx-auto px-12">
+          <div className="section-container">
             <div className="grid grid-cols-4 gap-6">
               {/* Card 1: Faster Repair Workflows */}
               <div className="card-hover bg-white rounded-lg p-8">
@@ -614,12 +599,9 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Validation Plan Section */}
-        <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[var(--container-max)] mx-auto px-12">
-            <h2 
-              className="text-[32px] tracking-tight mb-8"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+        <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
+          <div className="section-container">
+            <h2 className="h2-section mb-8">
               Pilot Validation Plan
             </h2>
             

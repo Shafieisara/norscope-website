@@ -41,30 +41,24 @@ export function DatenschutzPage({
             />
 
             <section className="pt-32 pb-16 md:pt-40 md:pb-[var(--section-py-lg)]">
-                <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+                <div className="section-container">
                     <div className="max-w-4xl mx-auto">
                         {/* Back Button */}
                         <button
                             onClick={onNavigateHome}
-                            className="flex items-center gap-2 text-[14px] md:text-[15px] mb-6 text-[var(--text-muted)] hover:text-[var(--industrial-blue)] transition-colors"
+                            className="flex items-center gap-2 text-[15px] mb-6 text-[var(--text-muted)] hover:text-[var(--industrial-blue)] transition-colors"
                         >
                             <span>←</span>
                             <span>Zurück zur Startseite</span>
                         </button>
 
-                        <h1
-                            className="text-[36px] md:text-[52px] tracking-tight mb-8 md:mb-12"
-                            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                        >
+                        <h1 className="h1-page mb-8 md:mb-12">
                             Datenschutzerklärung
                         </h1>
 
                         {/* 1. Datenschutz auf einen Blick */}
                         <div className="mb-10">
-                            <h2
-                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
-                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                            >
+                            <h2 className="h2-section mb-4">
                                 1. Datenschutz auf einen Blick
                             </h2>
 
@@ -109,10 +103,7 @@ export function DatenschutzPage({
 
                         {/* 2. Hosting */}
                         <div className="mb-10">
-                            <h2
-                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
-                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                            >
+                            <h2 className="h2-section mb-4">
                                 2. Hosting
                             </h2>
                             <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-4">
@@ -138,10 +129,7 @@ export function DatenschutzPage({
 
                         {/* 3. Allgemeine Hinweise und Pflichtinformationen */}
                         <div className="mb-10">
-                            <h2
-                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
-                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                            >
+                            <h2 className="h2-section mb-4">
                                 3. Allgemeine Hinweise und Pflichtinformationen
                             </h2>
 
@@ -271,10 +259,7 @@ export function DatenschutzPage({
 
                         {/* 4. Datenerfassung auf dieser Website */}
                         <div className="mb-10">
-                            <h2
-                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
-                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                            >
+                            <h2 className="h2-section mb-4">
                                 4. Datenerfassung auf dieser Website
                             </h2>
 
