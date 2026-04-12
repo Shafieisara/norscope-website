@@ -45,13 +45,6 @@ export function CTASection({ onContactClick }: CTASectionProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-32" style={{ backgroundColor: 'var(--dark-bg)' }}>
-      <div className={`max-w-[1440px] mx-auto px-6 md:px-12 text-center section-content ${isVisible ? 'section-visible' : ''}`}>
-        <h2 
-          className="text-[32px] md:text-[48px] tracking-tight mb-5 md:mb-6"
-          style={{ fontWeight: 600, color: 'white' }}
-        >
-          Ready to modernize machine maintenance?
     <section ref={sectionRef} className="section-py-lg bg-white">
       <div className="container-max px-6 md:px-12">
         <div 
