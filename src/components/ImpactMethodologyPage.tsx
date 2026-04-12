@@ -327,7 +327,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               </div>
 
               {/* Metric Cards */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { value: 21, prefix: '', suffix: '%', superscript: '¹', label: 'Faster task completion', detail: 'Peer-reviewed industrial repair-task study', color: '#0066CC' },
                   { value: 26, prefix: '', suffix: '%', superscript: '¹', label: 'Lower perceived workload', detail: 'Peer-reviewed industrial repair-task study', color: '#059669' },
@@ -514,7 +514,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         {/* Impact Metric Cards */}
         <section className="py-16 md:py-[var(--section-py-lg)] border-t border-[var(--border-light)]">
           <div className="section-container">
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Card 1: Faster Repair Workflows */}
               <div className="card-hover bg-white rounded-lg p-8">
                 <div 
