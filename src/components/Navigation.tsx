@@ -21,7 +21,7 @@ export function Navigation({ onLogoClick, onAboutClick, onProductClick, onSoluti
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white border-b border-[var(--border-light)] z-50">
       {/* Top bar */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
+      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
 
         {/* Logo – centered on mobile, left-aligned on desktop */}
         <div

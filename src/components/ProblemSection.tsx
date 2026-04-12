@@ -34,48 +34,29 @@ export function ProblemSection() {
   return (
     <>
       <style>{STYLES}</style>
-      <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="container-max px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {[
-              {
-                icon: AlertCircle,
-                title: 'High Downtime Costs',
-                description: 'Unplanned machine stops cost manufacturers millions. Finding the right procedure and specialist often takes hours.',
-                metric: '40% ',
-                metricLabel: 'downtime reduction'
-              },
-              {
-                icon: FileText,
-                title: 'Static Documentation',
-                description: 'Paper manuals and static PDFs are difficult to use while working, leading to skipped steps and safety risks.',
-                metric: '95% ',
-                metricLabel: 'error reduction'
-              },
-              {
-                icon: History,
-                title: 'Knowledge Loss',
-                description: 'As experienced technicians retire, their institutional knowledge disappears. Capture it digitally before it is gone.',
-                metric: '3x ',
-                metricLabel: 'faster onboarding'
-              }
-            ].map((item, index) => (
-              <div key={index} className="space-y-4">
-                <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: 'white', border: '1px solid var(--border-light)' }}
-                >
-                  <item.icon className="w-6 h-6" style={{ color: 'var(--industrial-blue)' }} />
+      <section ref={sectionRef} className="py-12 md:py-[var(--section-py-lg)] bg-white">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+          <div className={`text-center mb-10 md:mb-16 ps-reveal${visible ? ' ps-visible' : ''}`}>
+            <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
+              The Industrial Challenge
+            </h2>
+            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] max-w-2xl mx-auto">
+              Manufacturing faces mounting pressure from complexity, workforce gaps, and rising operational costs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {problems.map((problem, index) => (
+              <div
+                key={index}
+                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 md:hover:-translate-y-2 ps-card${visible ? ' ps-visible' : ''}`}
+                style={{ '--sd': `${index * 100}ms` } as React.CSSProperties}
+              >
+                <div className="mb-5 md:mb-6">
+                  <problem.icon className="w-9 h-9 md:w-10 md:h-10 transition-transform duration-300 hover:scale-110" style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }} />
                 </div>
-                <h3 
-                  className="text-[20px] md:text-[22px]"
-                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                >
-                  {item.title}
-                </h3>
-                <p className="text-[15px] md:text-[16px] text-main leading-relaxed">
-                  {item.description}
-                </p>
+                <h3 className="text-[17px] md:text-[18px] mb-2 md:mb-3" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{problem.title}</h3>
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-muted)]">{problem.description}</p>
               </div>
             ))}
           </div>

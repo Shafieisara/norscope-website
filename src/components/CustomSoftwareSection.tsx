@@ -39,8 +39,8 @@ export function CustomSoftwareSection() {
   return (
     <>
       <style>{STYLES}</style>
-      <section ref={sectionRef} className="py-12 md:py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section ref={sectionRef} className="py-12 md:py-[var(--section-py-lg)] bg-white">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
             {/* Left Column - Content slides in from left */}
             <div className={`space-y-6 md:space-y-8 cs-left${visible ? ' cs-visible' : ''}`}>
@@ -48,7 +48,7 @@ export function CustomSoftwareSection() {
                 <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
                   Custom Software for Every Customer
                 </h2>
-                <p className="text-[15px] md:text-[17px] leading-relaxed text-[#4A4A4A]">
+                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--text-main)]">
                   We design and deploy customer-specific AR software modules tailored to each
                   machine type, maintenance workflow, safety standard, and IT environment. Our
                   platform adapts to your operations, not the other way around.
@@ -75,7 +75,7 @@ export function CustomSoftwareSection() {
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <ImageWithFallback src={maintenanceTechImage} alt="Real-World Usage Scenario" className="w-full h-[140px] md:h-[180px] object-cover" />
               </div>
-              <p className="text-[12px] md:text-[13px] text-[#6B6B6B] text-center pt-1 md:pt-2">
+              <p className="text-[12px] md:text-[13px] text-[var(--text-muted)] text-center pt-1 md:pt-2">
                 Hardware platform combined with customer-specific software deployment
               </p>
             </div>

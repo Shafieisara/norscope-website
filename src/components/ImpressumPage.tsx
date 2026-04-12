@@ -40,13 +40,13 @@ export function ImpressumPage({
                 currentPage="impressum"
             />
 
-            <section className="pt-32 pb-16 md:pt-40 md:pb-24">
-                <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+            <section className="pt-32 pb-16 md:pt-40 md:pb-[var(--section-py-lg)]">
+                <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
                     <div className="max-w-4xl mx-auto">
                         {/* Back Button */}
                         <button
                             onClick={onNavigateHome}
-                            className="flex items-center gap-2 text-[14px] md:text-[15px] mb-6 text-[#6B6B6B] hover:text-[var(--industrial-blue)] transition-colors"
+                            className="flex items-center gap-2 text-[14px] md:text-[15px] mb-6 text-[var(--text-muted)] hover:text-[var(--industrial-blue)] transition-colors"
                         >
                             <span>←</span>
                             <span>Zurück zur Startseite</span>
@@ -67,9 +67,27 @@ export function ImpressumPage({
                             >
                                 Angaben gemäß § 5 TMG
                             </h2>
-                            <div className="text-[15px] md:text-[17px] text-main leading-relaxed space-y-1">
+                            <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1">
                                 <p><strong>Norscope</strong></p>
                                 <p>Projektinitiative</p>
+                                <p>Rollplatz 23</p>
+                                <p>38678 Clausthal-Zellerfeld</p>
+                            </div>
+                        </div>
+
+                        {/* Vertreten durch */}
+                        <div className="mb-10">
+                            <h2
+                                className="text-[24px] md:text-[28px] tracking-tight mb-4"
+                                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                            >
+                                Vertreten durch
+                            </h2>
+                            <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1">
+                                <p>Sara Shafiei Sarvestani</p>
+                                <p>Siddhant Rebello</p>
+                            </div>
+                        </div>
 
                         {/* Kontakt */}
                         <div className="mb-10">
@@ -79,7 +97,7 @@ export function ImpressumPage({
                             >
                                 Kontakt
                             </h2>
-                            <div className="text-[15px] md:text-[17px] text-main leading-relaxed space-y-1">
+                            <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1">
                                 <p><strong>E-Mail:</strong></p>
                                 <p>Sara Shafiei Sarvestani: sara.shafiei.sarvestani@tu-clausthal.de</p>
                                 <p>Siddhant Rebello: siddhant.jude.rebello@tu-clausthal.de</p>
@@ -91,7 +109,7 @@ export function ImpressumPage({
 
                         {/* Hinweis */}
                         <div className="mb-10 p-6 bg-[var(--light-gray)] rounded-lg">
-                            <p className="text-[14px] md:text-[15px] text-main leading-relaxed">
+                            <p className="text-[14px] md:text-[15px] text-[var(--text-main)] leading-relaxed">
                                 <strong>Hinweis:</strong> Diese Website dient der Präsentation einer Geschäftsidee im Rahmen einer geplanten Gründungsförderung (EXIST-Stipendium). Es handelt sich um ein nicht-kommerzielles Informationsangebot. Eine formelle Unternehmensregistrierung liegt zum jetzigen Zeitpunkt noch nicht vor.
                             </p>
                         </div>
@@ -108,21 +126,21 @@ export function ImpressumPage({
                             <h3 className="text-[18px] md:text-[20px] mb-2 mt-6" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
                                 Haftung für Inhalte
                             </h3>
-                            <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-4">
+                            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-4">
                                 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
                             </p>
 
                             <h3 className="text-[18px] md:text-[20px] mb-2 mt-6" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
                                 Haftung für Links
                             </h3>
-                            <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-4">
+                            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-4">
                                 Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
                             </p>
 
                             <h3 className="text-[18px] md:text-[20px] mb-2 mt-6" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
                                 Urheberrecht
                             </h3>
-                            <p className="text-[15px] md:text-[17px] text-main leading-relaxed">
+                            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
                                 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
                             </p>
                         </div>

@@ -70,17 +70,20 @@ export function IndustriesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-      <div className="container-max px-6 md:px-12">
-        <div className="text-center mb-10 md:mb-16">
+    <section ref={sectionRef} className="py-20 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+        <div className={`text-center mb-16 md:mb-20 section-header ${isVisible ? 'section-visible' : ''}`}>
           <h2 
-            className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
-            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+            className="text-[32px] md:text-[44px] tracking-tight mb-4 md:mb-5"
+            style={{ fontWeight: 600, color: 'var(--dark-text)', lineHeight: 1.2 }}
           >
-            Built for Industrial Reality
+            Trusted Across Industries
           </h2>
-          <p className="text-[15px] md:text-[17px] text-main max-w-2xl mx-auto">
-            Configured specifically for different manufacturing and maintenance environments
+          <p 
+            className="text-[16px] md:text-[18px] max-w-3xl mx-auto"
+            style={{ color: 'var(--text-main)', lineHeight: 1.6 }}
+          >
+            Designed for sectors where maintenance guidance must work reliably, including in low-connectivity and remote operating conditions.
           </p>
         </div>
         
@@ -91,18 +94,18 @@ export function IndustriesSection() {
               className={`industry-card bg-white rounded-lg p-7 md:p-8 group section-card ${isVisible ? 'section-visible' : ''}`}
               style={{
                 transitionDelay: isVisible ? `${index * 80}ms` : '0ms',
-                border: '1px solid #E0E0E0',
+                border: '1px solid var(--border-light)',
                 boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)'
               }}
             >
               <div className="flex flex-col items-center text-center">
                 <div 
                   className="w-16 h-16 md:w-18 md:h-18 rounded-full flex items-center justify-center mb-5 transition-all duration-300"
-                  style={{ backgroundColor: '#F0F4F8' }}
+                  style={{ backgroundColor: 'var(--light-gray)' }}
                 >
                   <industry.icon 
                     className="w-8 h-8 md:w-9 md:h-9 transition-all duration-300" 
-                    style={{ color: '#2C5F8D', strokeWidth: 1.5 }}
+                    style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }}
                   />
                 </div>
                 <h3 
@@ -113,7 +116,7 @@ export function IndustriesSection() {
                 </h3>
                 <p 
                   className="industry-description text-[14px] md:text-[15px] leading-relaxed"
-                  style={{ color: '#6B6B6B' }}
+                  style={{ color: 'var(--text-muted)' }}
                 >
                   {industry.description}
                 </p>

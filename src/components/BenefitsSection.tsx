@@ -83,10 +83,10 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
   return (
     <section 
       ref={sectionRef}
-      className="section-py-lg" 
+      className="py-12 md:py-24" 
       style={{ backgroundColor: 'var(--light-gray)' }}
     >
-      <div className="container-max px-6 md:px-12">
+      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
         <div 
           className={`text-center mb-10 md:mb-12 impact-header ${isVisible ? 'impact-visible' : ''}`}
         >
@@ -96,7 +96,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
           >
             Measurable Impact
           </h2>
-          <p className="text-[15px] md:text-[17px] text-main max-w-3xl mx-auto">
+          <p className="text-[15px] md:text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
             Published examples from industrial AR task-support studies
           </p>
         </div>
@@ -142,7 +142,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
                 >
                   {item.label}
                 </div>
-                <div className="text-[12px] md:text-[13px] text-[#6B6B6B] leading-relaxed">
+                <div className="text-[12px] md:text-[13px] text-[var(--text-muted)] leading-relaxed">
                   {item.detail}
                 </div>
               </div>
@@ -157,10 +157,10 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
               Sources
             </h4>
             <div className="space-y-3">
-              <p className="text-[12px] md:text-[13px] text-[#4A4A4A] leading-relaxed">
+              <p className="text-[12px] md:text-[13px] text-[var(--text-main)] leading-relaxed">
                 <span style={{ fontWeight: 600 }}>1.</span> Eversberg, L. et al. (2023), <em>Evaluating digital work instructions with augmented reality versus paper-based documents for manual object-specific repair tasks in a case study with experienced workers.</em> The International Journal of Advanced Manufacturing Technology. Reported 21% faster task completion and 26% lower perceived workload.
               </p>
-              <p className="text-[12px] md:text-[13px] text-[#4A4A4A] leading-relaxed">
+              <p className="text-[12px] md:text-[13px] text-[var(--text-main)] leading-relaxed">
                 <span style={{ fontWeight: 600 }}>2.</span> <em>Augmented Industrial Maintenance (AIM): A Case Study for Evaluating and Comparing with Paper and Video Media Supports.</em> Reported 13% less maintenance time using AR glasses and 25% fewer errors than paper-based maintenance in the cited case-study summary.
               </p>
             </div>
@@ -168,7 +168,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
 
           {/* Disclaimer Note */}
           <div className="bg-white border border-[var(--border-light)] rounded-lg p-4 md:p-5">
-            <p className="text-[12px] md:text-[13px] text-[#6B6B6B] leading-relaxed text-center">
+            <p className="text-[12px] md:text-[13px] text-[var(--text-muted)] leading-relaxed text-center">
               These figures are published reference examples from industrial AR studies and do not represent validated Norscope pilot results. Outcomes depend on workflow design, equipment, operator experience, and deployment conditions.
             </p>
           </div>

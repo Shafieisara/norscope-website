@@ -104,20 +104,20 @@ export default function App() {
   useEffect(() => {
     const isEn = currentPage.includes('en');
     const titles: Record<PageType, string> = {
-      'home-en': 'Norscope — AR Glasses for Industrial Maintenance',
-      'home-de': 'Norscope — AR-Brillen für die industrielle Wartung',
-      'about-en': 'About Us — Norscope',
-      'about-de': 'Über Uns — Norscope',
-      'product-en': 'Our Product — Norscope',
-      'product-de': 'Unser Produkt — Norscope',
-      'solution-en': 'Industrial Solutions — Norscope',
-      'solution-de': 'Industrielösungen — Norscope',
-      'methodology-en': 'Impact & Methodology — Norscope',
-      'methodology-de': 'Wirkung & Methodik — Norscope',
-      'contact-en': 'Contact — Norscope',
-      'contact-de': 'Kontakt — Norscope',
-      'impressum-de': 'Impressum — Norscope',
-      'datenschutz-de': 'Datenschutz — Norscope',
+      'home-en': 'Norscope - Offline AR Guidance',
+      'home-de': 'Norscope - Offline AR Führung',
+      'about-en': 'About Us - Norscope',
+      'about-de': 'Über Uns - Norscope',
+      'product-en': 'Our Product - Norscope',
+      'product-de': 'Unser Produkt - Norscope',
+      'solution-en': 'Industrial Solutions - Norscope',
+      'solution-de': 'Industrielösungen - Norscope',
+      'methodology-en': 'Impact & Methodology - Norscope',
+      'methodology-de': 'Wirkung & Methodik - Norscope',
+      'contact-en': 'Contact - Norscope',
+      'contact-de': 'Kontakt - Norscope',
+      'impressum-de': 'Impressum - Norscope',
+      'datenschutz-de': 'Datenschutz - Norscope',
     };
     
     document.title = titles[currentPage] || 'Norscope';

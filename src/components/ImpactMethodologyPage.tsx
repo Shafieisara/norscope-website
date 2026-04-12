@@ -53,30 +53,27 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
       <main className="pt-20">
         {/* Header Section */}
         <section className="py-12 md:py-16 border-b border-[var(--border-light)]">
-          <div className="max-w-[1200px] mx-auto px-8 md:px-12">
+          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
             {/* Back Button */}
-      <main className="flex-grow">
-        {/* Methodology Hero */}
-        <section className="section-py-lg">
-          <div className="container-max px-6 md:px-12">
+            <button
+              onClick={onNavigateHome}
+              className="flex items-center gap-2 text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors mb-8"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+
             <div className="max-w-4xl">
-              <button
-                onClick={onNavigateHome}
-                className="flex items-center gap-2 text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors mb-8"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back</span>
-              </button>
               <h1 
-                className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
+                className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight mb-3 md:mb-4" 
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
-                Quantifying Industrial AR Impact
+                Approach
               </h1>
-              <p className="text-[18px] md:text-[20px] text-main mb-4 leading-relaxed">
-                Our approach to measuring the operational transformation enabled by augmented reality in maintenance and training.
+              <p className="text-[18px] md:text-[20px] text-[var(--text-main)] mb-4 leading-relaxed">
+                A structured framework for evaluating operational improvement in industrial maintenance
               </p>
-              <p className="text-[13px] text-[#6B6B6B] leading-relaxed max-w-3xl">
+              <p className="text-[13px] text-[var(--text-muted)] leading-relaxed max-w-3xl">
                 All values shown are modeled estimates based on standard industrial maintenance processes and published benchmark ranges. 
                 Actual results depend on machine complexity, operator skill level, and workflow standardization.
               </p>
@@ -86,13 +83,13 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
         {/* Three-Section Vertical Flow */}
         
-        {/* Section 1 - Baseline */}
-        <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="container-max px-8 md:px-12">
+        {/* Section 1 - Baseline (Before AR) */}
+        <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
-                style={{ backgroundColor: 'var(--industrial-blue-light)', color: 'var(--industrial-blue)', fontSize: '14px', fontWeight: 600 }}
+                style={{ backgroundColor: '#FFF4E6', color: '#CC7722', fontSize: '14px', fontWeight: 600 }}
               >
                 SECTION 1
               </div>
@@ -100,10 +97,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 className="text-[32px] md:text-[40px] tracking-tight mb-4"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
-                Baseline Challenges
+                Baseline: Traditional Maintenance Workflow
               </h2>
-              <p className="text-[17px] text-main max-w-3xl mx-auto">
-                Identifying friction in traditional paper-based or experience-dependent maintenance workflows
+              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
+                Current state of industrial maintenance operations before AR implementation
               </p>
             </div>
 
@@ -163,7 +160,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                           <div className="text-[15px] font-semibold text-[var(--dark-text)] mb-1">
                             {item.label}
                           </div>
-                          <div className="text-[14px] text-secondary">
+                          <div className="text-[14px] text-[var(--text-muted)]">
                             {item.detail}
                           </div>
                         </div>
@@ -187,8 +184,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </div>
 
         {/* Section 2 - AR Intervention */}
-        <section className="section-py-lg bg-white">
-          <div className="container-max px-8 md:px-12">
+        <section className="py-16 md:py-[var(--section-py-md)] bg-white">
+          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -202,7 +199,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               >
                 AR-Assisted Maintenance Workflow
               </h2>
-              <p className="text-[17px] text-main max-w-3xl mx-auto">
+              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
                 Norscope platform provides contextual, step-by-step guidance through optical AR smart glasses
               </p>
             </div>
@@ -232,7 +229,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                         <div className="text-[15px] font-semibold text-[var(--dark-text)] mb-1">
                           {item.label}
                         </div>
-                        <div className="text-[14px] text-secondary">
+                        <div className="text-[14px] text-[var(--text-muted)]">
                           {item.detail}
                         </div>
                       </div>
@@ -304,8 +301,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </div>
 
         {/* Section 3 - Measured Impact */}
-        <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="container-max px-8 md:px-12">
+        <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+          <div className="max-w-[var(--container-max)] mx-auto px-8 md:px-12">
             <div className="text-center mb-12">
               <div 
                 className="inline-block px-4 py-2 rounded-full mb-4"
@@ -319,7 +316,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
               >
                 Illustrative Impact Benchmarks
               </h2>
-              <p className="text-[17px] text-main max-w-3xl mx-auto">
+              <p className="text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
                 Published examples from industrial AR task-support studies
               </p>
             </div>
@@ -365,7 +362,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                     >
                       {item.label}
                     </div>
-                    <div className="text-[13px] text-secondary leading-relaxed">
+                    <div className="text-[13px] text-[var(--text-muted)] leading-relaxed">
                       {item.detail}
                     </div>
                   </div>
@@ -380,10 +377,10 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                   Sources
                 </h4>
                 <div className="space-y-3">
-                  <p className="text-[13px] text-main leading-relaxed">
+                  <p className="text-[13px] text-[var(--text-main)] leading-relaxed">
                     <span style={{ fontWeight: 600 }}>1.</span> Eversberg, L. et al. (2023), <em>Evaluating digital work instructions with augmented reality versus paper-based documents for manual object-specific repair tasks in a case study with experienced workers.</em> The International Journal of Advanced Manufacturing Technology. Reported 21% faster task completion and 26% lower perceived workload.
                   </p>
-                  <p className="text-[13px] text-main leading-relaxed">
+                  <p className="text-[13px] text-[var(--text-main)] leading-relaxed">
                     <span style={{ fontWeight: 600 }}>2.</span> <em>Augmented Industrial Maintenance (AIM): A Case Study for Evaluating and Comparing with Paper and Video Media Supports.</em> Reported 13% less maintenance time using AR glasses and 25% fewer errors than paper-based maintenance in the cited case-study summary.
                   </p>
                 </div>
@@ -391,7 +388,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
 
               {/* Disclaimer Note */}
               <div className="bg-white border border-[var(--border-light)] rounded-lg p-5">
-                <p className="text-[13px] text-[#6B6B6B] leading-relaxed text-center">
+                <p className="text-[13px] text-[var(--text-muted)] leading-relaxed text-center">
                   These figures are published reference examples from industrial AR studies and do not represent validated Norscope pilot results. Outcomes depend on workflow design, equipment, operator experience, and deployment conditions.
                 </p>
               </div>
@@ -400,15 +397,15 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Model Inputs Panel */}
-        <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="container-max px-12">
+        <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+          <div className="max-w-[var(--container-max)] mx-auto px-12">
             <h2 
               className="text-[32px] tracking-tight mb-3"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
               What Shapes Deployment Impact
             </h2>
-            <p className="text-[17px] text-main mb-12 max-w-3xl">
+            <p className="text-[17px] text-[var(--text-main)] mb-12 max-w-3xl">
               Operational outcomes depend on workflow structure, task complexity, operator experience, and deployment conditions.
             </p>
             
@@ -424,7 +421,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Task Complexity
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   Complex, multi-step procedures create more room for guided support and error reduction.
                 </p>
               </div>
@@ -445,7 +442,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Workflow Standardization
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   Repeatable and well-defined processes are easier to digitize and scale across teams.
                 </p>
               </div>
@@ -461,7 +458,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Operator Experience
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   Structured guidance is especially valuable where onboarding time or skill variation is high.
                 </p>
               </div>
@@ -482,7 +479,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Information Accessibility
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   The more a task depends on manuals, memory, or external lookup, the more contextual AR support can help.
                 </p>
               </div>
@@ -501,7 +498,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Deployment Environment
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   Connectivity, noise, safety constraints, and physical access influence system design and usability.
                 </p>
               </div>
@@ -521,7 +518,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Equipment Consistency
                 </h3>
-                <p className="text-[15px] text-main leading-relaxed">
+                <p className="text-[15px] text-[var(--text-main)] leading-relaxed">
                   Standardized equipment and repeatable layouts are easier to support than highly variable machine setups.
                 </p>
               </div>
@@ -530,8 +527,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Impact Metric Cards */}
-        <section className="py-16 md:py-24 border-t border-[var(--border-light)]">
-          <div className="max-w-[1440px] mx-auto px-12">
+        <section className="py-16 md:py-[var(--section-py-lg)] border-t border-[var(--border-light)]">
+          <div className="max-w-[var(--container-max)] mx-auto px-12">
             <div className="grid grid-cols-4 gap-6">
               {/* Card 1: Faster Repair Workflows */}
               <div className="card-hover bg-white rounded-lg p-8">
@@ -541,7 +538,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Faster Repair Workflows
                 </div>
-                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                <p className="text-[15px] text-[var(--text-muted)] mb-6 leading-relaxed">
                   Reduced document lookup and more guided execution
                 </p>
                 <button
@@ -561,7 +558,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Accelerated Technician Training
                 </div>
-                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                <p className="text-[15px] text-[var(--text-muted)] mb-6 leading-relaxed">
                   Structured guidance for faster task learning
                 </p>
                 <button
@@ -581,7 +578,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   Lower Execution Error Risk
                 </div>
-                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                <p className="text-[15px] text-[var(--text-muted)] mb-6 leading-relaxed">
                   Step-based workflows reduce procedural ambiguity
                 </p>
                 <button
@@ -601,7 +598,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                 >
                   System-Enforced Compliance
                 </div>
-                <p className="text-[15px] text-[#6B6B6B] mb-6 leading-relaxed">
+                <p className="text-[15px] text-[var(--text-muted)] mb-6 leading-relaxed">
                   Traceable workflow steps and digital confirmations
                 </p>
                 <button
@@ -617,8 +614,8 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </section>
 
         {/* Validation Plan Section */}
-        <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
-          <div className="max-w-[1440px] mx-auto px-12">
+        <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+          <div className="max-w-[var(--container-max)] mx-auto px-12">
             <h2 
               className="text-[32px] tracking-tight mb-8"
               style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -643,7 +640,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
                     >
                       {index + 1}
                     </span>
-                    <span className="text-[15px] text-main leading-relaxed pt-0.5">
+                    <span className="text-[15px] text-[var(--text-main)] leading-relaxed pt-0.5">
                       {item}
                     </span>
                   </li>
@@ -665,7 +662,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </h3>
 
         <ModalSection title="Traditional workflow">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Fault diagnosis</li>
             <li className="list-disc">Manual document lookup</li>
             <li className="list-disc">Interpretation of instructions</li>
@@ -675,7 +672,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="AR-assisted workflow">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Visual diagnostic support</li>
             <li className="list-disc">Contextual instructions at point of use</li>
             <li className="list-disc">Guided execution</li>
@@ -685,19 +682,19 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="Published indication">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Peer-reviewed industrial case studies report faster task completion with AR-assisted digital work instructions.
           </p>
         </ModalSection>
 
         <ModalSection title="Expected impact">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Reduced task time through faster diagnosis, less document handling, and more consistent execution.
           </p>
         </ModalSection>
 
         <ModalSection title="Conditions">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Procedures are digitized</li>
             <li className="list-disc">Workflow steps are repeatable</li>
             <li className="list-disc">Instructions are clear and machine-specific</li>
@@ -706,7 +703,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
-          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+          <p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
             This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
           </p>
         </div>
@@ -722,7 +719,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </h3>
 
         <ModalSection title="Traditional training">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Documentation study</li>
             <li className="list-disc">Shadowing experienced staff</li>
             <li className="list-disc">Supervised execution</li>
@@ -731,28 +728,29 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="AR-supported training">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Guided walkthroughs</li>
             <li className="list-disc">Contextual visual instructions</li>
             <li className="list-disc">Step confirmation during execution</li>
+            <li className="list-disc">Reduced need for manual lookup</li>
             <li className="list-disc">Reduced dependency on constant supervision</li>
           </ul>
         </ModalSection>
 
         <ModalSection title="Published indication">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Industrial AR training research indicates improved support for task learning and faster progression in structured workflows.
           </p>
         </ModalSection>
 
         <ModalSection title="Expected impact">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Faster progression toward independent task execution in structured maintenance environments.
           </p>
         </ModalSection>
 
         <ModalSection title="Conditions">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Procedures are standardized</li>
             <li className="list-disc">Guidance content is well prepared</li>
             <li className="list-disc">Repetitive task patterns exist</li>
@@ -761,7 +759,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
-          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+          <p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
             This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
           </p>
         </div>
@@ -777,7 +775,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </h3>
 
         <ModalSection title="Common sources of error">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Missed process steps</li>
             <li className="list-disc">Incorrect part identification</li>
             <li className="list-disc">Wrong tool or sequence selection</li>
@@ -786,7 +784,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="Norscope control mechanisms">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Step-by-step workflow guidance</li>
             <li className="list-disc">Visual part and task confirmation</li>
             <li className="list-disc">Mandatory step acknowledgment</li>
@@ -795,19 +793,19 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="Published indication">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Industrial AR studies report reduced execution errors in guided task environments, especially for structured and repeatable procedures.
           </p>
         </ModalSection>
 
         <ModalSection title="Expected impact">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             Lower execution error risk through guided workflows, clearer task context, and reduced procedural ambiguity.
           </p>
         </ModalSection>
 
         <ModalSection title="Conditions">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Procedures are digitized correctly</li>
             <li className="list-disc">Operators follow prompts</li>
             <li className="list-disc">Hardware and recognition systems function reliably</li>
@@ -816,7 +814,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <div className="mt-6 pt-4 border-t border-[var(--border-light)]">
-          <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
+          <p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
             This model illustrates directional operational impact based on workflow design logic and published industrial AR findings. Actual results depend on equipment type, workflow quality, operator experience, and deployment conditions.
           </p>
         </div>
@@ -832,7 +830,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </h3>
 
         <ModalSection title="Traditional compliance:">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Paper checklists</li>
             <li className="list-disc">Manual signatures</li>
             <li className="list-disc">Non-verifiable execution</li>
@@ -841,7 +839,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="Norscope system:">
-          <ul className="text-[14px] text-main space-y-2 ml-5">
+          <ul className="text-[14px] text-[var(--text-main)] space-y-2 ml-5">
             <li className="list-disc">Mandatory workflow steps</li>
             <li className="list-disc">Digital safety confirmations</li>
             <li className="list-disc">Timestamped logs</li>
@@ -861,7 +859,7 @@ export function ImpactMethodologyPage({ onNavigateHome, currentLanguage = 'EN', 
         </ModalSection>
 
         <ModalSection title="Clarification:">
-          <p className="text-[14px] text-main leading-relaxed">
+          <p className="text-[14px] text-[var(--text-main)] leading-relaxed">
             This refers to system-enforced compliance, not human perfection.
           </p>
         </ModalSection>

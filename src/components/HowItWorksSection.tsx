@@ -50,17 +50,14 @@ export function HowItWorksSection() {
   return (
     <>
       <style>{STYLES}</style>
-      <section ref={sectionRef} className="section-py-lg">
-        <div className="container-max px-6 md:px-12">
+      <section ref={sectionRef} className="py-12 md:py-[var(--section-py-lg)] bg-white">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className={`text-center mb-10 md:mb-16 hw-reveal${visible ? ' hw-visible' : ''}`}>
-            <h2 
-              className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
-              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-            >
+            <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
               How It Works
             </h2>
-            <p className="text-[15px] md:text-[17px] text-main max-w-2xl mx-auto">
-              A structured approach to digitizing and delivering maintenance knowledge
+            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] max-w-2xl mx-auto">
+              Four simple steps to transform your maintenance operations
             </p>
           </div>
 
@@ -89,7 +86,7 @@ export function HowItWorksSection() {
                   <step.icon className="w-9 h-9 md:w-10 md:h-10" style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }} />
                 </div>
                 <h3 className="text-[17px] md:text-[18px] mb-2 md:mb-3" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{step.title}</h3>
-                <p className="text-[14px] md:text-[15px] leading-relaxed text-[#6B6B6B]">{step.description}</p>
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-muted)]">{step.description}</p>
               </div>
             ))}
           </div>

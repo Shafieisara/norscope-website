@@ -36,21 +36,21 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       />
       
       {/* Product Hero */}
-      <section className="section-py-lg">
-        <div className="container-max px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+      <section className="pt-32 pb-16 md:pt-40 md:pb-[var(--section-py-lg)]">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Text Content */}
+            <div className="max-w-2xl">
               <h1 
                 className="text-[36px] md:text-[52px] tracking-tight mb-6 md:mb-8"
                 style={{ fontWeight: 600, color: 'var(--dark-text)' }}
               >
-                Augmented reality for industrial maintenance
+                AR Software for Industrial Machine Maintenance
               </h1>
-              <p className="text-[18px] md:text-[20px] text-main leading-relaxed">
-                Step-by-step guidance for technicians, delivered directly at the machine. Offline-first, machine-specific, and built for complex workflows.
+              <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed mb-6">
+                Offline-capable guidance for real maintenance and servicing tasks.
               </p>
-            </div>
-            <p className="text-[15px] md:text-[17px] text-[#6B6B6B] leading-relaxed mb-10">
+              <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed mb-10">
                 Configured for each customer's machines, workflows, and environment.
               </p>
               
@@ -82,8 +82,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* The Reality of Industrial Maintenance */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
             <div className="max-w-2xl">
@@ -93,26 +93,26 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 The Reality of Industrial Maintenance
               </h2>
-              <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-8">
+              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
                 Industrial maintenance still depends heavily on manuals, memory, and individual experience. This leads to slow execution, inconsistent quality, and difficult knowledge transfer.
               </p>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Manual document lookup during tasks
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Knowledge stored in people, not systems
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Limited standardization across sites
                   </span>
                 </div>
@@ -134,8 +134,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* What Norscope Does */}
-      <section className="py-16 md:py-20">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)]">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Product Capability Visual */}
             <div className="order-2 lg:order-1">
@@ -156,7 +156,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 What Norscope Does
               </h2>
-              <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-8">
+              <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
                 Norscope guides technicians step by step at the machine with contextual instructions, visual references, and validation steps.
               </p>
               
@@ -166,7 +166,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                     className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Visual task guidance instead of manual lookup
                   </span>
                 </div>
@@ -175,7 +175,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                     className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Structured workflows instead of ad-hoc decisions
                   </span>
                 </div>
@@ -184,7 +184,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                     className="w-5 h-5 mt-0.5 flex-shrink-0" 
                     style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                   />
-                  <span className="text-[15px] md:text-[17px] text-main">
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
                     Validation steps to reduce human error
                   </span>
                 </div>
@@ -194,17 +194,17 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
         </div>
       </section>
 
-      {/* Deployment Readiness */}
-      <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="container-max px-6 md:px-12">
+      {/* How It Works */}
+      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <h2 
-            className="text-[28px] md:text-[36px] tracking-tight mb-12 text-center"
+            className="text-[28px] md:text-[40px] tracking-tight mb-12 md:mb-16 text-center"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
-            Built for Industrial Environments
+            How It Works
           </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto">
             {/* Step 1 */}
             <div className="card-hover rounded-lg p-6 text-center">
               <div 
@@ -219,7 +219,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Select Task
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Choose machine and workflow.
               </p>
             </div>
@@ -238,7 +238,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Guided Execution
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Follow contextual AR instructions.
               </p>
             </div>
@@ -257,7 +257,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Validation & Documentation
               </h3>
-              <p className="text-[14px] md:text-[15px] text-secondary leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Confirm steps and record execution.
               </p>
             </div>
@@ -276,7 +276,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Completion
               </h3>
-              <p className="text-[14px] md:text-[15px] text-secondary leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Store results and sync when needed.
               </p>
             </div>
@@ -284,17 +284,17 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section className="section-py-lg">
-        <div className="container-max px-6 md:px-12">
+      {/* Built for Industrial Environments */}
+      <section className="py-16 md:py-[var(--section-py-md)]">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <h2 
-            className="text-[28px] md:text-[40px] tracking-tight mb-12 md:mb-16 text-center"
+            className="text-[28px] md:text-[36px] tracking-tight mb-12 md:mb-16 text-center"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
-            Typical Workflow
+            Built for Industrial Environments
           </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-6xl mx-auto">
             {/* Machine-Specific */}
             <div className="card-hover rounded-lg p-6 text-center">
               <div 
@@ -309,7 +309,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Machine-Specific
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Workflows configured for each customer's machines
               </p>
             </div>
@@ -328,7 +328,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Custom Procedures
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Support for customer-specific maintenance protocols
               </p>
             </div>
@@ -347,12 +347,12 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Offline Operation
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Fully functional without network connectivity
               </p>
             </div>
 
-            {/* Smart Sync */}
+            {/* Sync When Available */}
             <div className="card-hover rounded-lg p-6 text-center">
               <div 
                 className="w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6"
@@ -366,7 +366,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
               >
                 Smart Sync
               </h3>
-              <p className="text-[14px] md:text-[15px] text-secondary leading-relaxed">
+              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                 Automatic synchronization when connectivity returns
               </p>
             </div>
@@ -375,8 +375,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* What Norscope Is Designed For */}
-      <section className="py-16 md:py-24" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <h2 
             className="text-[28px] md:text-[36px] tracking-tight mb-12 md:mb-16 text-center"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -400,7 +400,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                       className="w-5 h-5 mt-1 flex-shrink-0" 
                       style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-main leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
                       Industrial maintenance workflows
                     </span>
                   </div>
@@ -409,7 +409,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                       className="w-5 h-5 mt-1 flex-shrink-0" 
                       style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-main leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
                       Technician guidance at the machine
                     </span>
                   </div>
@@ -418,16 +418,16 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                       className="w-5 h-5 mt-1 flex-shrink-0" 
                       style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                     />
-                    <p className="text-[15px] md:text-[16px] text-main leading-relaxed">
-                System functionality is maintained without persistent network connectivity, essential for production floors and remote facilities.
-              </p>
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
+                      Offline-capable operation
+                    </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Check 
                       className="w-5 h-5 mt-1 flex-shrink-0" 
                       style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-main leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed">
                       Customer-specific procedure support
                     </span>
                   </div>
@@ -446,36 +446,36 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
                   <div className="flex items-start gap-3">
                     <X 
                       className="w-5 h-5 mt-1 flex-shrink-0" 
-                      style={{ color: '#6B6B6B', strokeWidth: 2 }}
+                      style={{ color: 'var(--text-muted)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-[#6B6B6B] leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
                       Generic AR content viewing
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <X 
                       className="w-5 h-5 mt-1 flex-shrink-0" 
-                      style={{ color: '#6B6B6B', strokeWidth: 2 }}
+                      style={{ color: 'var(--text-muted)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-[#6B6B6B] leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
                       Consumer AR applications
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <X 
                       className="w-5 h-5 mt-1 flex-shrink-0" 
-                      style={{ color: '#6B6B6B', strokeWidth: 2 }}
+                      style={{ color: 'var(--text-muted)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-[#6B6B6B] leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
                       Replacing engineering judgment
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <X 
                       className="w-5 h-5 mt-1 flex-shrink-0" 
-                      style={{ color: '#6B6B6B', strokeWidth: 2 }}
+                      style={{ color: 'var(--text-muted)', strokeWidth: 2 }}
                     />
-                    <span className="text-[15px] md:text-[17px] text-[#6B6B6B] leading-relaxed">
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
                       Cloud-dependent operation
                     </span>
                   </div>
@@ -487,8 +487,8 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* Measurable Impact */}
-      <section className="py-16 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="py-16 md:py-[var(--section-py-md)]" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <h2 
               className="text-[28px] md:text-[36px] tracking-tight mb-6 md:mb-8"
@@ -496,7 +496,7 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
             >
               Measurable Impact
             </h2>
-            <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-8">
+            <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-8">
               Norscope focuses on measurable operational improvements such as reduced downtime, faster onboarding, and fewer procedural errors. These metrics are derived using structured modeling and conservative assumptions.
             </p>
             
@@ -513,9 +513,9 @@ export function ProductPage({ onNavigateHome, onNavigateToMethodology, currentLa
       </section>
 
       {/* Closing CTA */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center">
-          <p className="text-[18px] md:text-[20px] text-main leading-relaxed mb-10 max-w-3xl mx-auto">
+      <section className="py-16 md:py-[var(--section-py-lg)]">
+        <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 text-center">
+          <p className="text-[18px] md:text-[20px] text-[var(--text-main)] leading-relaxed mb-10 max-w-3xl mx-auto">
             Interested in seeing how Norscope works in your environment?
           </p>
           

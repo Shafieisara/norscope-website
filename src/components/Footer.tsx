@@ -24,7 +24,7 @@ export function Footer({ onAboutClick, onProductClick, onSolutionClick, onImpact
       className="py-8 border-t"
       style={{ backgroundColor: 'var(--dark-bg)', borderColor: 'rgba(255, 255, 255, 0.1)' }}
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col items-center gap-3 text-center">
+      <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12 flex flex-col items-center gap-3 text-center">
 
         {/* Copyright */}
         <p className="text-[13px]" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
