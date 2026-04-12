@@ -2,7 +2,7 @@ import { Check, Shield, Wifi, MonitorCog, ArrowRight } from 'lucide-react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import heroImage from '../assets/hero-headset.webp';
+import heroImage from '../assets/solution-hero-new.png';
 import problemImage from '../assets/problem-paper-manual.webp';
 import maintenanceImage from '../assets/solution-active-maintenance.webp';
 import customMachineryImage from '../assets/solution-custom-machinery.webp';
@@ -65,7 +65,7 @@ export function SolutionPage({
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
               <ImageWithFallback
                 src={heroImage}
-                alt="Technician wearing AR headset in industrial environment"
+                alt="Technician wearing AR headset interacting with holographic machine diagnostics in a high-tech facility"
                 className="w-full h-full object-cover"
               />
             </div>
