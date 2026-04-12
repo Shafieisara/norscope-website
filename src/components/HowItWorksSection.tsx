@@ -50,14 +50,17 @@ export function HowItWorksSection() {
   return (
     <>
       <style>{STYLES}</style>
-      <section ref={sectionRef} className="py-12 md:py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section ref={sectionRef} className="section-py-lg">
+        <div className="container-max px-6 md:px-12">
           <div className={`text-center mb-10 md:mb-16 hw-reveal${visible ? ' hw-visible' : ''}`}>
-            <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
+            <h2 
+              className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
+              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+            >
               How It Works
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] max-w-2xl mx-auto">
-              Four simple steps to transform your maintenance operations
+            <p className="text-[15px] md:text-[17px] text-main max-w-2xl mx-auto">
+              A structured approach to digitizing and delivering maintenance knowledge
             </p>
           </div>
 

@@ -53,17 +53,14 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left Column - Content */}
           <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-            <h1
-              className="text-[36px] md:text-[48px] lg:text-[56px] leading-[1.1] tracking-tight text-white"
-              style={{ fontWeight: 600 }}
+            <h1 
+              className="text-[40px] md:text-[64px] tracking-tight leading-[1.05] mb-6 md:mb-8"
+              style={{ fontWeight: 600, color: 'var(--dark-text)' }}
             >
-              Offline AR Guidance for Industrial Maintenance
+              Structured AR guidance for industrial maintenance
             </h1>
-
-            <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-200 max-w-[520px] mx-auto lg:mx-0">
-              Offline augmented reality platform for industrial servicing and training.
-              Reduce downtime, accelerate knowledge transfer, and eliminate errors in
-              complex maintenance operations.
+            <p className="text-[18px] md:text-[22px] text-main mb-8 md:mb-10 leading-relaxed max-w-2xl">
+              Norscope provides technicians with offline-capable, machine-specific AR workflows to reduce downtime and eliminate procedural errors.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start">

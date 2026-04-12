@@ -70,20 +70,17 @@ export function IndustriesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-32" style={{ backgroundColor: '#F8F9FA' }}>
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
-        <div className={`text-center mb-16 md:mb-20 section-header ${isVisible ? 'section-visible' : ''}`}>
+    <section ref={sectionRef} className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
+      <div className="container-max px-6 md:px-12">
+        <div className="text-center mb-10 md:mb-16">
           <h2 
-            className="text-[32px] md:text-[44px] tracking-tight mb-4 md:mb-5"
-            style={{ fontWeight: 600, color: 'var(--dark-text)', lineHeight: 1.2 }}
+            className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
+            style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
-            Trusted Across Industries
+            Built for Industrial Reality
           </h2>
-          <p 
-            className="text-[16px] md:text-[18px] max-w-3xl mx-auto"
-            style={{ color: '#5A5A5A', lineHeight: 1.6 }}
-          >
-            Designed for sectors where maintenance guidance must work reliably, including in low-connectivity and remote operating conditions.
+          <p className="text-[15px] md:text-[17px] text-main max-w-2xl mx-auto">
+            Configured specifically for different manufacturing and maintenance environments
           </p>
         </div>
         

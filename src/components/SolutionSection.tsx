@@ -72,13 +72,12 @@ export function SolutionSection() {
             {/* Right Column - Content slides in from right */}
             <div className={`space-y-6 md:space-y-8 order-1 lg:order-2 ss-right${visible ? ' ss-visible' : ''}`}>
               <div>
-                <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-                  Enterprise AR Platform
-                </h2>
-                <p className="text-[15px] md:text-[17px] leading-relaxed text-[#4A4A4A]">
-                  Norscope delivers a robust augmented reality solution designed specifically
-                  for industrial environments. Our platform works anywhere, with any machine,
-                  ensuring your team has instant access to critical maintenance information.
+                <h2 className="text-[16px] mb-4" style={{ color: 'var(--industrial-blue)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>The Norscope Platform</h2>
+                <h3 className="text-[28px] md:text-[40px] tracking-tight mb-6" style={{ fontWeight: 600, color: 'var(--dark-text)', lineHeight: 1.1 }}>
+                  Step-by-step guidance, <br className="hidden md:block" /> directly in the field of view
+                </h3>
+                <p className="text-[16px] md:text-[18px] text-main mb-8 leading-relaxed">
+                  Norscope provides an integrated software platform for creating, deploying, and validating maintenance workflows through industrial smart glasses.
                 </p>
               </div>
               <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">

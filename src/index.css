@@ -6,18 +6,31 @@
 
 @layer base {
   :root {
+    /* ─── Brand Colors ───────────────────────────────────────────────────── */
     --industrial-blue: #0066CC;
     --industrial-blue-dark: #004C99;
     --industrial-blue-light: #E6F2FF;
     --industrial-dark: #1A1A1A;
+    
+    /* ─── Design Tokens ───────────────────────────────────────────────────── */
+    --background: #ffffff;
+    --foreground: #111827;
     --border-light: #E5E7EB;
+    
+    /* Unified Text Greys (Sync across all pages) */
+    --text-main: #4A4A4A;
+    --text-secondary: #6B6B6B;
     --dark-text: #111827;
+    
+    /* Semantic Layout */
     --light-gray: #F7F8FA;
     --dark-bg: #0A0A0A;
-    --background: #ffffff;
-    --foreground: #1a1a1a;
-    --muted-foreground: #6b6b6b;
+    
+    /* Spacing & Sizing */
     --font-size: 16px;
+    --max-container: 1440px;
+    --section-py-lg: 6rem;   /* Standard padding for large sections (py-24) */
+    --section-py-sm: 4rem;   /* Standard padding for small sections (py-16) */
   }
 
   html {
@@ -100,6 +113,15 @@
     gap: 0.75rem;
     color: var(--industrial-blue-dark);
   }
+  /* ─── Unified Color Classes ─────────────────────────────────────────────── */
+  .text-main { color: var(--text-main); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-industrial { color: var(--industrial-blue); }
+
+  /* ─── Layout & Spacing ─────────────────────────────────────────────────── */
+  .section-py-lg { padding-top: var(--section-py-lg); padding-bottom: var(--section-py-lg); }
+  .section-py-sm { padding-top: var(--section-py-sm); padding-bottom: var(--section-py-sm); }
+  .container-max { max-width: var(--max-container); margin-left: auto; margin-right: auto; }
 }
 
 /* ─── Smooth scroll for in-page anchor jumps ─────────────────────────────── */

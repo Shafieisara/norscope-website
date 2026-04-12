@@ -83,10 +83,10 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
   return (
     <section 
       ref={sectionRef}
-      className="py-12 md:py-24" 
+      className="section-py-lg" 
       style={{ backgroundColor: 'var(--light-gray)' }}
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+      <div className="container-max px-6 md:px-12">
         <div 
           className={`text-center mb-10 md:mb-12 impact-header ${isVisible ? 'impact-visible' : ''}`}
         >
@@ -96,7 +96,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
           >
             Measurable Impact
           </h2>
-          <p className="text-[15px] md:text-[17px] text-[#4A4A4A] max-w-3xl mx-auto">
+          <p className="text-[15px] md:text-[17px] text-main max-w-3xl mx-auto">
             Published examples from industrial AR task-support studies
           </p>
         </div>
@@ -126,7 +126,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
               { value: 13, prefix: '', suffix: '%', superscript: '²', label: 'Less maintenance time', detail: 'Industrial maintenance AR case study', color: '#0066CC' },
               { value: 25, prefix: '', suffix: '%', superscript: '²', label: 'Fewer errors', detail: 'Industrial maintenance AR case study', color: '#059669' }
             ].map((item, index) => (
-              <div key={index} className="bg-white border border-[var(--border-light)] rounded-lg p-5 md:p-6">
+              <div key={index} className="card-hover bg-white rounded-lg p-5 md:p-6 transition-all">
                 <div className="text-[30px] md:text-[36px] mb-2" style={{ fontWeight: 700, color: item.color }}>
                   <AnimatedCounter
                     end={item.value}

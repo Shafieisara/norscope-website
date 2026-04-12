@@ -33,23 +33,23 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       />
 
       {/* About Hero */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-20">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="section-py-lg">
+        <div className="container-max px-6 md:px-12">
           <h1
             className="text-[36px] md:text-[52px] tracking-tight mb-4 md:mb-6"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
             About Norscope
           </h1>
-          <p className="text-[16px] md:text-[18px] text-[#4A4A4A] max-w-3xl leading-relaxed">
+          <p className="text-[16px] md:text-[18px] text-main max-w-3xl leading-relaxed">
             Practical augmented reality software for industrial machine maintenance and servicing.
           </p>
         </div>
       </section>
 
       {/* The Problem */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="section-py-lg">
+        <div className="container-max px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
@@ -57,7 +57,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             >
               The Problem
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
+            <p className="text-[15px] md:text-[17px] text-main leading-relaxed">
               Industrial maintenance still relies heavily on paper documentation, individual experience, and the physical presence of experts. This leads to long downtimes, inconsistent repair quality, and significant training overhead.
             </p>
           </div>
@@ -65,8 +65,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       </section>
 
       {/* Our Solution */}
-      <section className="py-12 md:py-16" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="container-max px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
@@ -74,7 +74,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             >
               Our Solution
             </h2>
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-6 md:mb-8">
+            <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-6 md:mb-8">
               Norscope develops offline-capable augmented reality software that guides technicians step by step during real maintenance tasks. Instead of generic AR content, the software is configured individually for each customer's machines, processes, and safety requirements.
             </p>
 
@@ -84,7 +84,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                   className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Customer-specific AR workflows
                 </span>
               </div>
@@ -93,7 +93,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                   className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Offline-first operation
                 </span>
               </div>
@@ -102,7 +102,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                   className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0"
                   style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
                 />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Structured task guidance and validation
                 </span>
               </div>
@@ -112,8 +112,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       </section>
 
       {/* Our Mission */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="section-py-lg">
+        <div className="container-max px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[24px] md:text-[32px] tracking-tight mb-4 md:mb-6"
@@ -125,7 +125,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
               className="border-l-4 pl-6 md:pl-8 py-4"
               style={{ borderColor: 'var(--industrial-blue)' }}
             >
-              <p className="text-[16px] md:text-[19px] text-[#4A4A4A] leading-relaxed">
+              <p className="text-[16px] md:text-[19px] text-main leading-relaxed">
                 To reduce industrial downtime and knowledge loss by providing technicians with clear, structured, and context-aware guidance directly at the machine.
               </p>
             </div>
@@ -134,8 +134,8 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       </section>
 
       {/* Founding Team */}
-      <section className="py-12 md:py-20" style={{ backgroundColor: 'var(--light-gray)' }}>
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+      <section className="section-py-lg" style={{ backgroundColor: 'var(--light-gray)' }}>
+        <div className="container-max px-6 md:px-12">
           <h2
             className="text-[28px] md:text-[40px] tracking-tight mb-10 md:mb-16 text-center"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -166,7 +166,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                 >
                   Founder | Engineering & Product
                 </div>
-                <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+                <p className="text-[14px] md:text-[15px] text-secondary leading-relaxed">
                   Mechanical engineering background with hands-on experience in industrial machines and intelligent manufacturing systems. Focused on building practical AR solutions grounded in real maintenance workflows.
                 </p>
               </div>
@@ -194,7 +194,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                 >
                   Co-Founder | Business & Operations
                 </div>
-                <p className="text-[14px] md:text-[15px] text-[#6B6B6B] leading-relaxed">
+                <p className="text-[14px] md:text-[15px] text-secondary leading-relaxed">
                   Background in business strategy and operations with experience in startup execution and stakeholder coordination. Focused on translating industrial needs into scalable product and organizational structures.
                 </p>
               </div>
@@ -204,9 +204,9 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
       </section>
 
       {/* Closing Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 text-center">
-          <p className="text-[16px] md:text-[18px] text-[#4A4A4A] leading-relaxed mb-8 md:mb-10 max-w-3xl mx-auto">
+      <section className="section-py-lg">
+        <div className="container-max px-6 md:px-12 text-center">
+          <p className="text-[16px] md:text-[18px] text-main leading-relaxed mb-8 md:mb-10 max-w-3xl mx-auto">
             Norscope is built with a focus on real industrial constraints, realistic deployment conditions, and measurable operational impact.
           </p>
 

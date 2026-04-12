@@ -52,22 +52,34 @@ export function CTASection({ onContactClick }: CTASectionProps) {
           style={{ fontWeight: 600, color: 'white' }}
         >
           Ready to modernize machine maintenance?
-        </h2>
-        <p className="text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-          Built for the next generation of industrial maintenance
-        </p>
-        
-        <button 
-          className="px-8 md:px-10 py-3.5 md:py-4 rounded-md text-[15px] md:text-[16px] transition-all hover:shadow-2xl hover:scale-105"
-          style={{ 
-            backgroundColor: 'var(--industrial-blue)', 
-            color: 'white',
-            fontWeight: 500
-          }}
-          onClick={onContactClick}
+    <section ref={sectionRef} className="section-py-lg bg-white">
+      <div className="container-max px-6 md:px-12">
+        <div 
+          className={`rounded-2xl p-8 md:p-16 text-center relative overflow-hidden section-content ${isVisible ? 'section-visible' : ''}`}
+          style={{ backgroundColor: 'var(--industrial-blue)' }}
         >
-          Discuss a Pilot
-        </button>
+          <h2 
+            className="text-[32px] md:text-[48px] tracking-tight mb-5 md:mb-6"
+            style={{ fontWeight: 600, color: 'white' }}
+          >
+            Ready to modernize machine maintenance?
+          </h2>
+          <p className="text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+            Built for the next generation of industrial maintenance
+          </p>
+          
+          <button 
+            className="px-8 md:px-10 py-3.5 md:py-4 rounded-md text-[15px] md:text-[16px] transition-all hover:shadow-2xl hover:scale-105"
+            style={{ 
+              backgroundColor: 'white', 
+              color: 'var(--industrial-blue)',
+              fontWeight: 600
+            }}
+            onClick={onContactClick}
+          >
+            Discuss a Pilot
+          </button>
+        </div>
       </div>
 
       <style>{`

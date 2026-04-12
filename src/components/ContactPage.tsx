@@ -87,7 +87,7 @@ export function ContactPage({
             >
               Contact & Discuss a Pilot
             </h1>
-            <p className="text-[16px] md:text-[18px] text-[#4A4A4A] leading-relaxed">
+            <p className="text-[16px] md:text-[18px] text-main leading-relaxed">
               Get in touch to discuss your maintenance workflows or request a product demonstration.
             </p>
           </div>
@@ -280,32 +280,32 @@ export function ContactPage({
               Who This Is For
             </h2>
 
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed mb-6">
+            <p className="text-[15px] md:text-[17px] text-main leading-relaxed mb-6">
               Typical inquiries include:
             </p>
 
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Requesting a product demo
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Discussing pilot deployments
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   Academic or research collaboration
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                <span className="text-[15px] md:text-[17px] text-main">
                   General questions about the platform
                 </span>
               </div>
@@ -318,7 +318,7 @@ export function ContactPage({
       <section className="py-12 md:py-16 border-t border-[var(--border-light)]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="max-w-2xl">
-            <p className="text-[15px] md:text-[17px] text-[#4A4A4A] leading-relaxed">
+            <p className="text-[15px] md:text-[17px] text-main leading-relaxed">
               Norscope focuses on practical industrial deployments and meaningful collaboration. Please provide relevant context so we can respond efficiently.
             </p>
           </div>
