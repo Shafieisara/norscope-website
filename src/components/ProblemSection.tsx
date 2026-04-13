@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Clock, Users, Cog, FileText } from 'lucide-react';
+import { problemT, type Lang } from '../i18n/translations';
 
 const STYLES = `
   .ps-reveal { transform: translateY(60px); transition: transform 500ms cubic-bezier(0.16,1,0.3,1); }
@@ -11,14 +12,13 @@ const STYLES = `
   }
 `;
 
-const problems = [
-  { icon: Clock, title: 'Downtime Costs', description: 'Every hour of unplanned downtime costs manufacturers thousands in lost productivity and revenue.' },
-  { icon: Users, title: 'Skill Shortage', description: 'Experienced technicians are retiring faster than new talent can be trained and deployed.' },
-  { icon: Cog, title: 'Complex Machines', description: 'Modern industrial equipment requires specialized knowledge and precise maintenance procedures.' },
-  { icon: FileText, title: 'Paper-Based Manuals', description: 'Traditional documentation is difficult to navigate during critical maintenance operations.' }
-];
+const icons = [Clock, Users, Cog, FileText];
 
-export function ProblemSection() {
+interface ProblemSectionProps {
+  lang?: Lang;
+}
+
+export function ProblemSection({ lang = 'EN' }: ProblemSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -31,6 +31,8 @@ export function ProblemSection() {
     return () => obs.disconnect();
   }, []);
 
+  const problems = problemT.cards[lang];
+
   return (
     <>
       <style>{STYLES}</style>
@@ -38,27 +40,30 @@ export function ProblemSection() {
         <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
           <div className={`text-center mb-10 md:mb-16 ps-reveal${visible ? ' ps-visible' : ''}`}>
             <h2 className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-              The Industrial Challenge
+              {problemT.heading[lang]}
             </h2>
             <p className="text-[15px] md:text-[17px] text-[var(--text-main)] max-w-2xl mx-auto">
-              Manufacturing faces mounting pressure from complexity, workforce gaps, and rising operational costs
+              {problemT.subtitle[lang]}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-            {problems.map((problem, index) => (
-              <div
-                key={index}
-                className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 md:hover:-translate-y-2 ps-card${visible ? ' ps-visible' : ''}`}
-                style={{ '--sd': `${index * 100}ms` } as React.CSSProperties}
-              >
-                <div className="mb-5 md:mb-6">
-                  <problem.icon className="w-9 h-9 md:w-10 md:h-10 transition-transform duration-300 hover:scale-110" style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }} />
+            {problems.map((problem, index) => {
+              const Icon = icons[index];
+              return (
+                <div
+                  key={index}
+                  className={`bg-white border border-[var(--border-light)] rounded-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 md:hover:-translate-y-2 ps-card${visible ? ' ps-visible' : ''}`}
+                  style={{ '--sd': `${index * 100}ms` } as React.CSSProperties}
+                >
+                  <div className="mb-5 md:mb-6">
+                    <Icon className="w-9 h-9 md:w-10 md:h-10 transition-transform duration-300 hover:scale-110" style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }} />
+                  </div>
+                  <h3 className="text-[17px] md:text-[18px] mb-2 md:mb-3" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{problem.title}</h3>
+                  <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-muted)]">{problem.description}</p>
                 </div>
-                <h3 className="text-[17px] md:text-[18px] mb-2 md:mb-3" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{problem.title}</h3>
-                <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--text-muted)]">{problem.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

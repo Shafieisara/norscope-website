@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import factoryImage from '../assets/factory-industrial-scene.webp';
+import { solutionSectionT, type Lang } from '../i18n/translations';
 
 const STYLES = `
   .ss-left { transform: translateX(-60px); transition: transform 550ms cubic-bezier(0.16,1,0.3,1); }
@@ -30,16 +31,11 @@ const STYLES = `
   }
 `;
 
-const features = [
-  'Fully offline AR capability - no internet required',
-  'Universal machine compatibility across manufacturers',
-  'Real-time IoT integration and sensor monitoring',
-  'Step-by-step AR-guided maintenance procedures',
-  'Automatic compliance documentation and logging',
-  'Voice-activated hands-free operation'
-];
+interface SolutionSectionProps {
+  lang?: Lang;
+}
 
-export function SolutionSection() {
+export function SolutionSection({ lang = 'EN' }: SolutionSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -51,6 +47,8 @@ export function SolutionSection() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  const features = solutionSectionT.features[lang];
 
   return (
     <>
@@ -65,7 +63,7 @@ export function SolutionSection() {
               </div>
               <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-2xl p-4 md:p-6 border border-[var(--border-light)]">
                 <div className="text-[24px] md:text-[32px] mb-1" style={{ fontWeight: 600, color: 'var(--industrial-blue)' }}>99.9%</div>
-                <div className="text-[12px] md:text-[14px] text-[var(--text-muted)]">System Uptime</div>
+                <div className="text-[12px] md:text-[14px] text-[var(--text-muted)]">{solutionSectionT.statLabel[lang]}</div>
               </div>
             </div>
 
@@ -73,12 +71,10 @@ export function SolutionSection() {
             <div className={`space-y-6 md:space-y-8 order-1 lg:order-2 ss-right${visible ? ' ss-visible' : ''}`}>
               <div>
                 <h2 className="h2-section mb-3 md:mb-4">
-                  Enterprise AR Platform
+                  {solutionSectionT.heading[lang]}
                 </h2>
                 <p className="p-body">
-                  Norscope delivers a robust augmented reality solution designed specifically
-                  for industrial environments. Our platform works anywhere, with any machine,
-                  ensuring your team has instant access to critical maintenance information.
+                  {solutionSectionT.body[lang]}
                 </p>
               </div>
               <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">

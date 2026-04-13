@@ -4,6 +4,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import arHeadsetImage from '../assets/ar-headset-product.webp';
 import workerWeldingImage from '../assets/Man working with norscope.webp';
 import maintenanceTechImage from '../assets/woman2 working with norscope.webp';
+import { customSoftwareT, type Lang } from '../i18n/translations';
 
 const STYLES = `
   .cs-left { transform: translateX(-60px); transition: transform 550ms cubic-bezier(0.16,1,0.3,1); }
@@ -15,15 +16,11 @@ const STYLES = `
   }
 `;
 
-const features = [
-  'Machine-specific maintenance workflows',
-  'Offline AI models trained on customer manuals',
-  'Role-based user interfaces',
-  'ERP / CMMS / IoT system integration',
-  'Continuous updates per customer deployment'
-];
+interface CustomSoftwareSectionProps {
+  lang?: Lang;
+}
 
-export function CustomSoftwareSection() {
+export function CustomSoftwareSection({ lang = 'EN' }: CustomSoftwareSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -36,6 +33,8 @@ export function CustomSoftwareSection() {
     return () => obs.disconnect();
   }, []);
 
+  const features = customSoftwareT.features[lang];
+
   return (
     <>
       <style>{STYLES}</style>
@@ -46,12 +45,10 @@ export function CustomSoftwareSection() {
             <div className={`space-y-6 md:space-y-8 cs-left${visible ? ' cs-visible' : ''}`}>
               <div>
                 <h2 className="h2-section mb-3 md:mb-4">
-                  Custom Software for Every Customer
+                  {customSoftwareT.heading[lang]}
                 </h2>
                 <p className="p-body">
-                  We design and deploy customer-specific AR software modules tailored to each
-                  machine type, maintenance workflow, safety standard, and IT environment. Our
-                  platform adapts to your operations, not the other way around.
+                  {customSoftwareT.body[lang]}
                 </p>
               </div>
               <div className="space-y-3 md:space-y-4 pt-2 md:pt-4">
@@ -76,7 +73,7 @@ export function CustomSoftwareSection() {
                 <ImageWithFallback src={maintenanceTechImage} alt="Woman working with Norscope AR" className="w-full h-[140px] md:h-[180px] object-cover" />
               </div>
               <p className="text-[12px] md:text-[13px] text-[var(--text-muted)] text-center pt-1 md:pt-2">
-                Hardware platform combined with customer-specific software deployment
+                {customSoftwareT.caption[lang]}
               </p>
             </div>
           </div>

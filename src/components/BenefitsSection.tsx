@@ -1,50 +1,24 @@
-import { TrendingDown, Zap, AlertCircle, Shield, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatedCounter } from './AnimatedCounter';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-const benefits = [
-  {
-    icon: TrendingDown,
-    title: 'Reduce Downtime',
-    description: 'Cut unplanned maintenance time by up to 40% with instant access to procedures',
-    metric: '40%',
-    metricLabel: 'faster repairs'
-  },
-  {
-    icon: Zap,
-    title: 'Faster Onboarding',
-    description: 'Train new technicians in weeks instead of months with guided AR workflows',
-    metric: '3x',
-    metricLabel: 'quicker training'
-  },
-  {
-    icon: AlertCircle,
-    title: 'Fewer Errors',
-    description: 'Eliminate mistakes with step-by-step validation and real-time feedback',
-    metric: '95%',
-    metricLabel: 'error reduction'
-  },
-  {
-    icon: Shield,
-    title: 'Improved Safety',
-    description: 'Enhance workplace safety with hazard warnings and compliance tracking',
-    metric: '100%',
-    metricLabel: 'compliance rate'
-  }
-];
+import { benefitsT, type Lang } from '../i18n/translations';
 
 interface BenefitsSectionProps {
+  lang?: Lang;
   onNavigateToMethodology?: () => void;
 }
 
-export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProps) {
+const METRIC_VALUES = [21, 26, 13, 25];
+const METRIC_COLORS = ['#0066CC', '#059669', '#0066CC', '#059669'];
+const METRIC_SUPERSCRIPTS = ['¹', '¹', '²', '²'];
+
+export function BenefitsSection({ lang = 'EN', onNavigateToMethodology }: BenefitsSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
@@ -53,7 +27,6 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
       return;
     }
 
-    // Set up IntersectionObserver
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -63,9 +36,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
           }
         });
       },
-      {
-        threshold: 0.25, // Trigger when 25% of section is visible
-      }
+      { threshold: 0.25 }
     );
 
     const currentSection = sectionRef.current;
@@ -79,6 +50,8 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
       }
     };
   }, []);
+
+  const metricCards = benefitsT.metricCards[lang];
 
   return (
     <section 
@@ -94,10 +67,10 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
             className="text-[28px] md:text-[40px] tracking-tight mb-3 md:mb-4"
             style={{ fontWeight: 600, color: 'var(--dark-text)' }}
           >
-            Measurable Impact
+            {benefitsT.heading[lang]}
           </h2>
           <p className="text-[15px] md:text-[17px] text-[var(--text-main)] max-w-3xl mx-auto">
-            Published examples from industrial AR task-support studies
+            {benefitsT.subtitle[lang]}
           </p>
         </div>
 
@@ -113,28 +86,23 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
             <div className="absolute top-6 right-6 bg-green-50/95 backdrop-blur-sm px-4 py-2 rounded-md border border-green-200">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-600" />
-                <span className="text-[13px] font-semibold text-green-700">Task Complete</span>
+                <span className="text-[13px] font-semibold text-green-700">{benefitsT.taskComplete[lang]}</span>
               </div>
             </div>
           </div>
 
           {/* Metric Cards */}
           <div className="grid grid-cols-2 gap-4">
-            {[
-              { value: 21, prefix: '', suffix: '%', superscript: '¹', label: 'Faster task completion', detail: 'Peer-reviewed industrial repair-task study', color: '#0066CC' },
-              { value: 26, prefix: '', suffix: '%', superscript: '¹', label: 'Lower perceived workload', detail: 'Peer-reviewed industrial repair-task study', color: '#059669' },
-              { value: 13, prefix: '', suffix: '%', superscript: '²', label: 'Less maintenance time', detail: 'Industrial maintenance AR case study', color: '#0066CC' },
-              { value: 25, prefix: '', suffix: '%', superscript: '²', label: 'Fewer errors', detail: 'Industrial maintenance AR case study', color: '#059669' }
-            ].map((item, index) => (
+            {metricCards.map((item, index) => (
               <div key={index} className="card-hover bg-white rounded-lg p-5 md:p-6 transition-all">
-                <div className="text-[30px] md:text-[36px] mb-2" style={{ fontWeight: 700, color: item.color }}>
+                <div className="text-[30px] md:text-[36px] mb-2" style={{ fontWeight: 700, color: METRIC_COLORS[index] }}>
                   <AnimatedCounter
-                    end={item.value}
-                    prefix={item.prefix}
-                    suffix={item.suffix}
+                    end={METRIC_VALUES[index]}
+                    prefix=""
+                    suffix="%"
                     className="inline"
                   />
-                  <sup className="text-[16px] md:text-[18px] ml-0.5" style={{ fontWeight: 600 }}>{item.superscript}</sup>
+                  <sup className="text-[16px] md:text-[18px] ml-0.5" style={{ fontWeight: 600 }}>{METRIC_SUPERSCRIPTS[index]}</sup>
                 </div>
                 <div 
                   className="text-[15px] md:text-[16px] mb-2"
@@ -154,14 +122,14 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="bg-white border border-[var(--border-light)] rounded-lg p-5 md:p-6">
             <h4 className="text-[14px] md:text-[15px] mb-3 md:mb-4" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>
-              Sources
+              {benefitsT.sourcesTitle[lang]}
             </h4>
             <div className="space-y-3">
               <p className="text-[12px] md:text-[13px] text-[var(--text-main)] leading-relaxed">
-                <span style={{ fontWeight: 600 }}>1.</span> Eversberg, L. et al. (2023), <em>Evaluating digital work instructions with augmented reality versus paper-based documents for manual object-specific repair tasks in a case study with experienced workers.</em> The International Journal of Advanced Manufacturing Technology. Reported 21% faster task completion and 26% lower perceived workload.
+                <span style={{ fontWeight: 600 }}>1.</span> {benefitsT.source1[lang]}
               </p>
               <p className="text-[12px] md:text-[13px] text-[var(--text-main)] leading-relaxed">
-                <span style={{ fontWeight: 600 }}>2.</span> <em>Augmented Industrial Maintenance (AIM): A Case Study for Evaluating and Comparing with Paper and Video Media Supports.</em> Reported 13% less maintenance time using AR glasses and 25% fewer errors than paper-based maintenance in the cited case-study summary.
+                <span style={{ fontWeight: 600 }}>2.</span> {benefitsT.source2[lang]}
               </p>
             </div>
           </div>
@@ -169,7 +137,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
           {/* Disclaimer Note */}
           <div className="bg-white border border-[var(--border-light)] rounded-lg p-4 md:p-5">
             <p className="text-[12px] md:text-[13px] text-[var(--text-muted)] leading-relaxed text-center">
-              These figures are published reference examples from industrial AR studies and do not represent validated Norscope pilot results. Outcomes depend on workflow design, equipment, operator experience, and deployment conditions.
+              {benefitsT.disclaimer[lang]}
             </p>
           </div>
         </div>
@@ -180,7 +148,7 @@ export function BenefitsSection({ onNavigateToMethodology }: BenefitsSectionProp
             onClick={onNavigateToMethodology}
             className="text-[14px] md:text-[15px] text-[var(--dark-text)] hover:text-[var(--industrial-blue)] transition-colors underline"
           >
-            View full approach methodology
+            {benefitsT.viewApproach[lang]}
           </button>
         </div>
       </div>

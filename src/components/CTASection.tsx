@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { ctaT, type Lang } from '../i18n/translations';
 
 interface CTASectionProps {
+  lang?: Lang;
   onContactClick?: () => void;
 }
 
-export function CTASection({ onContactClick }: CTASectionProps) {
+export function CTASection({ lang = 'EN', onContactClick }: CTASectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -27,9 +29,7 @@ export function CTASection({ onContactClick }: CTASectionProps) {
           }
         });
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.25 }
     );
 
     const currentSection = sectionRef.current;
@@ -51,10 +51,10 @@ export function CTASection({ onContactClick }: CTASectionProps) {
           className="text-[32px] md:text-[48px] tracking-tight mb-5 md:mb-6"
           style={{ fontWeight: 600, color: 'white' }}
         >
-          Ready to modernize machine maintenance?
+          {ctaT.heading[lang]}
         </h2>
         <p className="text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-          Built for the next generation of industrial maintenance
+          {ctaT.subtitle[lang]}
         </p>
         
         <button 
@@ -66,7 +66,7 @@ export function CTASection({ onContactClick }: CTASectionProps) {
           }}
           onClick={onContactClick}
         >
-          Discuss a Pilot
+          {ctaT.button[lang]}
         </button>
       </div>
 

@@ -7,17 +7,20 @@ import problemImage from '../assets/problem-paper-manual.webp';
 import maintenanceImage from '../assets/solution-active-maintenance.webp';
 import customMachineryImage from '../assets/solution-custom-machinery.webp';
 import factoryRealityImage from '../assets/solution-factory-reality.webp';
+import { solutionPageT, type Lang } from '../i18n/translations';
 
 interface SolutionPageProps {
   onNavigateHome: () => void;
   onNavigateToProduct: () => void;
-  currentLanguage: 'EN' | 'DE';
-  onLanguageChange: (lang: 'EN' | 'DE') => void;
+  currentLanguage: Lang;
+  onLanguageChange: (lang: Lang) => void;
   onAboutClick?: () => void;
   onProductClick?: () => void;
   onSolutionClick?: () => void;
   onImpactClick?: () => void;
   onContactClick?: () => void;
+  onImpressumClick?: () => void;
+  onDatenschutzClick?: () => void;
 }
 
 export function SolutionPage({ 
@@ -29,14 +32,17 @@ export function SolutionPage({
   onProductClick,
   onSolutionClick,
   onImpactClick,
-  onContactClick
+  onContactClick,
+  onImpressumClick,
+  onDatenschutzClick,
 }: SolutionPageProps) {
-  const currentPage = currentLanguage === 'EN' ? 'solution-en' : 'solution-de';
+  const lang = currentLanguage;
+  const currentPage = lang === 'EN' ? 'solution-en' : 'solution-de';
   
   return (
     <div className="min-h-screen bg-white">
       <Navigation 
-        currentLanguage={currentLanguage}
+        currentLanguage={lang}
         onLanguageChange={onLanguageChange}
         onLogoClick={onNavigateHome}
         onAboutClick={onAboutClick}
@@ -53,10 +59,10 @@ export function SolutionPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="h1-page">
-                A Practical AR Platform for Industrial Maintenance
+                {solutionPageT.hero.heading[lang]}
               </h1>
               <p className="p-body">
-                Structured, offline-capable AR software for real maintenance tasks
+                {solutionPageT.hero.body[lang]}
               </p>
             </div>
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
@@ -76,37 +82,21 @@ export function SolutionPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <h2 className="h2-section mb-6 md:mb-8">
-                The Core Problem
+                {solutionPageT.coreProblem.heading[lang]}
               </h2>
               <p className="p-body mb-8">
-                Industrial maintenance operations face persistent challenges that impact efficiency, quality, and knowledge retention. Documentation is often inaccessible during work, expertise is concentrated in individuals rather than systems, and procedures vary inconsistently across locations.
+                {solutionPageT.coreProblem.body[lang]}
               </p>
               
               <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Critical information not available at point of work
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    High dependency on senior technicians
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Inconsistent execution across teams and sites
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Limited visibility into procedural adherence
-                  </span>
-                </div>
+                {solutionPageT.coreProblem.items[lang].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
@@ -125,13 +115,13 @@ export function SolutionPage({
         <div className="section-container">
           <div className="max-w-4xl">
             <h2 className="h2-section mb-6 md:mb-8">
-              The Norscope Solution
+              {solutionPageT.norsopesSolution.heading[lang]}
             </h2>
             <p className="p-body mb-6">
-              Norscope is an augmented reality software platform designed specifically for industrial maintenance workflows. It provides technicians with structured, step-by-step guidance directly in their field of view while they work on machines.
+              {solutionPageT.norsopesSolution.body1[lang]}
             </p>
             <p className="p-body">
-              Rather than offering a generic AR viewer, Norscope is configured individually for each customer's specific machines, procedures, and operational requirements. The system is designed to function reliably offline, addressing the connectivity constraints common in industrial environments.
+              {solutionPageT.norsopesSolution.body2[lang]}
             </p>
           </div>
         </div>
@@ -141,85 +131,35 @@ export function SolutionPage({
       <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
         <div className="section-container">
           <h2 className="h2-section mb-12 md:mb-16 text-center">
-            How the Solution Works
+            {solutionPageT.howSolutionWorks.heading[lang]}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto mb-12">
-            {/* Step 1 */}
-            <div className="card-hover bg-white p-8 rounded-lg">
-              <div 
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
-                style={{ backgroundColor: 'var(--industrial-blue)' }}
-              >
-                <MonitorCog className="w-6 h-6 text-white" />
-              </div>
-              <h3 
-                className="text-[18px] md:text-[20px] mb-3"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
-                Task-Specific Guidance
-              </h3>
-              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
-                Technicians receive step-by-step instructions tailored to the specific machine and maintenance task being performed.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="card-hover bg-white p-8 rounded-lg">
-              <div 
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
-                style={{ backgroundColor: 'var(--industrial-blue)' }}
-              >
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <h3 
-                className="text-[18px] md:text-[20px] mb-3"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
-                Context Awareness
-              </h3>
-              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
-                Visual references and contextual information are displayed at the appropriate point in the workflow, reducing manual document lookup.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="card-hover bg-white p-8 rounded-lg">
-              <div 
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
-                style={{ backgroundColor: 'var(--industrial-blue)' }}
-              >
-                <Check className="w-6 h-6 text-white" />
-              </div>
-              <h3 
-                className="text-[18px] md:text-[20px] mb-3"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
-                Validation & Traceability
-              </h3>
-              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
-                Procedural steps are confirmed as completed, providing documentation of work performed and supporting quality assurance.
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="card-hover bg-white p-8 rounded-lg">
-              <div 
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
-                style={{ backgroundColor: 'var(--industrial-blue)' }}
-              >
-                <Wifi className="w-6 h-6 text-white" />
-              </div>
-              <h3 
-                className="text-[18px] md:text-[20px] mb-3"
-                style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-              >
-                Offline Operation
-              </h3>
-              <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
-                The system operates without requiring continuous network connectivity, ensuring reliability on the shop floor.
-              </p>
-            </div>
+            {(() => {
+              const stepIcons = [MonitorCog, Shield, Check, Wifi];
+              return solutionPageT.howSolutionWorks.cards[lang].map((card, i) => {
+                const Icon = stepIcons[i];
+                return (
+                  <div key={i} className="card-hover bg-white p-8 rounded-lg">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+                      style={{ backgroundColor: 'var(--industrial-blue)' }}
+                    >
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 
+                      className="text-[18px] md:text-[20px] mb-3"
+                      style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                    >
+                      {card.title}
+                    </h3>
+                    <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
+                );
+              });
+            })()}
           </div>
 
           {/* Process Image */}
@@ -239,43 +179,27 @@ export function SolutionPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="h2-section mb-6 md:mb-8">
-                Custom Software per Customer
+                {solutionPageT.customSoftware.heading[lang]}
               </h2>
               <p className="p-body mb-8">
-                Industrial environments vary significantly in their equipment, procedures, safety requirements, and organizational structures. Norscope is therefore configured specifically for each customer rather than deployed as a generic solution.
+                {solutionPageT.customSoftware.body1[lang]}
               </p>
               <p className="p-body mb-8">
-                This approach ensures that workflows align with existing maintenance procedures, terminology matches organizational standards, and validation steps reflect actual quality requirements.
+                {solutionPageT.customSoftware.body2[lang]}
               </p>
               
               <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <ArrowRight 
-                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
-                    style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                  />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Workflows based on customer-specific maintenance procedures
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ArrowRight 
-                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
-                    style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                  />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Integration with existing technical documentation and assets
-                  </span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ArrowRight 
-                    className="w-5 h-5 mt-0.5 flex-shrink-0" 
-                    style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                  />
-                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                    Validation steps aligned with organizational quality standards
-                  </span>
-                </div>
+                {solutionPageT.customSoftware.items[lang].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <ArrowRight 
+                      className="w-5 h-5 mt-0.5 flex-shrink-0" 
+                      style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
+                    />
+                    <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
+                      {item}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
@@ -294,48 +218,26 @@ export function SolutionPage({
         <div className="section-container">
           <div className="max-w-4xl">
             <h2 className="h2-section mb-6 md:mb-8">
-              Designed for Industrial Reality
+              {solutionPageT.industrialReality.heading[lang]}
             </h2>
             <p className="p-body mb-8">
-              Norscope is built to function in real industrial environments, accounting for the practical constraints and operational requirements of shop floor work.
+              {solutionPageT.industrialReality.body[lang]}
             </p>
             
             <div className="space-y-6 mb-12">
-              <div>
-                <h3 
-                  className="text-[18px] mb-3"
-                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                >
-                  Offline-First Architecture
-                </h3>
-                <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
-                  Many industrial facilities have limited or unreliable network connectivity in production areas. Norscope operates without requiring constant cloud connectivity, with synchronization occurring when network access is available.
-                </p>
-              </div>
-
-              <div>
-                <h3 
-                  className="text-[18px] mb-3"
-                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                >
-                  Headset-Agnostic Platform
-                </h3>
-                <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
-                  The platform supports multiple industrial AR headset models, allowing customers to select hardware that meets their specific operational, safety, and ergonomic requirements.
-                </p>
-              </div>
-
-              <div>
-                <h3 
-                  className="text-[18px] mb-3"
-                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                >
-                  Robust and Usable
-                </h3>
-                <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
-                  The interface is designed for use during physical maintenance work, with clear visual hierarchy, appropriate text sizing, and interaction patterns suited to industrial headset usage.
-                </p>
-              </div>
+              {solutionPageT.industrialReality.sections[lang].map((sec, i) => (
+                <div key={i}>
+                  <h3 
+                    className="text-[18px] mb-3"
+                    style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                  >
+                    {sec.title}
+                  </h3>
+                  <p className="text-[15px] md:text-[17px] text-[var(--text-muted)] leading-relaxed">
+                    {sec.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -355,58 +257,24 @@ export function SolutionPage({
         <div className="section-container">
           <div className="max-w-4xl">
             <h2 className="h2-section mb-6 md:mb-8">
-              Resulting Benefits
+              {solutionPageT.resultingBenefits.heading[lang]}
             </h2>
             <p className="p-body mb-8">
-              Organizations implementing Norscope typically observe improvements in several operational areas:
+              {solutionPageT.resultingBenefits.intro[lang]}
             </p>
             
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Check 
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
-                  style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                />
-                <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                  More consistent execution of maintenance procedures across technicians
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check 
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
-                  style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                />
-                <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                  Reduced time required to onboard new maintenance personnel
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check 
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
-                  style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                />
-                <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                  Better documentation of work performed and steps completed
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check 
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
-                  style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                />
-                <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                  Decreased dependency on specific individuals for critical procedures
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check 
-                  className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
-                  style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
-                />
-                <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
-                  Improved visibility into procedural adherence and completion
-                </span>
-              </div>
+              {solutionPageT.resultingBenefits.items[lang].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <Check 
+                    className="w-5 h-5 md:w-6 md:h-6 mt-0.5 flex-shrink-0" 
+                    style={{ color: 'var(--industrial-blue)', strokeWidth: 2 }}
+                  />
+                  <span className="text-[15px] md:text-[17px] text-[var(--text-main)]">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -416,7 +284,7 @@ export function SolutionPage({
       <section className="py-16 md:py-[var(--section-py-lg)] bg-[var(--light-gray)]">
         <div className="section-container text-center">
           <p className="p-body mb-10 max-w-3xl mx-auto">
-            Learn more about how Norscope is implemented in industrial environments.
+            {solutionPageT.closing.body[lang]}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -424,19 +292,28 @@ export function SolutionPage({
               onClick={onNavigateToProduct}
               className="btn-primary px-8 py-3.5"
             >
-              View Product
+              {solutionPageT.closing.primary[lang]}
             </button>
             <button 
               onClick={onContactClick}
               className="btn-outline px-8 py-3.5"
             >
-              Discuss a Pilot
+              {solutionPageT.closing.secondary[lang]}
             </button>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <Footer
+        lang={lang}
+        onAboutClick={onAboutClick}
+        onProductClick={onProductClick}
+        onSolutionClick={onSolutionClick}
+        onImpactClick={onImpactClick}
+        onContactClick={onContactClick}
+        onImpressumClick={onImpressumClick}
+        onDatenschutzClick={onDatenschutzClick}
+      />
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import { useRef, useEffect } from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 import headsetImage from '../assets/hero-headset-figma.webp';
+import { heroT, type Lang } from '../i18n/translations';
 
 interface HeroSectionProps {
+  lang?: Lang;
   onContactClick?: () => void;
   onProductClick?: () => void;
 }
 
-export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps) {
+export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: HeroSectionProps) {
   const bgRef = useRef<HTMLDivElement>(null);
 
   // Parallax via direct DOM mutation — no React re-renders on scroll
@@ -54,13 +55,11 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
           {/* Left Column - Content */}
           <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             <h1 className="h1-hero text-white">
-              Offline AR Guidance for Industrial Maintenance
+              {heroT.headline[lang]}
             </h1>
 
             <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-200 max-w-[520px] mx-auto lg:mx-0">
-              Offline augmented reality platform for industrial servicing and training.
-              Reduce downtime, accelerate knowledge transfer, and eliminate errors in
-              complex maintenance operations.
+              {heroT.body[lang]}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
@@ -68,13 +67,13 @@ export function HeroSection({ onContactClick, onProductClick }: HeroSectionProps
                 onClick={onContactClick}
                 className="btn-primary w-full sm:w-auto px-8 py-3.5"
               >
-                Discuss a Pilot
+                {heroT.ctaPrimary[lang]}
               </button>
               <button
                 onClick={onProductClick}
                 className="btn-outline w-full sm:w-auto px-8 py-3.5 text-white border-white/40 hover:bg-white/10 hover:border-white/60 hover:text-white"
               >
-                Product Overview
+                {heroT.ctaSecondary[lang]}
               </button>
             </div>
           </div>

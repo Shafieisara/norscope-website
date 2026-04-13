@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
+import { contactT, type Lang } from '../i18n/translations';
 
 interface ContactPageProps {
   onNavigateHome: () => void;
-  currentLanguage: 'EN' | 'DE';
-  onLanguageChange: (lang: 'EN' | 'DE') => void;
+  currentLanguage: Lang;
+  onLanguageChange: (lang: Lang) => void;
   onAboutClick?: () => void;
   onProductClick?: () => void;
   onSolutionClick?: () => void;
@@ -27,6 +28,7 @@ export function ContactPage({
   onImpressumClick,
   onDatenschutzClick
 }: ContactPageProps) {
+  const lang = currentLanguage;
   const [formData, setFormData] = useState({
     fullName: '',
     company: '',
@@ -62,10 +64,10 @@ export function ContactPage({
         setIsSuccess(true);
         setFormData({ fullName: '', company: '', email: '', role: '', message: '' });
       } else {
-        setErrorMessage(result.message || 'Something went wrong. Please try again.');
+        setErrorMessage(result.message || contactT.form.errorFallback[lang]);
       }
-    } catch (error) {
-      setErrorMessage('Network error. Please check your connection and try again.');
+    } catch {
+      setErrorMessage(contactT.form.netError[lang]);
     } finally {
       setIsSubmitting(false);
     }
@@ -81,7 +83,7 @@ export function ContactPage({
   return (
     <div className="min-h-screen bg-white">
       <Navigation
-        currentLanguage={currentLanguage}
+        currentLanguage={lang}
         onLanguageChange={onLanguageChange}
         onLogoClick={onNavigateHome}
         onAboutClick={onAboutClick}
@@ -97,10 +99,10 @@ export function ContactPage({
         <div className="section-container">
           <div className="max-w-4xl mx-auto">
             <h1 className="h1-page mb-4 md:mb-6">
-              Contact & Discuss a Pilot
+              {contactT.hero.heading[lang]}
             </h1>
             <p className="p-body text-[var(--text-main)]">
-              Get in touch to discuss your maintenance workflows or request a product demonstration.
+              {contactT.hero.body[lang]}
             </p>
           </div>
         </div>
@@ -111,7 +113,7 @@ export function ContactPage({
         <div className="section-container">
           <div className="max-w-2xl">
             <h2 className="h2-section mb-8 md:mb-10">
-              Request a Demo
+              {contactT.form.heading[lang]}
             </h2>
 
             {isSuccess ? (
@@ -119,14 +121,14 @@ export function ContactPage({
                 <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <h3 className="text-[20px] font-semibold mb-3">Message Sent Successfully!</h3>
-                <p className="text-[16px] mb-6 inline-block opacity-90">Thank you for reaching out. We have received your request and will respond shortly.</p>
+                <h3 className="text-[20px] font-semibold mb-3">{contactT.form.successHeading[lang]}</h3>
+                <p className="text-[16px] mb-6 inline-block opacity-90">{contactT.form.successBody[lang]}</p>
                 <div>
                     <button 
                     onClick={() => setIsSuccess(false)}
                     className="btn-outline px-6 py-2.5 bg-white text-green-700 border-green-600 hover:bg-green-50"
                     >
-                    Send Another Message
+                    {contactT.form.sendAnother[lang]}
                     </button>
                 </div>
               </div>
@@ -145,7 +147,7 @@ export function ContactPage({
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
-                  Full Name
+                  {contactT.form.fullName[lang]}
                 </label>
                 <input
                   type="text"
@@ -166,7 +168,7 @@ export function ContactPage({
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
-                  Company / Organization
+                  {contactT.form.company[lang]}
                 </label>
                 <input
                   type="text"
@@ -187,7 +189,7 @@ export function ContactPage({
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
-                  Email Address
+                  {contactT.form.email[lang]}
                 </label>
                 <input
                   type="email"
@@ -208,7 +210,7 @@ export function ContactPage({
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
-                  Role / Position
+                  {contactT.form.role[lang]}
                 </label>
                 <input
                   type="text"
@@ -229,7 +231,7 @@ export function ContactPage({
                   className="block text-[15px] mb-2"
                   style={{ fontWeight: 500, color: 'var(--dark-text)' }}
                 >
-                  Message
+                  {contactT.form.message[lang]}
                 </label>
                 <textarea
                   id="message"
@@ -260,12 +262,12 @@ export function ContactPage({
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Sending...
+                      {contactT.form.sending[lang]}
                     </span>
-                  ) : 'Submit Request'}
+                  ) : contactT.form.submit[lang]}
                 </button>
                 <p className="text-[13px] text-[#6B6B6B] mt-4">
-                  We will respond within a reasonable timeframe.
+                  {contactT.form.responseTime[lang]}
                 </p>
               </div>
             </form>
@@ -279,12 +281,12 @@ export function ContactPage({
         <div className="section-container">
           <div className="max-w-2xl">
             <h2 className="h2-section mb-6 md:mb-8">
-              Direct Contact
+              {contactT.directContact.heading[lang]}
             </h2>
 
             <div className="space-y-4">
               <div>
-                <p className="text-[15px] text-[#6B6B6B] mb-1">Email</p>
+                <p className="text-[15px] text-[#6B6B6B] mb-1">{contactT.directContact.email[lang]}</p>
                 <a
                   href="mailto:contact@norscope.com"
                   className="text-[17px] hover:text-[var(--industrial-blue)] transition-colors"
@@ -295,12 +297,12 @@ export function ContactPage({
               </div>
 
               <div>
-                <p className="text-[15px] text-[#6B6B6B] mb-1">Location</p>
+                <p className="text-[15px] text-[#6B6B6B] mb-1">{contactT.directContact.location[lang]}</p>
                 <p className="text-[17px]" style={{ color: 'var(--dark-text)' }}>
-                  Germany
+                  {contactT.directContact.country[lang]}
                 </p>
                 <p className="text-[14px] text-[#6B6B6B] mt-2">
-                  Currently operating from Germany
+                  {contactT.directContact.note[lang]}
                 </p>
               </div>
             </div>
@@ -313,38 +315,22 @@ export function ContactPage({
         <div className="section-container">
           <div className="max-w-2xl">
             <h2 className="h2-section mb-6 md:mb-8">
-              Who This Is For
+              {contactT.whoFor.heading[lang]}
             </h2>
 
             <p className="p-body text-[var(--text-main)] mb-6">
-              Typical inquiries include:
+              {contactT.whoFor.intro[lang]}
             </p>
 
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
-                  Requesting a product demo
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
-                  Discussing pilot deployments
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
-                  Academic or research collaboration
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
-                <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
-                  General questions about the platform
-                </span>
-              </div>
+              {contactT.whoFor.items[lang].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: 'var(--industrial-blue)' }} />
+                  <span className="text-[15px] md:text-[17px] text-[#4A4A4A]">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -355,13 +341,14 @@ export function ContactPage({
         <div className="section-container">
           <div className="max-w-2xl">
             <p className="p-body text-[var(--text-main)]">
-              Norscope focuses on practical industrial deployments and meaningful collaboration. Please provide relevant context so we can respond efficiently.
+              {contactT.closing.body[lang]}
             </p>
           </div>
         </div>
       </section>
 
       <Footer
+        lang={lang}
         onAboutClick={onAboutClick}
         onProductClick={onProductClick}
         onSolutionClick={onSolutionClick}

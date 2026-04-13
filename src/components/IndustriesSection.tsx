@@ -1,35 +1,14 @@
 import { Factory, Cog, Droplet, Mountain, Ship } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { industriesT, type Lang } from '../i18n/translations';
 
-const industries = [
-  {
-    icon: Factory,
-    name: 'Manufacturing',
-    description: 'Assembly, servicing, and technician guidance'
-  },
-  {
-    icon: Cog,
-    name: 'Industrial Machinery',
-    description: 'Step-by-step support for machine maintenance'
-  },
-  {
-    icon: Droplet,
-    name: 'Process Industries',
-    description: 'Guided workflows for complex plant equipment'
-  },
-  {
-    icon: Mountain,
-    name: 'Mining',
-    description: 'Offline support in remote operating environments'
-  },
-  {
-    icon: Ship,
-    name: 'Maritime',
-    description: 'Maintenance guidance for onboard technical systems'
-  }
-];
+const icons = [Factory, Cog, Droplet, Mountain, Ship];
 
-export function IndustriesSection() {
+interface IndustriesSectionProps {
+  lang?: Lang;
+}
+
+export function IndustriesSection({ lang = 'EN' }: IndustriesSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const hasTriggeredRef = useRef(false);
@@ -52,9 +31,7 @@ export function IndustriesSection() {
           }
         });
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.25 }
     );
 
     const currentSection = sectionRef.current;
@@ -69,6 +46,8 @@ export function IndustriesSection() {
     };
   }, []);
 
+  const industries = industriesT.industries[lang];
+
   return (
     <section ref={sectionRef} className="py-20 md:py-[var(--section-py-lg)]" style={{ backgroundColor: 'var(--light-gray)' }}>
       <div className="max-w-[var(--container-max)] mx-auto px-6 md:px-12">
@@ -77,52 +56,55 @@ export function IndustriesSection() {
             className="text-[32px] md:text-[44px] tracking-tight mb-4 md:mb-5"
             style={{ fontWeight: 600, color: 'var(--dark-text)', lineHeight: 1.2 }}
           >
-            Trusted Across Industries
+            {industriesT.heading[lang]}
           </h2>
           <p 
             className="text-[16px] md:text-[18px] max-w-3xl mx-auto"
             style={{ color: 'var(--text-main)', lineHeight: 1.6 }}
           >
-            Designed for sectors where maintenance guidance must work reliably, including in low-connectivity and remote operating conditions.
+            {industriesT.subtitle[lang]}
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
-          {industries.map((industry, index) => (
-            <div 
-              key={index}
-              className={`industry-card bg-white rounded-lg p-7 md:p-8 group section-card ${isVisible ? 'section-visible' : ''}`}
-              style={{
-                transitionDelay: isVisible ? `${index * 80}ms` : '0ms',
-                border: '1px solid var(--border-light)',
-                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)'
-              }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div 
-                  className="w-16 h-16 md:w-18 md:h-18 rounded-full flex items-center justify-center mb-5 transition-all duration-300"
-                  style={{ backgroundColor: 'var(--light-gray)' }}
-                >
-                  <industry.icon 
-                    className="w-8 h-8 md:w-9 md:h-9 transition-all duration-300" 
-                    style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }}
-                  />
+          {industries.map((industry, index) => {
+            const Icon = icons[index];
+            return (
+              <div 
+                key={index}
+                className={`industry-card bg-white rounded-lg p-7 md:p-8 group section-card ${isVisible ? 'section-visible' : ''}`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 80}ms` : '0ms',
+                  border: '1px solid var(--border-light)',
+                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)'
+                }}
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div 
+                    className="w-16 h-16 md:w-18 md:h-18 rounded-full flex items-center justify-center mb-5 transition-all duration-300"
+                    style={{ backgroundColor: 'var(--light-gray)' }}
+                  >
+                    <Icon 
+                      className="w-8 h-8 md:w-9 md:h-9 transition-all duration-300" 
+                      style={{ color: 'var(--industrial-blue)', strokeWidth: 1.5 }}
+                    />
+                  </div>
+                  <h3 
+                    className="text-[16px] md:text-[17px] mb-2"
+                    style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                  >
+                    {industry.name}
+                  </h3>
+                  <p 
+                    className="industry-description text-[14px] md:text-[15px] leading-relaxed"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    {industry.description}
+                  </p>
                 </div>
-                <h3 
-                  className="text-[16px] md:text-[17px] mb-2"
-                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
-                >
-                  {industry.name}
-                </h3>
-                <p 
-                  className="industry-description text-[14px] md:text-[15px] leading-relaxed"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  {industry.description}
-                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
