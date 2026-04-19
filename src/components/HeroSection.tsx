@@ -1,5 +1,4 @@
-import { useRef, useEffect } from 'react';
-import headsetImage from '../assets/hero-headset-figma.webp';
+import headsetImage from '../assets/hero-headset.webp';
 import { heroT, type Lang } from '../i18n/translations';
 
 interface HeroSectionProps {
@@ -9,19 +8,6 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: HeroSectionProps) {
-  const bgRef = useRef<HTMLDivElement>(null);
-
-  // Parallax via direct DOM mutation — no React re-renders on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translateY(${window.scrollY * 0.5}px)`;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <section className="relative flex items-end lg:items-center min-h-screen pt-20 pb-16 lg:pb-0 overflow-hidden">
       {/* Full-width background image */}
@@ -36,19 +22,6 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/50 to-transparent" />
       </div>
-
-      {/* Subtle blueprint background with parallax */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 opacity-[0.05] pointer-events-none z-[1]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
 
       <div className="section-container pt-32 pb-8 lg:py-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
@@ -77,7 +50,6 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
