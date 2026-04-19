@@ -12,12 +12,9 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
     <section className="relative flex items-end lg:items-center min-h-screen pt-20 pb-16 lg:pb-0 overflow-hidden">
       {/* Full-width background image */}
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-[position:85%_0%] lg:bg-[position:80%_center] bg-cover bg-no-repeat"
         style={{
           backgroundImage: `url(${headsetImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '85% 0%',
-          backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/50 to-transparent" />
