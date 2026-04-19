@@ -23,18 +23,18 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
   }, []);
 
   return (
-    <section className="relative flex items-center min-h-[80vh] overflow-hidden">
+    <section className="relative flex items-end lg:items-center min-h-screen pt-20 pb-16 lg:pb-0 overflow-hidden">
       {/* Full-width background image */}
       <div 
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${headsetImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center center',
+          backgroundPosition: '85% 0%',
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/50 to-transparent" />
       </div>
 
       {/* Subtle blueprint background with parallax */}
@@ -50,19 +50,19 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
         }}
       />
 
-      <div className="section-container py-32 md:py-40 relative z-10">
+      <div className="section-container pt-32 pb-8 lg:py-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left Column - Content */}
-          <div className="space-y-6 md:space-y-8 text-center lg:text-left">
+          <div className="space-y-6 md:space-y-8 text-left">
             <h1 className="h1-hero text-white">
               {heroT.headline[lang]}
             </h1>
 
-            <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-200 max-w-[520px] mx-auto lg:mx-0">
+            <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-200 max-w-[520px]">
               {heroT.body[lang]}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 justify-start">
               <button
                 onClick={onContactClick}
                 className="btn-primary w-full sm:w-auto px-8 py-3.5"
@@ -78,10 +78,6 @@ export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: Her
             </div>
           </div>
 
-          {/* Right Column - Keep empty to retain layout structure */}
-          <div className="relative flex justify-center lg:justify-end">
-            {/* The image has been moved to the background */}
-          </div>
         </div>
       </div>
     </section>
