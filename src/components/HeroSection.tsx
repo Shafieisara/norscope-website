@@ -1,4 +1,5 @@
-import headsetImage from '../assets/hero-headset.webp';
+import headsetImageMobile from '../assets/hero-headset.webp';
+import headsetImageDesktop from '../assets/hero-headset-figma.webp';
 import { heroT, type Lang } from '../i18n/translations';
 
 interface HeroSectionProps {
@@ -9,15 +10,27 @@ interface HeroSectionProps {
 
 export function HeroSection({ lang = 'EN', onContactClick, onProductClick }: HeroSectionProps) {
   return (
-    <section className="relative flex items-end lg:items-center min-h-screen pt-20 pb-16 lg:pb-0 overflow-hidden">
-      {/* Full-width background image */}
+    <section className="relative flex items-end lg:items-center min-h-screen pt-20 pb-16 lg:pb-0 overflow-hidden bg-black">
+      {/* Mobile Background Asset (High-Res) */}
       <div 
-        className="absolute inset-0 z-0 bg-[position:85%_0%] lg:bg-[position:80%_center] bg-cover bg-no-repeat"
+        className="absolute inset-0 z-0 lg:hidden bg-[position:85%_0%] bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `url(${headsetImage})`,
+          backgroundImage: `url(${headsetImageMobile})`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-black/50 to-transparent" />
+        {/* Ultra-Contrast Horizontal Overlay for Mobile */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+      </div>
+
+      {/* Desktop Background Asset (Figma Version) */}
+      <div 
+        className="absolute inset-0 z-0 hidden lg:block bg-[position:80%_center] bg-cover bg-no-repeat"
+        style={{
+          backgroundImage: `url(${headsetImageDesktop})`,
+        }}
+      >
+        {/* Ultra-Contrast Horizontal Overlay for Desktop */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
       </div>
 
       <div className="section-container pt-32 pb-8 lg:py-40 relative z-10">
