@@ -215,7 +215,7 @@ export const aboutT = {
       bio:   { EN: 'Mechanical engineering background with hands-on experience in industrial machines and intelligent manufacturing systems. Focused on building practical AR solutions grounded in real maintenance workflows.', DE: 'Maschinenbauingenieur mit praktischer Erfahrung in Industriemaschinen und intelligenten Fertigungssystemen. Fokussiert auf praxisorientierte AR-Lösungen, die auf realen Wartungsabläufen basieren.' },
     },
     sara: {
-      role:  { EN: 'Co-Founder | Business & Operations', DE: 'Mitgründerin | Geschäft & Betrieb' },
+      role:  { EN: 'Co-Founder | Business & Operations', DE: 'Mitgründerin | Geschäftsentwicklung & Vertrieb' },
       bio:   { EN: 'Background in business strategy and operations with experience in startup execution and stakeholder coordination. Focused on translating industrial needs into scalable product and organizational structures.', DE: 'Hintergrund in Unternehmensstrategie und -betrieb mit Erfahrung in der Startup-Umsetzung und Stakeholder-Koordination. Fokussiert auf die Übersetzung industrieller Anforderungen in skalierbare Produkt- und Organisationsstrukturen.' },
     },
   },
