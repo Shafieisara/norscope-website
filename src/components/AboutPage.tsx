@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
 import saraImg from '../assets/Sara Sarvestani.webp';
-import siddhantImg from '../assets/siddhant-rebello.webp';
+import siddhantImg from '../assets/Siddhant Rebello.webp';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { aboutT, type Lang } from '../i18n/translations';
@@ -148,7 +148,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
               <div className="img-hover-zoom aspect-square">
                 <img
                   src={saraImg}
-                  alt="Sara Shafiei"
+                  alt="Sara Sarvestani"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
@@ -157,7 +157,7 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                   className="text-[20px] md:text-[22px] mb-1"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
                 >
-                  Sara Shafiei
+                  Sara Sarvestani
                 </h3>
                 <div
                   className="text-[14px] md:text-[15px] mb-4"

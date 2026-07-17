@@ -273,7 +273,7 @@ export function DatenschutzPage({
                             <h3 className="text-[18px] md:text-[20px] mb-2 mt-6" style={{ fontWeight: 600, color: 'var(--dark-text)' }}>{t.s3h2[lang]}</h3>
                             <p className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed mb-4">{t.s3h2Text[lang]}</p>
                             <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1 mb-4">
-                                <p>Sara Shafiei Sarvestani, Siddhant Rebello</p>
+                                <p>Sara Sarvestani, Siddhant Rebello</p>
                                 <p>Rollplatz 23</p>
                                 <p>38678 Clausthal-Zellerfeld</p>
                                 <p className="mt-3">Telefon: +49 1525 2993422</p>

@@ -117,7 +117,7 @@ export function ImpressumPage({
                                 {t.repBy[lang]}
                             </h2>
                             <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1">
-                                <p>Sara Shafiei Sarvestani</p>
+                                <p>Sara Sarvestani</p>
                                 <p>Siddhant Rebello</p>
                             </div>
                         </div>
@@ -129,10 +129,10 @@ export function ImpressumPage({
                             </h2>
                             <div className="text-[15px] md:text-[17px] text-[var(--text-main)] leading-relaxed space-y-1">
                                 <p><strong>{t.email[lang]}</strong></p>
-                                <p>Sara Shafiei Sarvestani: sara.shafiei.sarvestani@tu-clausthal.de</p>
+                                <p>Sara Sarvestani: sara.shafiei.sarvestani@tu-clausthal.de</p>
                                 <p>Siddhant Rebello: siddhant.jude.rebello@tu-clausthal.de</p>
                                 <p className="mt-3"><strong>{t.phone[lang]}</strong></p>
-                                <p>Sara Shafiei Sarvestani: +49 1525 2993422</p>
+                                <p>Sara Sarvestani: +49 1525 2993422</p>
                                 <p>Siddhant Rebello: +49 1551 0350105</p>
                             </div>
                         </div>
