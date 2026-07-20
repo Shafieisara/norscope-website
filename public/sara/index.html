@@ -160,7 +160,7 @@
     }
     .btn-ghost .icon { width: 1.45rem; height: 1.45rem; stroke-width: 2.25; }
     .btn-ghost:active { background: #fff; border-color: rgba(var(--brand-rgb), 0.38); }
-.chips { margin-top: 1.15rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; animation: fade-up 0.6s 0.28s both; }
+    .chips { margin-top: 1.15rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; animation: fade-up 0.6s 0.28s both; }
     .chip {
       display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.85rem; border-radius: 999px;
       text-decoration: none; font-size: 0.82rem; font-weight: 600; color: var(--ink);
@@ -194,44 +194,85 @@
     .demo-sheet {
       position: relative; z-index: 1;
       width: min(100%, 24.5rem);
-      max-height: min(92dvh, 36rem);
+      max-height: min(90dvh, 38rem);
+      overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       background: #fff;
-      background: #fff;
-      border-radius: 1.25rem 1.25rem 1rem 1rem;
-      padding: 1.15rem 1.15rem 1.25rem;
+      border-radius: 1.35rem;
+      padding: 1.25rem 1.2rem 1.3rem;
       box-shadow: 0 24px 48px rgba(12, 26, 46, 0.22);
       transform: translateY(18px); transition: transform 0.22s ease;
     }
     .demo-backdrop.open .demo-sheet { transform: none; }
     .demo-sheet h2 {
-      font-family: "Sora", sans-serif; font-size: 1.05rem; font-weight: 800;
-      letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.25rem;
+      font-family: "Sora", sans-serif; font-size: 1.12rem; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.35rem;
     }
     .demo-sheet .demo-lead {
-      font-size: 0.78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1rem;
+      font-size: 0.8rem; color: var(--muted); line-height: 1.45; margin-bottom: 1.15rem;
     }
-    .demo-fields { display: grid; gap: 0.7rem; }
+    .demo-fields { display: grid; gap: 0.85rem; }
+    .demo-field { min-width: 0; }
     .demo-field label {
-      display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted);
-      margin-bottom: 0.3rem; letter-spacing: 0.02em;
+      display: block; font-size: 0.74rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 0.35rem; letter-spacing: 0.02em;
     }
-    .demo-field input {
-      width: 100%; min-height: 2.75rem; padding: 0.65rem 0.75rem;
-      border: 1px solid var(--line); border-radius: 0.75rem;
-      font: inherit; font-size: 0.95rem; color: var(--ink); background: #f7fafc;
+    .demo-field input,
+    .demo-field textarea {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 3rem;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid rgba(0, 102, 204, 0.18);
+      border-radius: 0.85rem;
+      font: inherit;
+      font-size: 16px; /* prevents iOS focus zoom */
+      color: var(--ink);
+      background: #f4f8fc;
       outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      box-sizing: border-box;
     }
-    .demo-field input:focus {
+    .demo-field textarea {
+      min-height: 4.5rem;
+      resize: vertical;
+      line-height: 1.4;
+    }
+    .demo-field input[type="date"],
+    .demo-field input[type="time"] {
+      min-height: 3.1rem;
+      line-height: 1.2;
+    }
+    .demo-field input:focus,
+    .demo-field textarea:focus {
       border-color: rgba(var(--brand-rgb), 0.55);
       box-shadow: 0 0 0 3px rgba(var(--brand-rgb), 0.12);
       background: #fff;
     }
-    .demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
-    .demo-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0.55rem; margin-top: 1rem; }
-    .demo-actions .btn { min-height: 2.85rem; font-size: 0.88rem; }
-    .demo-cancel { background: #eef3f9; color: var(--ink); }
+    .demo-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    @media (min-width: 380px) {
+      .demo-row {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 0.75rem;
+      }
+    }
+    .demo-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 0.7rem;
+      margin-top: 0.35rem;
+      padding-top: 0.25rem;
+    }
+    .demo-actions .btn { min-height: 3rem; font-size: 0.9rem; border-radius: 0.9rem; }
+    .demo-cancel { background: #eef3f9; color: var(--ink); border: 1px solid rgba(0,102,204,0.1); }
     .demo-error {
       display: none; margin-top: 0.55rem; font-size: 0.72rem; color: #b42318; text-align: center;
     }
@@ -312,7 +353,7 @@
   <div class="demo-backdrop" id="demoModal" hidden>
     <div class="demo-sheet" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
       <h2 id="demoTitle">Demo buchen</h2>
-      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Nach dem Absenden wird Norscope automatisch benachrichtigt.</p>
+      <p class="demo-lead">Tragen Sie Ihren Wunschtermin ein. Nach dem Absenden wird Norscope automatisch benachrichtigt.</p>
       <form id="demoForm" class="demo-fields" novalidate>
         <div class="demo-row">
           <div class="demo-field">
@@ -333,8 +374,8 @@
           <input id="demoContact" name="contact" type="text" autocomplete="email" required placeholder="damit wir antworten k&ouml;nnen" />
         </div>
         <div class="demo-field">
-          <label for="demoMessage">Nachricht (optional)</label>
-          <input id="demoMessage" name="message" type="text" placeholder="Kurz Ihr Interesse / Unternehmen" />
+          <label for="demoMessage">Nachricht <span style="font-weight:500;opacity:0.75">(optional)</span></label>
+          <textarea id="demoMessage" name="message" rows="3" placeholder="Kurz Ihr Interesse oder Unternehmen"></textarea>
         </div>
         <input type="checkbox" name="botcheck" id="demoBot" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
         <p class="demo-error" id="demoError" role="alert">Bitte alle Pflichtfelder ausf&uuml;llen.</p>
