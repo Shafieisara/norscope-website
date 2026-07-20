@@ -467,9 +467,8 @@
         if (contact) lines.push('Kontakt: ' + contact);
         lines.push('', 'Viele Gruesse');
 
-        const subject = 'Demo-Anfrage – ' + whenLabel + ' – Sara Sarvestani';
-        const body = lines.join('
-');
+        const subject = 'Demo-Anfrage - ' + whenLabel + ' - Sara Sarvestani';
+        const body = lines.join(String.fromCharCode(10));
         const mailto = 'mailto:contact@norscope.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
