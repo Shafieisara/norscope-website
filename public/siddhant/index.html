@@ -190,51 +190,36 @@
 
 
     .hero-wrap {
-
       position: relative;
-
       width: 100%;
-
       max-width: min(100%, calc(min(52vh, 28rem) * 4 / 5));
-
       margin-inline: auto;
-
+      border-radius: 1.35rem;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: radial-gradient(white, black);
+      transform: translateZ(0);
       animation: fade-up 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
-
     }
 
 
 
     .hero {
-
       position: relative;
-
       border-radius: 1.35rem;
-
       overflow: hidden;
-
       aspect-ratio: 4 / 5;
-
       width: 100%;
-
       max-height: min(52vh, 28rem);
-
       transform-style: preserve-3d;
-
+      -webkit-transform-style: preserve-3d;
       transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
-
       transition: transform 0.15s ease-out, box-shadow 0.35s ease;
-
       box-shadow:
-
         0 22px 44px rgba(12, 26, 46, 0.14),
-
         0 0 0 1px rgba(255, 255, 255, 0.55) inset;
-
       cursor: grab;
-
       touch-action: pan-y;
-
     }
 
 
@@ -262,6 +247,7 @@
       width: 100%;
 
       height: 100%;
+      border-radius: 1.35rem;
 
       object-fit: cover;
 
@@ -290,6 +276,7 @@
 
 
     .hero-shine {
+      border-radius: inherit;
 
       position: absolute;
 
