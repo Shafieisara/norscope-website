@@ -163,16 +163,28 @@
     }
 
     .demo-backdrop {
-      position: fixed; inset: 0; z-index: 40;
+      position: fixed; inset: 0; z-index: 10000;
       background: rgba(12, 26, 46, 0.45);
       backdrop-filter: blur(6px);
-      display: grid; place-items: end center;
+      display: grid; place-items: center;
       padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
       opacity: 0; pointer-events: none; transition: opacity 0.22s ease;
     }
     .demo-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    body.demo-open .stage,
+    body.demo-open .ambient {
+      pointer-events: none !important;
+    }
+
+
     .demo-sheet {
+      position: relative; z-index: 1;
       width: min(100%, 24.5rem);
+      max-height: min(92dvh, 36rem);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: #fff;
       background: #fff;
       border-radius: 1.25rem 1.25rem 1rem 1rem;
       padding: 1.15rem 1.15rem 1.25rem;
@@ -387,6 +399,7 @@
       const openDemo = () => {
         if (!demoModal) return;
         demoModal.hidden = false;
+        document.body.classList.add('demo-open');
         requestAnimationFrame(() => demoModal.classList.add('open'));
         demoError?.classList.remove('show');
         const today = new Date();
@@ -404,6 +417,7 @@
       const closeDemo = () => {
         if (!demoModal) return;
         demoModal.classList.remove('open');
+        document.body.classList.remove('demo-open');
         setTimeout(() => { demoModal.hidden = true; }, 220);
       };
 
