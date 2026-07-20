@@ -474,7 +474,12 @@
           + '&body=' + encodeURIComponent(body);
 
         closeDemo();
-        window.location.href = mailto;
+        const mailLink = document.createElement('a');
+        mailLink.href = mailto;
+        mailLink.style.display = 'none';
+        document.body.appendChild(mailLink);
+        mailLink.click();
+        mailLink.remove();
       });
 
     })();
