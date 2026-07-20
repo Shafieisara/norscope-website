@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#d7e7f8" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#d7e7f8" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#d7e7f8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#d7e7f8" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="color-scheme" content="light only" />
   <meta name="description" content="Sara Sarvestani &mdash; Mitgr&uuml;nderin, Norscope" />
   <title>Sara Sarvestani &middot; Norscope</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,8 +31,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       height: 100%;
-      background: #d7e7f8;
-      background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
+      height: -webkit-fill-available;
+      background-color: #d7e7f8;
     }
     body {
       font-family: "Outfit", sans-serif;
@@ -40,18 +43,28 @@
       min-height: -webkit-fill-available;
       display: grid;
       place-items: center;
-      padding: max(1rem, env(safe-area-inset-top)) 1.1rem max(1.4rem, env(safe-area-inset-bottom));
+      padding: max(1rem, env(safe-area-inset-top, 0px)) 1.1rem max(1.4rem, env(safe-area-inset-bottom, 0px));
       overflow-x: hidden;
-      background: transparent;
+      background-color: #d7e7f8;
+      background-image: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
       position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -30vh -10vw;
+      z-index: -1;
+      background-color: #d7e7f8;
+      pointer-events: none;
     }
     .ambient {
       position: fixed;
-      inset: 0;
-      top: calc(-1 * env(safe-area-inset-top, 0px) - 4rem);
-      bottom: calc(-1 * env(safe-area-inset-bottom, 0px) - 8rem);
-      left: 0; right: 0;
-      z-index: 0; overflow: hidden; pointer-events: none;
+      inset: -40vh -20vw;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
       background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
     }
     .orb { position: absolute; border-radius: 50%; filter: blur(42px); opacity: 0.5; will-change: transform; }
@@ -224,6 +237,14 @@
     }
     .demo-error.show { display: block; }
 
+    .demo-success {
+      display: none; margin-top: 0.55rem; font-size: 0.78rem; color: #0f7a4a;
+      text-align: center; font-weight: 600; line-height: 1.35;
+    }
+    .demo-success.show { display: block; }
+    .demo-actions .btn[disabled] { opacity: 0.65; pointer-events: none; }
+
+
     .confetti { position: fixed; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; z-index: 20; animation: confetti-fall 1s ease-out forwards; }
     @keyframes confetti-fall { to { transform: translate(var(--dx), var(--dy)) rotate(240deg); opacity: 0; } }
     .ripple { position: fixed; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; pointer-events: none; z-index: 0; background: rgba(var(--brand-rgb), 0.22); transform: scale(0); animation: ripple-out 0.8s ease-out forwards; }
@@ -285,13 +306,13 @@
         Website
       </a>
     </nav>
-    <p class="note">Demo: Wunschdatum &amp; Uhrzeit w&auml;hlen &ndash; die Anfrage geht per E-Mail an contact@norscope.com.</p>
+    <p class="note">Demo buchen: Termin w&auml;hlen &ndash; Norscope wird automatisch per E-Mail benachrichtigt.</p>
   </main>
 
   <div class="demo-backdrop" id="demoModal" hidden>
     <div class="demo-sheet" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
       <h2 id="demoTitle">Demo buchen</h2>
-      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Danach &ouml;ffnet sich Ihre E-Mail an contact@norscope.com mit der Anfrage.</p>
+      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Nach dem Absenden wird Norscope automatisch benachrichtigt.</p>
       <form id="demoForm" class="demo-fields" novalidate>
         <div class="demo-row">
           <div class="demo-field">
@@ -304,17 +325,23 @@
           </div>
         </div>
         <div class="demo-field">
-          <label for="demoName">Ihr Name (optional)</label>
-          <input id="demoName" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" />
+          <label for="demoName">Ihr Name</label>
+          <input id="demoName" name="name" type="text" autocomplete="name" required placeholder="Vor- und Nachname" />
         </div>
         <div class="demo-field">
-          <label for="demoContact">Ihre E-Mail oder Telefon (optional)</label>
-          <input id="demoContact" name="contact" type="text" autocomplete="email" placeholder="damit wir antworten k&ouml;nnen" />
+          <label for="demoContact">E-Mail oder Telefon</label>
+          <input id="demoContact" name="contact" type="text" autocomplete="email" required placeholder="damit wir antworten k&ouml;nnen" />
         </div>
-        <p class="demo-error" id="demoError" role="alert">Bitte Datum und Uhrzeit ausw&auml;hlen.</p>
+        <div class="demo-field">
+          <label for="demoMessage">Nachricht (optional)</label>
+          <input id="demoMessage" name="message" type="text" placeholder="Kurz Ihr Interesse / Unternehmen" />
+        </div>
+        <input type="checkbox" name="botcheck" id="demoBot" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+        <p class="demo-error" id="demoError" role="alert">Bitte alle Pflichtfelder ausf&uuml;llen.</p>
+        <p class="demo-success" id="demoSuccess" hidden>Anfrage gesendet. Norscope meldet sich bei Ihnen.</p>
         <div class="demo-actions">
           <button type="button" class="btn demo-cancel" id="demoCancel">Abbrechen</button>
-          <button type="submit" class="btn btn-primary">Anfrage senden</button>
+          <button type="submit" class="btn btn-primary" id="demoSubmit"><span class="demo-submit-label">Anfrage senden</span></button>
         </div>
       </form>
     </div>
@@ -438,6 +465,9 @@
         document.body.classList.add('demo-open');
         requestAnimationFrame(() => demoModal.classList.add('open'));
         demoError?.classList.remove('show');
+        if (demoError) demoError.textContent = 'Bitte alle Pflichtfelder ausfüllen.';
+        document.getElementById('demoSuccess')?.classList.remove('show');
+        const ds = document.getElementById('demoSuccess'); if (ds) ds.hidden = true;
         const today = new Date();
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -470,18 +500,31 @@
         if (e.key === 'Escape' && demoModal && !demoModal.hidden) closeDemo();
       });
 
-      demoForm?.addEventListener('submit', (e) => {
+
+      demoForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
+        const demoError = document.getElementById('demoError');
+        const demoSuccess = document.getElementById('demoSuccess');
+        const demoDate = document.getElementById('demoDate');
+        const demoTime = document.getElementById('demoTime');
+        const demoSubmit = document.getElementById('demoSubmit');
+        const submitLabel = demoSubmit?.querySelector('.demo-submit-label');
         const date = demoDate?.value || '';
         const time = demoTime?.value || '';
-        if (!date || !time) {
+        const name = (document.getElementById('demoName')?.value || '').trim();
+        const contact = (document.getElementById('demoContact')?.value || '').trim();
+        const message = (document.getElementById('demoMessage')?.value || '').trim();
+        const bot = document.getElementById('demoBot');
+
+        demoSuccess?.classList.remove('show');
+        if (demoSuccess) demoSuccess.hidden = true;
+
+        if (!date || !time || !name || !contact || (bot && bot.checked)) {
           demoError?.classList.add('show');
           return;
         }
         demoError?.classList.remove('show');
 
-        const name = (document.getElementById('demoName')?.value || '').trim();
-        const contact = (document.getElementById('demoContact')?.value || '').trim();
         let whenLabel = date + ' ' + time;
         try {
           const d = new Date(date + 'T' + time);
@@ -491,33 +534,59 @@
           });
         } catch (_) {}
 
-        const lines = [
-          'Hallo Norscope,',
-          '',
-          'ich moechte gerne eine Demo mit Sara Sarvestani buchen.',
-          '',
-          'Wunschtermin: ' + whenLabel,
-          'Datum: ' + date,
-          'Uhrzeit: ' + time + ' (eigene Ortszeit)',
-        ];
-        if (name) lines.push('Name: ' + name);
-        if (contact) lines.push('Kontakt: ' + contact);
-        lines.push('', 'Viele Gruesse');
+        if (demoSubmit) demoSubmit.disabled = true;
+        if (submitLabel) submitLabel.textContent = 'Senden…';
 
-        const subject = 'Demo-Anfrage - ' + whenLabel + ' - Sara Sarvestani';
-        const body = lines.join(String.fromCharCode(10));
-        const mailto = 'mailto:contact@norscope.com'
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(body);
-
-        closeDemo();
-        const mailLink = document.createElement('a');
-        mailLink.href = mailto;
-        mailLink.style.display = 'none';
-        document.body.appendChild(mailLink);
-        mailLink.click();
-        mailLink.remove();
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
+            },
+            body: JSON.stringify({
+              access_key: 'a0c7aed0-52ce-462e-92f1-edaf91787f9e',
+              subject: 'Demo-Anfrage – Sara Sarvestani – ' + whenLabel,
+              from_name: name,
+              email: contact.includes('@') ? contact : 'contact@norscope.com',
+              replyto: contact.includes('@') ? contact : '',
+              person: 'Sara Sarvestani',
+              wunschtermin: whenLabel,
+              datum: date,
+              uhrzeit: time,
+              name: name,
+              kontakt: contact,
+              nachricht: message || '(keine)',
+              quelle: location.href,
+              message:
+                'Neue Demo-Anfrage für Sara Sarvestani.' + String.fromCharCode(10) +
+                'Wunschtermin: ' + whenLabel + String.fromCharCode(10) +
+                'Name: ' + name + String.fromCharCode(10) +
+                'Kontakt: ' + contact + String.fromCharCode(10) +
+                'Nachricht: ' + (message || '-') + String.fromCharCode(10) +
+                'Seite: ' + location.href
+            })
+          });
+          const result = await response.json();
+          if (!response.ok || result.success === false) {
+            throw new Error(result.message || 'Senden fehlgeschlagen');
+          }
+          if (demoSuccess) {
+            demoSuccess.hidden = false;
+            demoSuccess.classList.add('show');
+          }
+          demoForm?.reset();
+          if (navigator.vibrate) navigator.vibrate([12, 40, 12]);
+          setTimeout(() => closeDemo(), 1600);
+        } catch (_) {
+          demoError.textContent = 'Senden fehlgeschlagen. Bitte erneut versuchen oder contact@norscope.com schreiben.';
+          demoError?.classList.add('show');
+        } finally {
+          if (demoSubmit) demoSubmit.disabled = false;
+          if (submitLabel) submitLabel.textContent = 'Anfrage senden';
+        }
       });
+
 
     })();
   </script>
