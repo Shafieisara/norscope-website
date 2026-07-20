@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Norscope//Demo//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:demo-sara-sarvestani@norscope.com
+DTSTAMP:20260720T120000Z
+SUMMARY:Norscope Demo – Sara Sarvestani
+DESCRIPTION:Demo-Termin mit Sara Sarvestani (Norscope).\nBitte Wunschdatum/-uhrzeit an contact@norscope.com senden oder diesen Termin verschieben.\nWebsite: https://www.norscope.com/
+LOCATION:Online / nach Absprache
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

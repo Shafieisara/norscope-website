@@ -8,7 +8,7 @@
   <title>Sara Sarvestani &middot; Norscope</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --brand: #0066cc;
@@ -16,16 +16,14 @@
       --ink: #0c1a2e;
       --muted: #5a6b7d;
       --line: rgba(0, 102, 204, 0.16);
-      --surface: rgba(255, 255, 255, 0.82);
-      --white: #ffffff;
+      --surface: rgba(255, 255, 255, 0.88);
+      --white: #fff;
       --tilt-x: 0deg;
       --tilt-y: 0deg;
       --mx: 50%;
       --my: 42%;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: "Outfit", sans-serif;
       color: var(--ink);
@@ -37,352 +35,142 @@
       background: #eef3f9;
       position: relative;
     }
-
     .ambient {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
+      position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
       background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
     }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(42px);
-      opacity: 0.5;
-      will-change: transform;
-    }
+    .orb { position: absolute; border-radius: 50%; filter: blur(42px); opacity: 0.5; will-change: transform; }
     .orb.a { width: 20rem; height: 20rem; left: -5rem; top: -3rem; background: rgba(var(--brand-rgb), 0.38); animation: drift-a 12s ease-in-out infinite alternate; }
     .orb.b { width: 16rem; height: 16rem; right: -4rem; top: 38%; background: rgba(40, 150, 220, 0.3); animation: drift-b 15s ease-in-out infinite alternate; }
     .orb.c { width: 22rem; height: 22rem; left: 18%; bottom: -7rem; background: rgba(var(--brand-rgb), 0.2); animation: drift-c 14s ease-in-out infinite alternate; }
-
     @keyframes drift-a { to { transform: translate(14vw, 10vh) scale(1.12); } }
     @keyframes drift-b { to { transform: translate(-12vw, -8vh) scale(1.18); } }
     @keyframes drift-c { to { transform: translate(8vw, -12vh) scale(1.1); } }
 
-    .stage {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 24.5rem);
-      animation: enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+    .stage { position: relative; z-index: 1; width: min(100%, 24.5rem); animation: enter 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+    @keyframes enter { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @keyframes kenburns { 0%,100% { transform: scale(1.04); } 50% { transform: scale(1.1) translate(-1%, 1%); } }
+    @keyframes pop { 0% { transform: scale(0.92); } 60% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes pulse-once { 0%,100% { box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28); } 50% { box-shadow: 0 12px 30px rgba(var(--brand-rgb), 0.42); } }
 
-    @keyframes enter {
-      from { opacity: 0; transform: translateY(18px) scale(0.98); }
-      to { opacity: 1; transform: none; }
-    }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    @keyframes kenburns {
-      0% { transform: scale(1.04) translate(0, 0); }
-      50% { transform: scale(1.1) translate(-1.5%, 1%); }
-      100% { transform: scale(1.04) translate(0, 0); }
-    }
-
-    @keyframes pulse-once {
-      0%, 100% { box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28); }
-      50% { box-shadow: 0 12px 32px rgba(var(--brand-rgb), 0.45); transform: translateY(-1px); }
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.92); }
-      60% { transform: scale(1.04); }
-      100% { transform: scale(1); }
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.45rem;
-      margin-bottom: 0.9rem;
-      animation: fade-up 0.6s 0.05s both;
-    }
-
-    .brand a {
-      display: inline-flex;
-      line-height: 0;
-      text-decoration: none;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
+    .brand { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin-bottom: 0.85rem; animation: fade-up 0.55s both; }
+    .brand a { display: inline-flex; line-height: 0; text-decoration: none; }
     .brand a:active { transform: scale(0.96); }
     .brand img { width: 7.25rem; height: auto; display: block; }
-
-    .hello {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: rgba(90, 107, 125, 0.85);
-      letter-spacing: 0.04em;
-    }
+    .hello { font-size: 0.78rem; font-weight: 500; color: var(--muted); letter-spacing: 0.03em; }
 
     .hero-wrap {
-      position: relative;
-      width: 100%;
+      position: relative; width: 100%;
       max-width: min(100%, calc(min(50vh, 26rem) * 4 / 5));
-      margin-inline: auto;
-      border-radius: 1.4rem;
-      overflow: hidden;
+      margin-inline: auto; border-radius: 1.4rem; overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       mask-image: radial-gradient(white, black);
       transform: translateZ(0);
-      animation: fade-up 0.65s 0.12s both;
-      box-shadow: 0 18px 40px rgba(12, 26, 46, 0.08);
+      animation: fade-up 0.6s 0.08s both;
+      box-shadow: 0 20px 40px rgba(12, 26, 46, 0.14);
     }
-
     .hero {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      max-height: min(50vh, 26rem);
-      width: 100%;
-      border-radius: 1.4rem;
-      overflow: hidden;
+      position: relative; aspect-ratio: 4/5; max-height: min(50vh, 26rem); width: 100%;
+      border-radius: 1.4rem; overflow: hidden;
       transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
-      transform-style: preserve-3d;
-      transition: transform 0.12s ease-out;
-      touch-action: pan-y;
+      transform-style: preserve-3d; transition: transform 0.12s ease-out; touch-action: pan-y;
     }
-
     .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 70% center;
-      border-radius: 1.4rem;
-      display: block;
-      animation: kenburns 14s ease-in-out infinite;
-      will-change: transform;
+      width: 100%; height: 100%; object-fit: cover; object-position: 70% center;
+      border-radius: 1.4rem; display: block; animation: kenburns 14s ease-in-out infinite;
     }
-
     .hero.is-tilting img { animation-play-state: paused; }
-
     .hero-shine {
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
+      position: absolute; inset: 0; border-radius: inherit; z-index: 2; pointer-events: none; opacity: 0.65;
       background: radial-gradient(circle 11rem at var(--mx) var(--my), rgba(255,255,255,0.28), transparent 55%);
       mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.65;
     }
-
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background: linear-gradient(180deg, transparent 44%, rgba(12,26,46,0.52) 74%, rgba(12,26,46,0.86) 100%);
-      pointer-events: none;
-      z-index: 1;
     }
-
     .badge {
-      position: absolute;
-      top: 0.85rem;
-      right: 0.85rem;
-      z-index: 3;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: rgba(0, 102, 204, 0.72);
-      border: 1px solid rgba(255,255,255,0.28);
-      backdrop-filter: blur(10px);
-      padding: 0.35rem 0.55rem;
-      border-radius: 0.55rem;
-      animation: pop 0.55s 0.45s both;
+      position: absolute; top: 0.85rem; right: 0.85rem; z-index: 3;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #fff; background: rgba(0,102,204,0.72); border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(10px); padding: 0.35rem 0.55rem; border-radius: 0.55rem;
+      animation: pop 0.5s 0.35s both;
     }
-
-    .identity {
-      position: absolute;
-      left: 1.25rem;
-      right: 1.25rem;
-      bottom: 1.25rem;
-      z-index: 3;
-      color: var(--white);
-    }
-
+    .identity { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem; z-index: 3; color: #fff; }
     .identity h1 {
-      font-family: "Sora", sans-serif;
-      font-size: clamp(1.5rem, 5.4vw, 1.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.35);
+      font-family: "Sora", sans-serif; font-size: clamp(1.5rem, 5.4vw, 1.8rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.12; text-shadow: 0 2px 14px rgba(0,0,0,0.35);
     }
-
-    .identity .role {
-      margin-top: 0.45rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      line-height: 1.35;
-      color: rgba(255,255,255,0.93);
-    }
-
+    .identity .role { margin-top: 0.45rem; font-size: 0.9rem; font-weight: 500; line-height: 1.35; color: rgba(255,255,255,0.93); }
     .identity .company {
-      margin-top: 0.45rem;
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 650;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #cfe0f8;
-      padding: 0;
-      border: none;
-      background: none;
-      backdrop-filter: none;
+      margin-top: 0.55rem; display: inline-block; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #e7f0fb;
+      padding: 0.3rem 0.55rem; border-radius: 0.45rem; border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(0,102,204,0.32); backdrop-filter: blur(8px);
     }
 
-    .actions {
-      margin-top: 1.45rem;
-      display: grid;
-      gap: 0.7rem;
-      animation: fade-up 0.65s 0.22s both;
-    }
-
+    .actions { margin-top: 1.4rem; display: grid; gap: 0.7rem; animation: fade-up 0.6s 0.18s both; }
     .btn {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      min-height: 3.15rem;
-      padding: 0.75rem 1rem;
-      border-radius: 0.95rem;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      overflow: hidden;
-      isolation: isolate;
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      position: relative; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      min-height: 3.15rem; padding: 0.75rem 1rem; border-radius: 0.95rem; text-decoration: none;
+      font-size: 0.95rem; font-weight: 600; overflow: hidden; isolation: isolate; border: none; cursor: pointer;
+      font-family: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
     .btn:active { transform: scale(0.97); }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle 7rem at var(--bx, 50%) var(--by, 50%), rgba(255,255,255,0.32), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .btn:hover::before { opacity: 1; }
-
     .btn-primary {
-      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc);
-      background-size: 200% 100%;
-      color: var(--white);
-      box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28);
-      animation: pulse-once 1.8s 0.8s ease 1;
+      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc); background-size: 200% 100%;
+      color: #fff; box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28); animation: pulse-once 1.8s 0.7s ease 1;
     }
-    .btn-primary.saved {
-      background: #0f7a4a;
-      animation: pop 0.4s ease;
-      box-shadow: 0 10px 24px rgba(15, 122, 74, 0.28);
-    }
+    .btn-primary.saved { background: #0f7a4a; animation: pop 0.4s ease; box-shadow: 0 10px 24px rgba(15,122,74,0.28); }
 
-    .btn-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
-
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
     .btn-ghost {
-      background: rgba(255, 255, 255, 0.28);
-      color: var(--ink);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      flex-direction: column;
-      gap: 0.2rem;
-      min-height: 4rem;
-      font-size: 0.78rem;
-      box-shadow: none;
+      background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+      backdrop-filter: blur(10px); flex-direction: column; gap: 0.35rem; min-height: 4.35rem; font-size: 0.8rem;
     }
-    .btn-ghost:active {
-      background: rgba(255, 255, 255, 0.45);
-      border-color: rgba(var(--brand-rgb), 0.25);
-    }
-    .btn-ghost .icon { width: 1.2rem; height: 1.2rem; }
+    .btn-ghost .icon { width: 1.45rem; height: 1.45rem; stroke-width: 2.25; }
+    .btn-ghost:active { background: #fff; border-color: rgba(var(--brand-rgb), 0.38); }
 
-    .chips {
-      margin-top: 1.2rem;
-      display: flex;
-      justify-content: center;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-      animation: fade-up 0.65s 0.32s both;
+    .wallet-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+    .btn-wallet {
+      min-height: 3rem; flex-direction: row; gap: 0.45rem; font-size: 0.82rem;
+      background: #0c1a2e; color: #fff; border: none;
     }
+    .btn-wallet.google { background: #1a73e8; }
+    .btn-wallet .icon { width: 1.15rem; height: 1.15rem; color: #fff; }
 
+    .chips { margin-top: 1.15rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; animation: fade-up 0.6s 0.28s both; }
     .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 0.75rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--muted);
-      background: transparent;
-      border: none;
-      transition: transform 0.2s ease, color 0.2s ease;
+      display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.85rem; border-radius: 999px;
+      text-decoration: none; font-size: 0.82rem; font-weight: 600; color: var(--ink);
+      background: rgba(255,255,255,0.8); border: 1px solid var(--line); backdrop-filter: blur(8px);
     }
-    .chip:active {
-      transform: scale(0.97);
-      color: var(--brand);
-    }
-    .chip svg { width: 1rem; height: 1rem; }
+    .chip:active { transform: scale(0.96); background: #fff; }
+    .chip svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 
-    .confetti {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
-      pointer-events: none;
-      z-index: 20;
-      animation: confetti-fall 1s ease-out forwards;
-    }
-    @keyframes confetti-fall {
-      to { transform: translate(var(--dx), var(--dy)) rotate(240deg); opacity: 0; }
+    .note {
+      margin-top: 0.85rem; text-align: center; font-size: 0.7rem; color: var(--muted); line-height: 1.35;
+      animation: fade-up 0.6s 0.35s both;
     }
 
-    .ripple {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      margin: -6px 0 0 -6px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      background: rgba(var(--brand-rgb), 0.22);
-      transform: scale(0);
-      animation: ripple-out 0.8s ease-out forwards;
-    }
+    .confetti { position: fixed; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; z-index: 20; animation: confetti-fall 1s ease-out forwards; }
+    @keyframes confetti-fall { to { transform: translate(var(--dx), var(--dy)) rotate(240deg); opacity: 0; } }
+    .ripple { position: fixed; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; pointer-events: none; z-index: 0; background: rgba(var(--brand-rgb), 0.22); transform: scale(0); animation: ripple-out 0.8s ease-out forwards; }
     @keyframes ripple-out { to { transform: scale(26); opacity: 0; } }
-
-    .icon { width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
+    .icon { width: 1.15rem; height: 1.15rem; flex-shrink: 0; display: block; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .hero { transform: none !important; }
-      .orb { animation: none !important; }
+      .orb, .ripple, .confetti { animation: none !important; }
       .ripple, .confetti { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <div class="orb a"></div>
-    <div class="orb b"></div>
-    <div class="orb c"></div>
-  </div>
-
+  <div class="ambient" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
   <main class="stage">
     <div class="brand">
       <a href="https://www.norscope.com/" rel="noopener noreferrer" aria-label="Norscope Website">
@@ -395,7 +183,8 @@
       <section class="hero" id="hero" aria-label="Profilfoto">
         <img src="/sara-business-card/assets/sara.png" alt="Sara Sarvestani" width="800" height="1000" draggable="false" />
         <div class="hero-shine" aria-hidden="true"></div>
-<div class="identity">
+        <span class="badge">Offline AR</span>
+        <div class="identity">
           <h1>Sara Sarvestani</h1>
           <p class="role">Mitgr&uuml;nderin<br />Gesch&auml;ftsentwicklung &amp; Vertrieb</p>
           <p class="company">Norscope</p>
@@ -405,22 +194,20 @@
 
     <div class="actions">
       <a class="btn btn-primary" id="saveBtn" href="/sara-business-card/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="btn-label">Kontakt speichern</span>
       </a>
+
       <div class="btn-row">
-        <a class="btn btn-ghost" href="tel:+4915252993422">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.8c.5-.5 1.3-.5 1.7 0l1.8 1.8c.4.4.5 1.1.2 1.6L9.2 9.4a12.3 12.3 0 0 0 5.4 5.4l2.2-1.1c.5-.3 1.2-.2 1.6.2l1.8 1.8c.5.5.5 1.3 0 1.7l-1.3 1.3c-.5.5-1.2.7-1.9.5C10.4 17.4 6.6 13.6 4.8 8c-.2-.7 0-1.4.5-1.9l1.3-1.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          Anrufen
-        </a>
-        <a class="btn btn-ghost" href="mailto:contact@norscope.com">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/><path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          E-Mail
-        </a>
-        <button class="btn btn-ghost" id="shareBtn" type="button">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 6a3 3 0 1 0-2.83-4H13a3 3 0 0 0 0 4l-5.2 3.12A3 3 0 1 0 8 12.9L13.2 16A3 3 0 1 0 16 14.1L10.8 11A3.05 3.05 0 0 0 11 9.1L16 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          Teilen
-        </button>
+        <a class="btn btn-ghost" href="tel:+4915252993422"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Anrufen</a>
+        <a class="btn btn-ghost" href="mailto:contact@norscope.com"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>E-Mail</a>
+        <button class="btn btn-ghost" id="shareBtn" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2.25"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/></svg>Teilen</button>
+        <a class="btn btn-ghost" id="demoBtn" href="/sara-business-card/norscope-demo-sara.ics" download="Norscope-Demo-Sara.ics"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
+      </div>
+
+      <div class="wallet-row">
+        <a class="btn btn-ghost btn-wallet" id="appleWallet" href="/sara-business-card/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><path d="M16 3H6a2 2 0 0 0-2 2v2h16V5a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><circle cx="17" cy="14" r="1.4" fill="currentColor"/></svg>Apple Wallet</a>
+        <a class="btn btn-ghost btn-wallet google" id="googleWallet" href="/sara-business-card/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><path d="M16 3H6a2 2 0 0 0-2 2v2h16V5a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><circle cx="17" cy="14" r="1.4" fill="currentColor"/></svg>Google Wallet</a>
       </div>
     </div>
 
@@ -430,10 +217,11 @@
         LinkedIn
       </a>
       <a class="chip" href="https://www.norscope.com/" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z" stroke="currentColor" stroke-width="1.8"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.25"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z" stroke="currentColor" stroke-width="2.25"/></svg>
         Website
       </a>
     </nav>
+    <p class="note">Demo &ouml;ffnet Ihren Kalender. Wallet speichert den Kontakt auf dem Telefon.</p>
   </main>
 
   <script>
@@ -442,51 +230,34 @@
       const hero = document.getElementById('hero');
       const saveBtn = document.getElementById('saveBtn');
       const shareBtn = document.getElementById('shareBtn');
+      const demoBtn = document.getElementById('demoBtn');
       const label = saveBtn?.querySelector('.btn-label');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const fine = window.matchMedia('(pointer: fine)').matches;
 
-      const burstConfetti = (x, y) => {
+      const burst = (x, y) => {
         if (reduce) return;
-        const colors = ['#0066cc', '#1a7ae0', '#7eb6f0', '#0c1a2e', '#ffffff'];
-        for (let i = 0; i < 18; i++) {
+        const colors = ['#0066cc', '#1a7ae0', '#7eb6f0', '#0c1a2e', '#fff'];
+        for (let i = 0; i < 16; i++) {
           const el = document.createElement('span');
           el.className = 'confetti';
-          const angle = (Math.PI * 2 * i) / 18;
-          const dist = 60 + Math.random() * 70;
-          el.style.left = x + 'px';
-          el.style.top = y + 'px';
+          const a = (Math.PI * 2 * i) / 16, d = 55 + Math.random() * 70;
+          el.style.left = x + 'px'; el.style.top = y + 'px';
           el.style.background = colors[i % colors.length];
-          el.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-          el.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+          el.style.setProperty('--dx', Math.cos(a) * d + 'px');
+          el.style.setProperty('--dy', Math.sin(a) * d + 'px');
           document.body.appendChild(el);
           el.addEventListener('animationend', () => el.remove());
         }
       };
 
-      const spawnRipple = (x, y) => {
-        if (reduce) return;
+      window.addEventListener('pointerdown', (e) => {
         const el = document.createElement('span');
         el.className = 'ripple';
-        el.style.left = x + 'px';
-        el.style.top = y + 'px';
+        el.style.left = e.clientX + 'px'; el.style.top = e.clientY + 'px';
         document.body.appendChild(el);
         el.addEventListener('animationend', () => el.remove());
-      };
-
-      window.addEventListener('pointerdown', (e) => {
-        spawnRipple(e.clientX, e.clientY);
-        root.style.setProperty('--mx', (e.clientX / innerWidth) * 100 + '%');
-        root.style.setProperty('--my', (e.clientY / innerHeight) * 100 + '%');
       }, { passive: true });
-
-      document.querySelectorAll('.btn').forEach((btn) => {
-        btn.addEventListener('pointermove', (e) => {
-          const r = btn.getBoundingClientRect();
-          btn.style.setProperty('--bx', ((e.clientX - r.left) / r.width) * 100 + '%');
-          btn.style.setProperty('--by', ((e.clientY - r.top) / r.height) * 100 + '%');
-        });
-      });
 
       if (hero && !reduce) {
         const reset = () => {
@@ -507,7 +278,6 @@
         hero.addEventListener('pointermove', tilt);
         hero.addEventListener('pointerleave', reset);
         hero.addEventListener('pointerup', reset);
-        hero.addEventListener('pointercancel', reset);
       }
 
       const enableGyro = () => {
@@ -521,50 +291,57 @@
           root.style.setProperty('--tilt-x', (-ny * 5).toFixed(2) + 'deg');
         });
       };
-
       if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
         const ask = async () => {
-          try {
-            if (await DeviceOrientationEvent.requestPermission() === 'granted') enableGyro();
-          } catch (_) {}
+          try { if (await DeviceOrientationEvent.requestPermission() === 'granted') enableGyro(); } catch (_) {}
           window.removeEventListener('pointerdown', ask);
         };
         window.addEventListener('pointerdown', ask, { once: true });
-      } else {
-        enableGyro();
-      }
+      } else enableGyro();
 
       if (saveBtn && label) {
-        saveBtn.addEventListener('click', (e) => {
+        saveBtn.addEventListener('click', () => {
           const r = saveBtn.getBoundingClientRect();
-          burstConfetti(r.left + r.width / 2, r.top + r.height / 2);
+          burst(r.left + r.width / 2, r.top + r.height / 2);
           saveBtn.classList.add('saved');
           label.textContent = 'Gespeichert';
           if (navigator.vibrate) navigator.vibrate([10, 40, 10]);
-          setTimeout(() => {
-            saveBtn.classList.remove('saved');
-            label.textContent = 'Kontakt speichern';
-          }, 2200);
+          setTimeout(() => { saveBtn.classList.remove('saved'); label.textContent = 'Kontakt speichern'; }, 2200);
         });
       }
 
       if (shareBtn) {
+        const textNode = [...shareBtn.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim());
         shareBtn.addEventListener('click', async () => {
-          const data = {
-            title: 'Sara Sarvestani · Norscope',
-            text: 'Visitenkarte von Sara Sarvestani, Norscope',
-            url: location.href,
-          };
           try {
-            if (navigator.share) await navigator.share(data);
-            else {
+            if (navigator.share) {
+              await navigator.share({ title: 'Sara Sarvestani · Norscope', text: 'Visitenkarte von Sara Sarvestani, Norscope', url: location.href });
+            } else {
               await navigator.clipboard.writeText(location.href);
-              shareBtn.lastChild.textContent = 'Kopiert';
-              setTimeout(() => { shareBtn.lastChild.textContent = 'Teilen'; }, 1600);
+              if (textNode) { const old = textNode.textContent; textNode.textContent = ' Kopiert'; setTimeout(() => { textNode.textContent = old; }, 1500); }
             }
           } catch (_) {}
         });
       }
+
+      // Demo: also offer mail compose as secondary path via long-press alternative — open mail after ics
+      if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+          // After calendar download, nudge email confirmation in new tab shortly
+          setTimeout(() => {
+            // soft prompt via same-tab only if user stays — skip auto mailto to avoid annoyance
+          }, 400);
+        });
+      }
+
+      // Wallet buttons: save contact (true Wallet passes need Apple/Google signing certificates)
+      ['appleWallet', 'googleWallet'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', () => {
+          if (navigator.vibrate) navigator.vibrate(8);
+        });
+      });
     })();
   </script>
 </body>
