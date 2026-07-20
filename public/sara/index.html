@@ -54,7 +54,17 @@
 
 
 
-    html, body { min-height: 100%; }
+    html, body {
+      font-family: "Outfit", sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+      background: #eef3f9;
+      display: grid;
+      place-items: center;
+      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
+      min-height: 100dvh;
+      position: relative;
+    }
 
 
 
@@ -88,8 +98,101 @@
 
 
 
-    .stage {
 
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(165deg, #dfeaf8 0%, #f5f8fc 42%, #e8f0f8 100%);
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.55;
+      will-change: transform;
+    }
+
+    .ambient-orb.a {
+      width: 22rem;
+      height: 22rem;
+      left: -6rem;
+      top: -4rem;
+      background: rgba(var(--brand-rgb), 0.35);
+      animation: orb-a 14s ease-in-out infinite alternate;
+    }
+
+    .ambient-orb.b {
+      width: 18rem;
+      height: 18rem;
+      right: -5rem;
+      top: 35%;
+      background: rgba(56, 160, 220, 0.28);
+      animation: orb-b 18s ease-in-out infinite alternate;
+    }
+
+    .ambient-orb.c {
+      width: 24rem;
+      height: 24rem;
+      left: 20%;
+      bottom: -8rem;
+      background: rgba(var(--brand-rgb), 0.22);
+      animation: orb-c 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes orb-a {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(18vw, 12vh, 0) scale(1.15); }
+    }
+
+    @keyframes orb-b {
+      from { transform: translate3d(0, 0, 0) scale(1.05); }
+      to { transform: translate3d(-16vw, -10vh, 0) scale(1.2); }
+    }
+
+    @keyframes orb-c {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(10vw, -14vh, 0) scale(1.12); }
+    }
+
+    .ambient-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image:
+        linear-gradient(rgba(12, 26, 46, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(12, 26, 46, 0.35) 1px, transparent 1px);
+      background-size: 28px 28px;
+      transform: translate3d(calc(var(--gx, 0) * 1px), calc(var(--gy, 0) * 1px), 0);
+      transition: transform 0.12s linear;
+    }
+
+    .ripple {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      margin: -6px 0 0 -6px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: rgba(var(--brand-rgb), 0.28);
+      transform: scale(0);
+      animation: ripple-out 0.85s ease-out forwards;
+    }
+
+    @keyframes ripple-out {
+      to {
+        transform: scale(28);
+        opacity: 0;
+      }
+    }
+
+    .stage {
+      position: relative;
+      z-index: 1;
       width: min(100%, 26rem);
 
       perspective: 1000px;
@@ -681,6 +784,9 @@
 
 
     @media (prefers-reduced-motion: reduce) {
+      .ambient-orb { animation: none !important; }
+      .ripple { display: none !important; }
+
 
       *, *::before, *::after {
 
@@ -709,7 +815,14 @@
 
 <body>
 
-  <main class="stage">
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-orb a"></div>
+    <div class="ambient-orb b"></div>
+    <div class="ambient-orb c"></div>
+    <div class="ambient-grid"></div>
+  </div>
+
+<main class="stage">
 
     <div class="brand">
       <a href="https://www.norscope.com/" rel="noopener noreferrer" aria-label="Norscope Website">
@@ -800,146 +913,126 @@
     </nav>
 </main>
 
-
-
   <script>
-
     (() => {
-
       const root = document.documentElement;
-
       const hero = document.getElementById('hero');
-
       const saveBtn = document.getElementById('saveBtn');
-
       const label = saveBtn?.querySelector('.btn-label');
-
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fine = window.matchMedia('(pointer: fine)').matches;
 
-
-
-      // Ambient light follows pointer across the page
-
-      const setAmbient = (clientX, clientY) => {
-
-        const x = (clientX / window.innerWidth) * 100;
-
-        const y = (clientY / window.innerHeight) * 100;
-
-        root.style.setProperty('--mx', x + '%');
-
-        root.style.setProperty('--my', y + '%');
-
+      const setAmbient = (xPct, yPct) => {
+        root.style.setProperty('--mx', xPct + '%');
+        root.style.setProperty('--my', yPct + '%');
       };
 
+      const setGrid = (x, y) => {
+        root.style.setProperty('--gx', String(Math.max(-18, Math.min(18, x))));
+        root.style.setProperty('--gy', String(Math.max(-18, Math.min(18, y))));
+      };
 
+      const spawnRipple = (clientX, clientY) => {
+        if (reduce) return;
+        const el = document.createElement('span');
+        el.className = 'ripple';
+        el.style.left = clientX + 'px';
+        el.style.top = clientY + 'px';
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      };
 
-      window.addEventListener('pointermove', (e) => setAmbient(e.clientX, e.clientY), { passive: true });
+      const onPoint = (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        setAmbient(x, y);
+        setGrid((x - 50) * 0.35, (y - 50) * 0.35);
+      };
 
-
-
-      // Soft spotlight on buttons
+      window.addEventListener('pointermove', onPoint, { passive: true });
+      window.addEventListener('pointerdown', (e) => {
+        onPoint(e);
+        spawnRipple(e.clientX, e.clientY);
+      }, { passive: true });
 
       document.querySelectorAll('.btn').forEach((btn) => {
-
         btn.addEventListener('pointermove', (e) => {
-
           const r = btn.getBoundingClientRect();
-
           btn.style.setProperty('--bx', ((e.clientX - r.left) / r.width) * 100 + '%');
-
           btn.style.setProperty('--by', ((e.clientY - r.top) / r.height) * 100 + '%');
-
         });
-
       });
 
-
-
-      // 3D tilt on photo
-
       if (hero && !reduce) {
-
         const resetTilt = () => {
-
           hero.classList.remove('is-tilting');
-
           root.style.setProperty('--tilt-x', '0deg');
-
           root.style.setProperty('--tilt-y', '0deg');
-
-          root.style.setProperty('--mx', '50%');
-
-          root.style.setProperty('--my', '40%');
-
         };
-
-
 
         const tiltFromEvent = (e) => {
-
           const r = hero.getBoundingClientRect();
-
           const px = (e.clientX - r.left) / r.width;
-
           const py = (e.clientY - r.top) / r.height;
-
           const tiltY = (px - 0.5) * 12;
-
           const tiltX = (0.5 - py) * 10;
-
           hero.classList.add('is-tilting');
-
           root.style.setProperty('--tilt-x', tiltX.toFixed(2) + 'deg');
-
           root.style.setProperty('--tilt-y', tiltY.toFixed(2) + 'deg');
-
           root.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-
           root.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-
         };
 
-
-
         hero.addEventListener('pointerenter', tiltFromEvent);
-
         hero.addEventListener('pointermove', tiltFromEvent);
-
         hero.addEventListener('pointerleave', resetTilt);
-
         hero.addEventListener('pointercancel', resetTilt);
-
+        hero.addEventListener('pointerup', resetTilt);
       }
 
+      const enableGyro = () => {
+        if (reduce || fine) return;
+        const onOrient = (e) => {
+          const gamma = e.gamma ?? 0;
+          const beta = e.beta ?? 0;
+          const nx = Math.max(-1, Math.min(1, gamma / 35));
+          const ny = Math.max(-1, Math.min(1, (beta - 45) / 35));
+          setAmbient(50 + nx * 28, 42 + ny * 22);
+          setGrid(nx * 16, ny * 16);
+          if (hero) {
+            root.style.setProperty('--tilt-y', (nx * 8).toFixed(2) + 'deg');
+            root.style.setProperty('--tilt-x', (-ny * 6).toFixed(2) + 'deg');
+          }
+        };
+        window.addEventListener('deviceorientation', onOrient);
+      };
 
-
-      // Save contact feedback
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function') {
+        const ask = async () => {
+          try {
+            const state = await DeviceOrientationEvent.requestPermission();
+            if (state === 'granted') enableGyro();
+          } catch (_) {}
+          window.removeEventListener('pointerdown', ask);
+        };
+        window.addEventListener('pointerdown', ask, { once: true });
+      } else {
+        enableGyro();
+      }
 
       if (saveBtn && label) {
-
         saveBtn.addEventListener('click', () => {
-
           saveBtn.classList.add('saved');
-
           label.textContent = 'Gespeichert';
-
           if (navigator.vibrate) navigator.vibrate(12);
-
           setTimeout(() => {
-
             saveBtn.classList.remove('saved');
-
             label.textContent = 'Kontakt speichern';
-
           }, 2200);
-
         });
-
       }
-
     })();
-
   </script>
 
 </body>
