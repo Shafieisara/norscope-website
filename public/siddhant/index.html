@@ -1,161 +1,353 @@
 <!DOCTYPE html>
-
 <html lang="de">
-
 <head>
-
   <meta charset="utf-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
   <meta name="theme-color" content="#0066cc" />
-
   <meta name="description" content="Siddhant Rebello &mdash; Gr&uuml;nder, Norscope" />
-
   <title>Siddhant Rebello &middot; Norscope</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
-
     :root {
-
       --brand: #0066cc;
-
       --brand-rgb: 0, 102, 204;
-
       --ink: #0c1a2e;
-
       --muted: #5a6b7d;
-
-      --line: rgba(0, 102, 204, 0.14);
-
-      --surface: rgba(255, 255, 255, 0.78);
-
+      --line: rgba(0, 102, 204, 0.16);
+      --surface: rgba(255, 255, 255, 0.82);
       --white: #ffffff;
-
-      --mx: 50%;
-
-      --my: 40%;
-
       --tilt-x: 0deg;
-
       --tilt-y: 0deg;
-
+      --mx: 50%;
+      --my: 42%;
     }
-
-
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-
-
-    html, body {
+    body {
       font-family: "Outfit", sans-serif;
       color: var(--ink);
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: max(1rem, env(safe-area-inset-top)) 1.1rem max(1.4rem, env(safe-area-inset-bottom));
       overflow-x: hidden;
       background: #eef3f9;
-      display: grid;
-      place-items: center;
-      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
-      min-height: 100dvh;
       position: relative;
     }
-
-
-
-    body {
-
-      font-family: "Outfit", sans-serif;
-
-      color: var(--ink);
-
-      overflow-x: hidden;
-
-      background:
-
-        radial-gradient(circle 28rem at var(--mx) var(--my), rgba(var(--brand-rgb), 0.2), transparent 55%),
-
-        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(var(--brand-rgb), 0.18), transparent 50%),
-
-        linear-gradient(165deg, #dfeaf8 0%, #f5f8fc 42%, #e8f0f8 100%);
-
-      background-attachment: fixed;
-
-      display: grid;
-
-      place-items: center;
-
-      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
-
-      transition: background 0.35s ease;
-
-    }
-
-
-
 
     .ambient {
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       overflow: hidden;
       pointer-events: none;
-      background: linear-gradient(165deg, #dfeaf8 0%, #f5f8fc 42%, #e8f0f8 100%);
+      background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
     }
 
-    .ambient-orb {
+    .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.55;
+      filter: blur(42px);
+      opacity: 0.5;
+      will-change: transform;
+    }
+    .orb.a { width: 20rem; height: 20rem; left: -5rem; top: -3rem; background: rgba(var(--brand-rgb), 0.38); animation: drift-a 12s ease-in-out infinite alternate; }
+    .orb.b { width: 16rem; height: 16rem; right: -4rem; top: 38%; background: rgba(40, 150, 220, 0.3); animation: drift-b 15s ease-in-out infinite alternate; }
+    .orb.c { width: 22rem; height: 22rem; left: 18%; bottom: -7rem; background: rgba(var(--brand-rgb), 0.2); animation: drift-c 14s ease-in-out infinite alternate; }
+
+    @keyframes drift-a { to { transform: translate(14vw, 10vh) scale(1.12); } }
+    @keyframes drift-b { to { transform: translate(-12vw, -8vh) scale(1.18); } }
+    @keyframes drift-c { to { transform: translate(8vw, -12vh) scale(1.1); } }
+
+    .stage {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 24.5rem);
+      animation: enter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(18px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes kenburns {
+      0% { transform: scale(1.04) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-1.5%, 1%); }
+      100% { transform: scale(1.04) translate(0, 0); }
+    }
+
+    @keyframes pulse-once {
+      0%, 100% { box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28); }
+      50% { box-shadow: 0 12px 32px rgba(var(--brand-rgb), 0.45); transform: translateY(-1px); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.92); }
+      60% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+      animation: fade-up 0.6s 0.05s both;
+    }
+
+    .brand a {
+      display: inline-flex;
+      line-height: 0;
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .brand a:active { transform: scale(0.96); }
+    .brand img { width: 7.25rem; height: auto; display: block; }
+
+    .hello {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-wrap {
+      position: relative;
+      width: 100%;
+      max-width: min(100%, calc(min(50vh, 26rem) * 4 / 5));
+      margin-inline: auto;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: radial-gradient(white, black);
+      transform: translateZ(0);
+      animation: fade-up 0.65s 0.12s both;
+      box-shadow: 0 20px 40px rgba(12, 26, 46, 0.14);
+    }
+
+    .hero {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-height: min(50vh, 26rem);
+      width: 100%;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease-out;
+      touch-action: pan-y;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 1.4rem;
+      display: block;
+      animation: kenburns 14s ease-in-out infinite;
       will-change: transform;
     }
 
-    .ambient-orb.a {
-      width: 22rem;
-      height: 22rem;
-      left: -6rem;
-      top: -4rem;
-      background: rgba(var(--brand-rgb), 0.35);
-      animation: orb-a 14s ease-in-out infinite alternate;
+    .hero.is-tilting img { animation-play-state: paused; }
+
+    .hero-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle 11rem at var(--mx) var(--my), rgba(255,255,255,0.28), transparent 55%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.65;
     }
 
-    .ambient-orb.b {
-      width: 18rem;
-      height: 18rem;
-      right: -5rem;
-      top: 35%;
-      background: rgba(56, 160, 220, 0.28);
-      animation: orb-b 18s ease-in-out infinite alternate;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 44%, rgba(12,26,46,0.52) 74%, rgba(12,26,46,0.86) 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .ambient-orb.c {
-      width: 24rem;
-      height: 24rem;
-      left: 20%;
-      bottom: -8rem;
-      background: rgba(var(--brand-rgb), 0.22);
-      animation: orb-c 16s ease-in-out infinite alternate;
+    .badge {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      z-index: 3;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(0, 102, 204, 0.72);
+      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(10px);
+      padding: 0.35rem 0.55rem;
+      border-radius: 0.55rem;
+      animation: pop 0.55s 0.45s both;
     }
 
-    @keyframes orb-a {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to { transform: translate3d(18vw, 12vh, 0) scale(1.15); }
+    .identity {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 3;
+      color: var(--white);
     }
 
-    @keyframes orb-b {
-      from { transform: translate3d(0, 0, 0) scale(1.05); }
-      to { transform: translate3d(-16vw, -10vh, 0) scale(1.2); }
+    .identity h1 {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(1.5rem, 5.4vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.35);
     }
 
-    @keyframes orb-c {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to { transform: translate3d(10vw, -14vh, 0) scale(1.12); }
+    .identity .role {
+      margin-top: 0.45rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.93);
+    }
+
+    .identity .company {
+      margin-top: 0.55rem;
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e7f0fb;
+      padding: 0.3rem 0.55rem;
+      border-radius: 0.45rem;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(0,102,204,0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .actions {
+      margin-top: 1.45rem;
+      display: grid;
+      gap: 0.7rem;
+      animation: fade-up 0.65s 0.22s both;
+    }
+
+    .btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3.15rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.95rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(0.97); }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 7rem at var(--bx, 50%) var(--by, 50%), rgba(255,255,255,0.32), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .btn:hover::before { opacity: 1; }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc);
+      background-size: 200% 100%;
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28);
+      animation: pulse-once 1.8s 0.8s ease 1;
+    }
+    .btn-primary.saved {
+      background: #0f7a4a;
+      animation: pop 0.4s ease;
+      box-shadow: 0 10px 24px rgba(15, 122, 74, 0.28);
+    }
+
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      gap: 0.2rem;
+      min-height: 4rem;
+      font-size: 0.78rem;
+    }
+    .btn-ghost:active { background: #fff; border-color: rgba(var(--brand-rgb), 0.35); }
+    .btn-ghost .icon { width: 1.2rem; height: 1.2rem; }
+
+    .chips {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      animation: fade-up 0.65s 0.32s both;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .chip:active {
+      transform: scale(0.96);
+      background: #fff;
+      border-color: rgba(var(--brand-rgb), 0.35);
+    }
+    .chip svg { width: 1rem; height: 1rem; }
+
+    .confetti {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 20;
+      animation: confetti-fall 1s ease-out forwards;
+    }
+    @keyframes confetti-fall {
+      to { transform: translate(var(--dx), var(--dy)) rotate(240deg); opacity: 0; }
     }
 
     .ripple {
@@ -166,775 +358,125 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
-      background: rgba(var(--brand-rgb), 0.28);
+      background: rgba(var(--brand-rgb), 0.22);
       transform: scale(0);
-      animation: ripple-out 0.85s ease-out forwards;
+      animation: ripple-out 0.8s ease-out forwards;
     }
+    @keyframes ripple-out { to { transform: scale(26); opacity: 0; } }
 
-    @keyframes ripple-out {
-      to {
-        transform: scale(28);
-        opacity: 0;
-      }
-    }
-
-    .stage {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 24.5rem);
-
-      perspective: 1000px;
-
-      animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-    }
-
-
-
-    @keyframes rise {
-
-      from { opacity: 0; transform: translateY(22px) scale(0.98); }
-
-      to { opacity: 1; transform: none; }
-
-    }
-
-
-
-    @keyframes fade-up {
-
-      from { opacity: 0; transform: translateY(14px); }
-
-      to { opacity: 1; transform: none; }
-
-    }
-
-
-
-    @keyframes float-logo {
-
-      0%, 100% { transform: translateY(0); }
-
-      50% { transform: translateY(-4px); }
-
-    }
-
-
-
-    @keyframes shimmer {
-
-      0% { background-position: 0% 50%; }
-
-      100% { background-position: 200% 50%; }
-
-    }
-
-
-
-    .brand {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      margin-bottom: 0.85rem;
-
-      animation: fade-up 0.65s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-    }
-
-
-
-    .brand a {
-      display: inline-flex;
-      line-height: 0;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand img {
-
-      width: 7.5rem;
-
-      height: auto;
-
-      display: block;
-
-      animation: float-logo 5.5s ease-in-out infinite;
-
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
-
-    }
-
-
-
-    .brand:hover img {
-
-      transform: translateY(-2px) scale(1.04);
-
-      filter: drop-shadow(0 8px 16px rgba(var(--brand-rgb), 0.18));
-
-    }
-
-
-
-    .hero-wrap {
-      position: relative;
-      width: 100%;
-      max-width: min(100%, calc(min(52vh, 28rem) * 4 / 5));
-      margin-inline: auto;
-      border-radius: 1.35rem;
-      overflow: hidden;
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
-      mask-image: radial-gradient(white, black);
-      transform: translateZ(0);
-      animation: fade-up 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-
-
-    .hero {
-      position: relative;
-      border-radius: 1.35rem;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      width: 100%;
-      max-height: min(52vh, 28rem);
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
-      transition: transform 0.15s ease-out, box-shadow 0.35s ease;
-      box-shadow:
-        0 22px 44px rgba(12, 26, 46, 0.14),
-        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
-      cursor: grab;
-      touch-action: pan-y;
-    }
-
-
-
-    .hero:active { cursor: grabbing; }
-
-
-
-    .hero.is-tilting {
-
-      transition: transform 0.05s linear;
-
-      box-shadow:
-
-        0 28px 56px rgba(12, 26, 46, 0.18),
-
-        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
-
-    }
-
-
-
-    .hero img {
-
-      width: 100%;
-
-      height: 100%;
-      border-radius: 1.35rem;
-
-      object-fit: cover;
-
-      object-position: center 20%;
-
-      display: block;
-
-      transform: scale(1.04);
-
-      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-
-      will-change: transform;
-
-    }
-
-
-
-    .hero:hover img,
-
-    .hero.is-tilting img {
-
-      transform: scale(1.08);
-
-    }
-
-
-
-    .hero-shine {
-      border-radius: inherit;
-
-      position: absolute;
-
-      inset: 0;
-
-      background: radial-gradient(
-
-        circle 12rem at var(--mx) var(--my),
-
-        rgba(255, 255, 255, 0.28),
-
-        transparent 55%
-
-      );
-
-      mix-blend-mode: soft-light;
-
-      pointer-events: none;
-
-      opacity: 0.55;
-
-      transition: opacity 0.3s ease;
-
-      z-index: 2;
-
-    }
-
-
-
-    .hero:hover .hero-shine,
-
-    .hero.is-tilting .hero-shine {
-
-      opacity: 0.85;
-
-    }
-
-
-
-    .hero::after {
-
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background: linear-gradient(
-
-        180deg,
-
-        transparent 46%,
-
-        rgba(12, 26, 46, 0.5) 76%,
-
-        rgba(12, 26, 46, 0.84) 100%
-
-      );
-
-      pointer-events: none;
-
-      z-index: 1;
-
-    }
-
-
-
-    .identity {
-
-      position: absolute;
-
-      left: 1.35rem;
-
-      right: 1.35rem;
-
-      bottom: 1.4rem;
-
-      z-index: 3;
-
-      color: var(--white);
-
-      transform: translateZ(28px);
-
-    }
-
-
-
-    .identity h1 {
-
-      font-family: "Sora", sans-serif;
-
-      font-size: clamp(1.55rem, 5.5vw, 1.85rem);
-
-      font-weight: 700;
-
-      letter-spacing: -0.03em;
-
-      line-height: 1.15;
-
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
-
-    }
-
-
-
-    .identity .role {
-
-      margin-top: 0.5rem;
-
-      font-size: 0.92rem;
-
-      font-weight: 500;
-
-      line-height: 1.35;
-
-      color: rgba(255, 255, 255, 0.92);
-
-    }
-
-
-
-    .identity .company {
-
-      margin-top: 0.55rem;
-
-      display: inline-block;
-
-      font-size: 0.78rem;
-
-      font-weight: 700;
-
-      letter-spacing: 0.12em;
-
-      text-transform: uppercase;
-
-      color: #cfe0f8;
-
-      padding: 0.28rem 0.55rem;
-
-      border: 1px solid rgba(255, 255, 255, 0.22);
-
-      border-radius: 0.4rem;
-
-      background: rgba(0, 102, 204, 0.28);
-
-      backdrop-filter: blur(8px);
-
-    }
-
-
-
-    .actions {
-
-      margin-top: 1.55rem;
-
-      display: grid;
-
-      gap: 0.75rem;
-
-      animation: fade-up 0.7s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-    }
-
-
-
-    .btn {
-
-      position: relative;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 0.55rem;
-
-      min-height: 3.15rem;
-
-      padding: 0.75rem 1rem;
-
-      border-radius: 0.85rem;
-
-      text-decoration: none;
-
-      font-size: 0.95rem;
-
-      font-weight: 600;
-
-      overflow: hidden;
-
-      isolation: isolate;
-
-      transition:
-
-        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-
-        box-shadow 0.22s ease,
-
-        background 0.22s ease,
-
-        border-color 0.22s ease;
-
-      -webkit-tap-highlight-color: transparent;
-
-    }
-
-
-
-    .btn::before {
-
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background: radial-gradient(circle 8rem at var(--bx, 50%) var(--by, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
-
-      opacity: 0;
-
-      transition: opacity 0.25s ease;
-
-      z-index: -1;
-
-      pointer-events: none;
-
-    }
-
-
-
-    .btn:hover::before { opacity: 1; }
-
-    .btn:active { transform: scale(0.975); }
-
-
-
-    .btn-primary {
-
-      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc);
-
-      background-size: 200% 100%;
-
-      color: var(--white);
-
-      box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28);
-
-      animation: shimmer 7s linear infinite;
-
-    }
-
-
-
-    .btn-primary:hover {
-
-      box-shadow: 0 14px 30px rgba(var(--brand-rgb), 0.36);
-
-      transform: translateY(-2px);
-
-    }
-
-
-
-    .btn-primary.saved {
-
-      background: #0f7a4a;
-
-      animation: none;
-
-      box-shadow: 0 10px 24px rgba(15, 122, 74, 0.28);
-
-    }
-
-
-
-    .btn-row {
-
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 0.7rem;
-
-    }
-
-
-
-    .btn-ghost {
-
-      background: var(--surface);
-
-      color: var(--ink);
-
-      border: 1px solid var(--line);
-
-      backdrop-filter: blur(10px);
-
-    }
-
-
-
-    .btn-ghost:hover {
-
-      background: #fff;
-
-      border-color: rgba(var(--brand-rgb), 0.35);
-
-      transform: translateY(-2px);
-
-      box-shadow: 0 10px 22px rgba(12, 26, 46, 0.08);
-
-    }
-
-
-
-    .links {
-
-      margin-top: 1.35rem;
-
-      display: flex;
-
-      justify-content: center;
-
-      gap: 1.6rem;
-
-      animation: fade-up 0.7s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-    }
-
-
-
-    .links a {
-
-      color: var(--muted);
-
-      text-decoration: none;
-
-      font-size: 0.88rem;
-
-      font-weight: 500;
-
-      position: relative;
-
-      padding-bottom: 0.18rem;
-
-      transition: color 0.2s ease;
-
-    }
-
-
-
-    .links a::after {
-
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-
-      right: 0;
-
-      bottom: 0;
-
-      height: 1.5px;
-
-      background: var(--brand);
-
-      transform: scaleX(0);
-
-      transform-origin: left;
-
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-
-    }
-
-
-
-    .links a:hover { color: var(--brand); }
-
-    .links a:hover::after { transform: scaleX(1); }
-
-
-
-    .icon {
-
-      width: 1.1rem;
-
-      height: 1.1rem;
-
-      flex-shrink: 0;
-
-      transition: transform 0.25s ease;
-
-    }
-
-
-
-    .btn:hover .icon { transform: translateY(-1px); }
-
-    .btn-primary:hover .icon { transform: translateY(1px); }
-
-
+    .icon { width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
 
     @media (prefers-reduced-motion: reduce) {
-      .ambient-orb { animation: none !important; }
-      .ripple { display: none !important; }
-
-
-      *, *::before, *::after {
-
-        animation: none !important;
-
-        transition: none !important;
-
-      }
-
+      *, *::before, *::after { animation: none !important; transition: none !important; }
       .hero { transform: none !important; }
-
-      .brand a {
-      display: inline-flex;
-      line-height: 0;
-      text-decoration: none;
-      color: inherit;
+      .orb { animation: none !important; }
+      .ripple, .confetti { display: none !important; }
     }
-
-    .brand img { animation: none !important; }
-
-    }
-
   </style>
-
 </head>
-
 <body>
-
   <div class="ambient" aria-hidden="true">
-    <div class="ambient-orb a"></div>
-    <div class="ambient-orb b"></div>
-    <div class="ambient-orb c"></div>
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="orb c"></div>
   </div>
 
-<main class="stage">
-
+  <main class="stage">
     <div class="brand">
       <a href="https://www.norscope.com/" rel="noopener noreferrer" aria-label="Norscope Website">
         <img src="/siddhant/assets/norscope-logo.png" alt="Norscope" width="346" height="163" />
       </a>
+      <p class="hello">Nice to meet you</p>
     </div>
-
-
 
     <div class="hero-wrap">
-
       <section class="hero" id="hero" aria-label="Profilfoto">
-
         <img src="/siddhant/assets/siddhant.png" alt="Siddhant Rebello" width="800" height="1000" draggable="false" />
-
         <div class="hero-shine" aria-hidden="true"></div>
-
+        <span class="badge">Offline AR</span>
         <div class="identity">
-
           <h1>Siddhant Rebello</h1>
-
           <p class="role">Gr&uuml;nder<br />Entwicklung &amp; Produkt</p>
-
           <p class="company">Norscope</p>
-
         </div>
-
       </section>
-
     </div>
-
-
 
     <div class="actions">
-
       <a class="btn btn-primary" id="saveBtn" href="/siddhant/siddhant-rebello.vcf" download="Siddhant-Rebello.vcf">
-
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-
-          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-
-        </svg>
-
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="btn-label">Kontakt speichern</span>
-
       </a>
-
       <div class="btn-row">
-
         <a class="btn btn-ghost" href="tel:+4915510350105">
-
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-
-            <path d="M6.6 3.8c.5-.5 1.3-.5 1.7 0l1.8 1.8c.4.4.5 1.1.2 1.6L9.2 9.4a12.3 12.3 0 0 0 5.4 5.4l2.2-1.1c.5-.3 1.2-.2 1.6.2l1.8 1.8c.5.5.5 1.3 0 1.7l-1.3 1.3c-.5.5-1.2.7-1.9.5C10.4 17.4 6.6 13.6 4.8 8c-.2-.7 0-1.4.5-1.9l1.3-1.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-
-          </svg>
-
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.8c.5-.5 1.3-.5 1.7 0l1.8 1.8c.4.4.5 1.1.2 1.6L9.2 9.4a12.3 12.3 0 0 0 5.4 5.4l2.2-1.1c.5-.3 1.2-.2 1.6.2l1.8 1.8c.5.5.5 1.3 0 1.7l-1.3 1.3c-.5.5-1.2.7-1.9.5C10.4 17.4 6.6 13.6 4.8 8c-.2-.7 0-1.4.5-1.9l1.3-1.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           Anrufen
-
         </a>
-
         <a class="btn btn-ghost" href="mailto:contact@norscope.com">
-
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-
-            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/>
-
-            <path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-
-          </svg>
-
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/><path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           E-Mail
-
         </a>
-
+        <button class="btn btn-ghost" id="shareBtn" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 6a3 3 0 1 0-2.83-4H13a3 3 0 0 0 0 4l-5.2 3.12A3 3 0 1 0 8 12.9L13.2 16A3 3 0 1 0 16 14.1L10.8 11A3.05 3.05 0 0 0 11 9.1L16 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          Teilen
+        </button>
       </div>
-
     </div>
 
-
-
-    <nav class="links" aria-label="Links">
-
-      <a href="https://www.linkedin.com/in/siddhantrebello/" rel="noopener noreferrer">LinkedIn</a>
-
-      <a href="https://www.norscope.com/" rel="noopener noreferrer">Website</a>
-
+    <nav class="chips" aria-label="Links">
+      <a class="chip" href="https://www.linkedin.com/in/siddhantrebello/" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 8.5A2 2 0 1 1 6.5 4.5 2 2 0 0 1 6.5 8.5ZM4.75 10.25h3.5V20h-3.5V10.25ZM10.5 10.25h3.35v1.33h.05c.47-.89 1.61-1.83 3.31-1.83 3.54 0 4.19 2.33 4.19 5.36V20h-3.5v-4.72c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5V20h-3.5V10.25Z"/></svg>
+        LinkedIn
+      </a>
+      <a class="chip" href="https://www.norscope.com/" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z" stroke="currentColor" stroke-width="1.8"/></svg>
+        Website
+      </a>
     </nav>
-</main>
+  </main>
 
   <script>
     (() => {
       const root = document.documentElement;
       const hero = document.getElementById('hero');
       const saveBtn = document.getElementById('saveBtn');
+      const shareBtn = document.getElementById('shareBtn');
       const label = saveBtn?.querySelector('.btn-label');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const fine = window.matchMedia('(pointer: fine)').matches;
 
-      const setAmbient = (xPct, yPct) => {
-        root.style.setProperty('--mx', xPct + '%');
-        root.style.setProperty('--my', yPct + '%');
+      const burstConfetti = (x, y) => {
+        if (reduce) return;
+        const colors = ['#0066cc', '#1a7ae0', '#7eb6f0', '#0c1a2e', '#ffffff'];
+        for (let i = 0; i < 18; i++) {
+          const el = document.createElement('span');
+          el.className = 'confetti';
+          const angle = (Math.PI * 2 * i) / 18;
+          const dist = 60 + Math.random() * 70;
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.background = colors[i % colors.length];
+          el.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+          el.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+          document.body.appendChild(el);
+          el.addEventListener('animationend', () => el.remove());
+        }
       };
 
-      const spawnRipple = (clientX, clientY) => {
+      const spawnRipple = (x, y) => {
         if (reduce) return;
         const el = document.createElement('span');
         el.className = 'ripple';
-        el.style.left = clientX + 'px';
-        el.style.top = clientY + 'px';
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
         document.body.appendChild(el);
         el.addEventListener('animationend', () => el.remove());
       };
 
-      const onPoint = (e) => {
-        const x = (e.clientX / window.innerWidth) * 100;
-        const y = (e.clientY / window.innerHeight) * 100;
-        setAmbient(x, y);
-        setGrid((x - 50) * 0.35, (y - 50) * 0.35);
-      };
-
-      window.addEventListener('pointermove', onPoint, { passive: true });
       window.addEventListener('pointerdown', (e) => {
-        onPoint(e);
         spawnRipple(e.clientX, e.clientY);
+        root.style.setProperty('--mx', (e.clientX / innerWidth) * 100 + '%');
+        root.style.setProperty('--my', (e.clientY / innerHeight) * 100 + '%');
       }, { passive: true });
 
       document.querySelectorAll('.btn').forEach((btn) => {
@@ -946,54 +488,43 @@
       });
 
       if (hero && !reduce) {
-        const resetTilt = () => {
+        const reset = () => {
           hero.classList.remove('is-tilting');
           root.style.setProperty('--tilt-x', '0deg');
           root.style.setProperty('--tilt-y', '0deg');
         };
-
-        const tiltFromEvent = (e) => {
+        const tilt = (e) => {
           const r = hero.getBoundingClientRect();
           const px = (e.clientX - r.left) / r.width;
           const py = (e.clientY - r.top) / r.height;
-          const tiltY = (px - 0.5) * 12;
-          const tiltX = (0.5 - py) * 10;
           hero.classList.add('is-tilting');
-          root.style.setProperty('--tilt-x', tiltX.toFixed(2) + 'deg');
-          root.style.setProperty('--tilt-y', tiltY.toFixed(2) + 'deg');
+          root.style.setProperty('--tilt-y', ((px - 0.5) * 10).toFixed(2) + 'deg');
+          root.style.setProperty('--tilt-x', ((0.5 - py) * 8).toFixed(2) + 'deg');
           root.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
           root.style.setProperty('--my', (py * 100).toFixed(1) + '%');
         };
-
-        hero.addEventListener('pointerenter', tiltFromEvent);
-        hero.addEventListener('pointermove', tiltFromEvent);
-        hero.addEventListener('pointerleave', resetTilt);
-        hero.addEventListener('pointercancel', resetTilt);
-        hero.addEventListener('pointerup', resetTilt);
+        hero.addEventListener('pointermove', tilt);
+        hero.addEventListener('pointerleave', reset);
+        hero.addEventListener('pointerup', reset);
+        hero.addEventListener('pointercancel', reset);
       }
 
       const enableGyro = () => {
         if (reduce || fine) return;
-        const onOrient = (e) => {
-          const gamma = e.gamma ?? 0;
-          const beta = e.beta ?? 0;
-          const nx = Math.max(-1, Math.min(1, gamma / 35));
-          const ny = Math.max(-1, Math.min(1, (beta - 45) / 35));
-          setAmbient(50 + nx * 28, 42 + ny * 22);
-          if (hero) {
-            root.style.setProperty('--tilt-y', (nx * 8).toFixed(2) + 'deg');
-            root.style.setProperty('--tilt-x', (-ny * 6).toFixed(2) + 'deg');
-          }
-        };
-        window.addEventListener('deviceorientation', onOrient);
+        window.addEventListener('deviceorientation', (e) => {
+          const nx = Math.max(-1, Math.min(1, (e.gamma ?? 0) / 35));
+          const ny = Math.max(-1, Math.min(1, ((e.beta ?? 0) - 45) / 35));
+          root.style.setProperty('--mx', (50 + nx * 26) + '%');
+          root.style.setProperty('--my', (42 + ny * 20) + '%');
+          root.style.setProperty('--tilt-y', (nx * 7).toFixed(2) + 'deg');
+          root.style.setProperty('--tilt-x', (-ny * 5).toFixed(2) + 'deg');
+        });
       };
 
-      if (typeof DeviceOrientationEvent !== 'undefined' &&
-          typeof DeviceOrientationEvent.requestPermission === 'function') {
+      if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
         const ask = async () => {
           try {
-            const state = await DeviceOrientationEvent.requestPermission();
-            if (state === 'granted') enableGyro();
+            if (await DeviceOrientationEvent.requestPermission() === 'granted') enableGyro();
           } catch (_) {}
           window.removeEventListener('pointerdown', ask);
         };
@@ -1003,20 +534,37 @@
       }
 
       if (saveBtn && label) {
-        saveBtn.addEventListener('click', () => {
+        saveBtn.addEventListener('click', (e) => {
+          const r = saveBtn.getBoundingClientRect();
+          burstConfetti(r.left + r.width / 2, r.top + r.height / 2);
           saveBtn.classList.add('saved');
           label.textContent = 'Gespeichert';
-          if (navigator.vibrate) navigator.vibrate(12);
+          if (navigator.vibrate) navigator.vibrate([10, 40, 10]);
           setTimeout(() => {
             saveBtn.classList.remove('saved');
             label.textContent = 'Kontakt speichern';
           }, 2200);
         });
       }
+
+      if (shareBtn) {
+        shareBtn.addEventListener('click', async () => {
+          const data = {
+            title: 'Siddhant Rebello · Norscope',
+            text: 'Business card of Siddhant Rebello, Norscope',
+            url: location.href,
+          };
+          try {
+            if (navigator.share) await navigator.share(data);
+            else {
+              await navigator.clipboard.writeText(location.href);
+              shareBtn.lastChild.textContent = 'Kopiert';
+              setTimeout(() => { shareBtn.lastChild.textContent = 'Teilen'; }, 1600);
+            }
+          } catch (_) {}
+        });
+      }
     })();
   </script>
-
 </body>
-
 </html>
-
