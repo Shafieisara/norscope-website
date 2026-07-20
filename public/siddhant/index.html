@@ -30,7 +30,6 @@
       height: 100%;
       background: #d7e7f8;
       background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
-      background-attachment: fixed;
     }
     body {
       font-family: "Outfit", sans-serif;
@@ -223,7 +222,7 @@
         Website
       </a>
     </nav>
-    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin – einfach verschieben oder anpassen.</p>
+    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin &ndash; Datum einfach anpassen.</p>
   </main>
 
   <script>
@@ -316,7 +315,7 @@
         shareBtn.addEventListener('click', async () => {
           try {
             if (navigator.share) {
-              await navigator.share({ title: 'Siddhant Rebello · Norscope', text: 'Business card of Siddhant Rebello, Norscope', url: location.href });
+              await navigator.share({ title: 'Siddhant Rebello · Norscope', text: 'Visitenkarte von Siddhant Rebello, Norscope', url: location.href });
             } else {
               await navigator.clipboard.writeText(location.href);
               if (textNode) { const old = textNode.textContent; textNode.textContent = ' Kopiert'; setTimeout(() => { textNode.textContent = old; }, 1500); }
@@ -324,10 +323,17 @@
           } catch (_) {}
         });
       }
-, 400);
+
+      const demoBtn = document.getElementById('demoBtn');
+      if (demoBtn) {
+        const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Norscope+Demo+%E2%80%93+Siddhant+Rebello&dates=20260728T120000Z/20260728T123000Z&details=Demo-Termin+mit+Siddhant+Rebello+(Norscope).+Bitte+Wunschdatum+anpassen+oder+an+contact%40norscope.com+schreiben.%0ATel%3A+%2B4915510350105%0AWebsite%3A+https%3A%2F%2Fwww.norscope.com%2F&location=Online+%2F+nach+Absprache';
+        demoBtn.addEventListener('click', (e) => {
+          if (/Android/i.test(navigator.userAgent)) {
+            e.preventDefault();
+            window.location.href = gcal;
+          }
         });
       }
-});
     })();
   </script>
 </body>

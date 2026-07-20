@@ -30,7 +30,6 @@
       height: 100%;
       background: #d7e7f8;
       background: linear-gradient(160deg, #d7e7f8 0%, #f4f8fc 45%, #e6eef8 100%);
-      background-attachment: fixed;
     }
     body {
       font-family: "Outfit", sans-serif;
@@ -209,7 +208,7 @@
         <a class="btn btn-ghost" href="tel:+4915510350105"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Anrufen</a>
         <a class="btn btn-ghost" href="mailto:contact@norscope.com"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>E-Mail</a>
         <button class="btn btn-ghost" id="shareBtn" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2.25"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/></svg>Teilen</button>
-        <a class="btn btn-ghost" id="demoBtn" href="/siddhant-business-card/norscope-demo-siddhant.ics"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
+        <a class="btn btn-ghost" id="demoBtn" href="/siddhant/norscope-demo-siddhant.ics" type="text/calendar"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
       </div>
 </div>
 
@@ -223,7 +222,7 @@
         Website
       </a>
     </nav>
-    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin – einfach verschieben oder anpassen.</p>
+    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin &ndash; Datum einfach anpassen.</p>
   </main>
 
   <script>
@@ -316,7 +315,7 @@
         shareBtn.addEventListener('click', async () => {
           try {
             if (navigator.share) {
-              await navigator.share({ title: 'Siddhant Rebello · Norscope', text: 'Business card of Siddhant Rebello, Norscope', url: location.href });
+              await navigator.share({ title: 'Siddhant Rebello · Norscope', text: 'Visitenkarte von Siddhant Rebello, Norscope', url: location.href });
             } else {
               await navigator.clipboard.writeText(location.href);
               if (textNode) { const old = textNode.textContent; textNode.textContent = ' Kopiert'; setTimeout(() => { textNode.textContent = old; }, 1500); }
@@ -324,10 +323,17 @@
           } catch (_) {}
         });
       }
-, 400);
+
+      const demoBtn = document.getElementById('demoBtn');
+      if (demoBtn) {
+        const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Norscope+Demo+%E2%80%93+Siddhant+Rebello&dates=20260728T120000Z/20260728T123000Z&details=Demo-Termin+mit+Siddhant+Rebello+(Norscope).+Bitte+Wunschdatum+anpassen+oder+an+contact%40norscope.com+schreiben.%0ATel%3A+%2B4915510350105%0AWebsite%3A+https%3A%2F%2Fwww.norscope.com%2F&location=Online+%2F+nach+Absprache';
+        demoBtn.addEventListener('click', (e) => {
+          if (/Android/i.test(navigator.userAgent)) {
+            e.preventDefault();
+            window.location.href = gcal;
+          }
         });
       }
-});
     })();
   </script>
 </body>
