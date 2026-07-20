@@ -1,486 +1,486 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0066cc" />
-  <meta name="description" content="Sara Sarvestani — Mitgründerin, Norscope" />
-  <title>Sara Sarvestani · Norscope</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --brand: #0066cc;
-      --brand-rgb: 0, 102, 204;
-      --ink: #0c1a2e;
-      --muted: #5a6b7d;
-      --line: rgba(0, 102, 204, 0.14);
-      --surface: rgba(255, 255, 255, 0.78);
-      --white: #ffffff;
-      --mx: 50%;
-      --my: 40%;
-      --tilt-x: 0deg;
-      --tilt-y: 0deg;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { min-height: 100%; }
-
-    body {
-      font-family: "Outfit", sans-serif;
-      color: var(--ink);
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle 28rem at var(--mx) var(--my), rgba(var(--brand-rgb), 0.2), transparent 55%),
-        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(var(--brand-rgb), 0.18), transparent 50%),
-        linear-gradient(165deg, #dfeaf8 0%, #f5f8fc 42%, #e8f0f8 100%);
-      background-attachment: fixed;
-      display: grid;
-      place-items: center;
-      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
-      transition: background 0.35s ease;
-    }
-
-    .stage {
-      width: min(100%, 26rem);
-      perspective: 1000px;
-      animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(22px) scale(0.98); }
-      to { opacity: 1; transform: none; }
-    }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: none; }
-    }
-
-    @keyframes float-logo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.15rem;
-      animation: fade-up 0.65s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .brand img {
-      width: 7.5rem;
-      height: auto;
-      display: block;
-      animation: float-logo 5.5s ease-in-out infinite;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
-    }
-
-    .brand:hover img {
-      transform: translateY(-2px) scale(1.04);
-      filter: drop-shadow(0 8px 16px rgba(var(--brand-rgb), 0.18));
-    }
-
-    .hero-wrap {
-      position: relative;
-      width: 100%;
-      max-width: min(100%, calc(min(52vh, 28rem) * 4 / 5));
-      margin-inline: auto;
-      animation: fade-up 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .hero {
-      position: relative;
-      border-radius: 1.35rem;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      width: 100%;
-      max-height: min(52vh, 28rem);
-      transform-style: preserve-3d;
-      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
-      transition: transform 0.15s ease-out, box-shadow 0.35s ease;
-      box-shadow:
-        0 22px 44px rgba(12, 26, 46, 0.14),
-        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
-      cursor: grab;
-      touch-action: pan-y;
-    }
-
-    .hero:active { cursor: grabbing; }
-
-    .hero.is-tilting {
-      transition: transform 0.05s linear;
-      box-shadow:
-        0 28px 56px rgba(12, 26, 46, 0.18),
-        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
-    }
-
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 70% center;
-      display: block;
-      transform: scale(1.04);
-      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    .hero:hover img,
-    .hero.is-tilting img {
-      transform: scale(1.08);
-    }
-
-    .hero-shine {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        circle 12rem at var(--mx) var(--my),
-        rgba(255, 255, 255, 0.28),
-        transparent 55%
-      );
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      opacity: 0.55;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-    }
-
-    .hero:hover .hero-shine,
-    .hero.is-tilting .hero-shine {
-      opacity: 0.85;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        transparent 46%,
-        rgba(12, 26, 46, 0.5) 76%,
-        rgba(12, 26, 46, 0.84) 100%
-      );
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .identity {
-      position: absolute;
-      left: 1.15rem;
-      right: 1.15rem;
-      bottom: 1.15rem;
-      z-index: 3;
-      color: var(--white);
-      transform: translateZ(28px);
-    }
-
-    .identity h1 {
-      font-family: "Sora", sans-serif;
-      font-size: clamp(1.55rem, 5.5vw, 1.85rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
-    }
-
-    .identity .role {
-      margin-top: 0.4rem;
-      font-size: 0.92rem;
-      font-weight: 500;
-      line-height: 1.35;
-      color: rgba(255, 255, 255, 0.92);
-    }
-
-    .identity .company {
-      margin-top: 0.35rem;
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #cfe0f8;
-      padding: 0.28rem 0.55rem;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 0.4rem;
-      background: rgba(0, 102, 204, 0.28);
-      backdrop-filter: blur(8px);
-    }
-
-    .actions {
-      margin-top: 1.2rem;
-      display: grid;
-      gap: 0.55rem;
-      animation: fade-up 0.7s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .btn {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      min-height: 3.05rem;
-      padding: 0.75rem 1rem;
-      border-radius: 0.85rem;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      overflow: hidden;
-      isolation: isolate;
-      transition:
-        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.22s ease,
-        background 0.22s ease,
-        border-color 0.22s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle 8rem at var(--bx, 50%) var(--by, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .btn:hover::before { opacity: 1; }
-    .btn:active { transform: scale(0.975); }
-
-    .btn-primary {
-      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc);
-      background-size: 200% 100%;
-      color: var(--white);
-      box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28);
-      animation: shimmer 7s linear infinite;
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 14px 30px rgba(var(--brand-rgb), 0.36);
-      transform: translateY(-2px);
-    }
-
-    .btn-primary.saved {
-      background: #0f7a4a;
-      animation: none;
-      box-shadow: 0 10px 24px rgba(15, 122, 74, 0.28);
-    }
-
-    .btn-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.55rem;
-    }
-
-    .btn-ghost {
-      background: var(--surface);
-      color: var(--ink);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-ghost:hover {
-      background: #fff;
-      border-color: rgba(var(--brand-rgb), 0.35);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(12, 26, 46, 0.08);
-    }
-
-    .links {
-      margin-top: 1.05rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.6rem;
-      animation: fade-up 0.7s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      position: relative;
-      padding-bottom: 0.18rem;
-      transition: color 0.2s ease;
-    }
-
-    .links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1.5px;
-      background: var(--brand);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .links a:hover { color: var(--brand); }
-    .links a:hover::after { transform: scaleX(1); }
-
-    .hint {
-      margin-top: 0.95rem;
-      text-align: center;
-      font-size: 0.72rem;
-      color: #7a8b9c;
-      letter-spacing: 0.02em;
-      animation: fade-up 0.7s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-      opacity: 0.85;
-    }
-
-    .icon {
-      width: 1.1rem;
-      height: 1.1rem;
-      flex-shrink: 0;
-      transition: transform 0.25s ease;
-    }
-
-    .btn:hover .icon { transform: translateY(-1px); }
-    .btn-primary:hover .icon { transform: translateY(1px); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-      .hero { transform: none !important; }
-      .brand img { animation: none !important; }
-    }
-  </style>
-</head>
-<body>
-  <main class="stage">
-    <div class="brand">
-      <img src="/sara/assets/norscope-logo.png" alt="Norscope" width="346" height="163" />
-    </div>
-
-    <div class="hero-wrap">
-      <section class="hero" id="hero" aria-label="Profilfoto">
-        <img src="/sara/assets/sara.png" alt="Sara Sarvestani" width="800" height="1000" draggable="false" />
-        <div class="hero-shine" aria-hidden="true"></div>
-        <div class="identity">
-          <h1>Sara Sarvestani</h1>
-          <p class="role">Mitgründerin | Geschäftsentwicklung &amp; Vertrieb</p>
-          <p class="company">Norscope</p>
-        </div>
-      </section>
-    </div>
-
-    <div class="actions">
-      <a class="btn btn-primary" id="saveBtn" href="/sara/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="btn-label">Kontakt speichern</span>
-      </a>
-      <div class="btn-row">
-        <a class="btn btn-ghost" href="tel:+4915252993422">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6.6 3.8c.5-.5 1.3-.5 1.7 0l1.8 1.8c.4.4.5 1.1.2 1.6L9.2 9.4a12.3 12.3 0 0 0 5.4 5.4l2.2-1.1c.5-.3 1.2-.2 1.6.2l1.8 1.8c.5.5.5 1.3 0 1.7l-1.3 1.3c-.5.5-1.2.7-1.9.5C10.4 17.4 6.6 13.6 4.8 8c-.2-.7 0-1.4.5-1.9l1.3-1.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-          </svg>
-          Anrufen
-        </a>
-        <a class="btn btn-ghost" href="mailto:contact@norscope.com">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/>
-            <path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          E-Mail
-        </a>
-      </div>
-    </div>
-
-    <nav class="links" aria-label="Links">
-      <a href="https://www.linkedin.com/in/placeholder" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://www.norscope.com/" rel="noopener noreferrer">Website</a>
-    </nav>
-
-    <p class="hint">Bewegen Sie die Karte — Tippen speichert den Kontakt</p>
-  </main>
-
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const hero = document.getElementById('hero');
-      const saveBtn = document.getElementById('saveBtn');
-      const label = saveBtn?.querySelector('.btn-label');
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // Ambient light follows pointer across the page
-      const setAmbient = (clientX, clientY) => {
-        const x = (clientX / window.innerWidth) * 100;
-        const y = (clientY / window.innerHeight) * 100;
-        root.style.setProperty('--mx', x + '%');
-        root.style.setProperty('--my', y + '%');
-      };
-
-      window.addEventListener('pointermove', (e) => setAmbient(e.clientX, e.clientY), { passive: true });
-
-      // Soft spotlight on buttons
-      document.querySelectorAll('.btn').forEach((btn) => {
-        btn.addEventListener('pointermove', (e) => {
-          const r = btn.getBoundingClientRect();
-          btn.style.setProperty('--bx', ((e.clientX - r.left) / r.width) * 100 + '%');
-          btn.style.setProperty('--by', ((e.clientY - r.top) / r.height) * 100 + '%');
-        });
-      });
-
-      // 3D tilt on photo
-      if (hero && !reduce) {
-        const resetTilt = () => {
-          hero.classList.remove('is-tilting');
-          root.style.setProperty('--tilt-x', '0deg');
-          root.style.setProperty('--tilt-y', '0deg');
-          root.style.setProperty('--mx', '50%');
-          root.style.setProperty('--my', '40%');
-        };
-
-        const tiltFromEvent = (e) => {
-          const r = hero.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width;
-          const py = (e.clientY - r.top) / r.height;
-          const tiltY = (px - 0.5) * 12;
-          const tiltX = (0.5 - py) * 10;
-          hero.classList.add('is-tilting');
-          root.style.setProperty('--tilt-x', tiltX.toFixed(2) + 'deg');
-          root.style.setProperty('--tilt-y', tiltY.toFixed(2) + 'deg');
-          root.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-          root.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-        };
-
-        hero.addEventListener('pointerenter', tiltFromEvent);
-        hero.addEventListener('pointermove', tiltFromEvent);
-        hero.addEventListener('pointerleave', resetTilt);
-        hero.addEventListener('pointercancel', resetTilt);
-      }
-
-      // Save contact feedback
-      if (saveBtn && label) {
-        saveBtn.addEventListener('click', () => {
-          saveBtn.classList.add('saved');
-          label.textContent = 'Gespeichert';
-          if (navigator.vibrate) navigator.vibrate(12);
-          setTimeout(() => {
-            saveBtn.classList.remove('saved');
-            label.textContent = 'Kontakt speichern';
-          }, 2200);
-        });
-      }
-    })();
-  </script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0066cc" />
+  <meta name="description" content="Sara Sarvestani — Mitgründerin, Norscope" />
+  <title>Sara Sarvestani · Norscope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #0066cc;
+      --brand-rgb: 0, 102, 204;
+      --ink: #0c1a2e;
+      --muted: #5a6b7d;
+      --line: rgba(0, 102, 204, 0.14);
+      --surface: rgba(255, 255, 255, 0.78);
+      --white: #ffffff;
+      --mx: 50%;
+      --my: 40%;
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      color: var(--ink);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle 28rem at var(--mx) var(--my), rgba(var(--brand-rgb), 0.2), transparent 55%),
+        radial-gradient(ellipse 90% 55% at 50% -10%, rgba(var(--brand-rgb), 0.18), transparent 50%),
+        linear-gradient(165deg, #dfeaf8 0%, #f5f8fc 42%, #e8f0f8 100%);
+      background-attachment: fixed;
+      display: grid;
+      place-items: center;
+      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom));
+      transition: background 0.35s ease;
+    }
+
+    .stage {
+      width: min(100%, 26rem);
+      perspective: 1000px;
+      animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes float-logo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.15rem;
+      animation: fade-up 0.65s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .brand img {
+      width: 7.5rem;
+      height: auto;
+      display: block;
+      animation: float-logo 5.5s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+    }
+
+    .brand:hover img {
+      transform: translateY(-2px) scale(1.04);
+      filter: drop-shadow(0 8px 16px rgba(var(--brand-rgb), 0.18));
+    }
+
+    .hero-wrap {
+      position: relative;
+      width: 100%;
+      max-width: min(100%, calc(min(52vh, 28rem) * 4 / 5));
+      margin-inline: auto;
+      animation: fade-up 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero {
+      position: relative;
+      border-radius: 1.35rem;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      max-height: min(52vh, 28rem);
+      transform-style: preserve-3d;
+      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transition: transform 0.15s ease-out, box-shadow 0.35s ease;
+      box-shadow:
+        0 22px 44px rgba(12, 26, 46, 0.14),
+        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+
+    .hero:active { cursor: grabbing; }
+
+    .hero.is-tilting {
+      transition: transform 0.05s linear;
+      box-shadow:
+        0 28px 56px rgba(12, 26, 46, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.55) inset;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 70% center;
+      display: block;
+      transform: scale(1.04);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .hero:hover img,
+    .hero.is-tilting img {
+      transform: scale(1.08);
+    }
+
+    .hero-shine {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle 12rem at var(--mx) var(--my),
+        rgba(255, 255, 255, 0.28),
+        transparent 55%
+      );
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      opacity: 0.55;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .hero:hover .hero-shine,
+    .hero.is-tilting .hero-shine {
+      opacity: 0.85;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 46%,
+        rgba(12, 26, 46, 0.5) 76%,
+        rgba(12, 26, 46, 0.84) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .identity {
+      position: absolute;
+      left: 1.15rem;
+      right: 1.15rem;
+      bottom: 1.15rem;
+      z-index: 3;
+      color: var(--white);
+      transform: translateZ(28px);
+    }
+
+    .identity h1 {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(1.55rem, 5.5vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .identity .role {
+      margin-top: 0.4rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .identity .company {
+      margin-top: 0.35rem;
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cfe0f8;
+      padding: 0.28rem 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 0.4rem;
+      background: rgba(0, 102, 204, 0.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .actions {
+      margin-top: 1.2rem;
+      display: grid;
+      gap: 0.55rem;
+      animation: fade-up 0.7s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 3.05rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.85rem;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      overflow: hidden;
+      isolation: isolate;
+      transition:
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 8rem at var(--bx, 50%) var(--by, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .btn:hover::before { opacity: 1; }
+    .btn:active { transform: scale(0.975); }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #0066cc, #1a7ae0, #0066cc);
+      background-size: 200% 100%;
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(var(--brand-rgb), 0.28);
+      animation: shimmer 7s linear infinite;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 14px 30px rgba(var(--brand-rgb), 0.36);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary.saved {
+      background: #0f7a4a;
+      animation: none;
+      box-shadow: 0 10px 24px rgba(15, 122, 74, 0.28);
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+    }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-ghost:hover {
+      background: #fff;
+      border-color: rgba(var(--brand-rgb), 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(12, 26, 46, 0.08);
+    }
+
+    .links {
+      margin-top: 1.05rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.6rem;
+      animation: fade-up 0.7s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 0.18rem;
+      transition: color 0.2s ease;
+    }
+
+    .links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1.5px;
+      background: var(--brand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .links a:hover { color: var(--brand); }
+    .links a:hover::after { transform: scaleX(1); }
+
+    .hint {
+      margin-top: 0.95rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #7a8b9c;
+      letter-spacing: 0.02em;
+      animation: fade-up 0.7s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      opacity: 0.85;
+    }
+
+    .icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .btn:hover .icon { transform: translateY(-1px); }
+    .btn-primary:hover .icon { transform: translateY(1px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .hero { transform: none !important; }
+      .brand img { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="brand">
+      <img src="/sara/assets/norscope-logo.png" alt="Norscope" width="346" height="163" />
+    </div>
+
+    <div class="hero-wrap">
+      <section class="hero" id="hero" aria-label="Profilfoto">
+        <img src="/sara/assets/sara.png" alt="Sara Sarvestani" width="800" height="1000" draggable="false" />
+        <div class="hero-shine" aria-hidden="true"></div>
+        <div class="identity">
+          <h1>Sara Sarvestani</h1>
+          <p class="role">Mitgründerin<br />Geschäftsentwicklung &amp; Vertrieb</p>
+          <p class="company">Norscope</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-primary" id="saveBtn" href="/sara/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="btn-label">Kontakt speichern</span>
+      </a>
+      <div class="btn-row">
+        <a class="btn btn-ghost" href="tel:+4915252993422">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.6 3.8c.5-.5 1.3-.5 1.7 0l1.8 1.8c.4.4.5 1.1.2 1.6L9.2 9.4a12.3 12.3 0 0 0 5.4 5.4l2.2-1.1c.5-.3 1.2-.2 1.6.2l1.8 1.8c.5.5.5 1.3 0 1.7l-1.3 1.3c-.5.5-1.2.7-1.9.5C10.4 17.4 6.6 13.6 4.8 8c-.2-.7 0-1.4.5-1.9l1.3-1.3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          Anrufen
+        </a>
+        <a class="btn btn-ghost" href="mailto:contact@norscope.com">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.8"/>
+            <path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          E-Mail
+        </a>
+      </div>
+    </div>
+
+    <nav class="links" aria-label="Links">
+      <a href="https://www.linkedin.com/in/placeholder" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.norscope.com/" rel="noopener noreferrer">Website</a>
+    </nav>
+
+    <p class="hint">Bewegen Sie die Karte — Tippen speichert den Kontakt</p>
+  </main>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const hero = document.getElementById('hero');
+      const saveBtn = document.getElementById('saveBtn');
+      const label = saveBtn?.querySelector('.btn-label');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Ambient light follows pointer across the page
+      const setAmbient = (clientX, clientY) => {
+        const x = (clientX / window.innerWidth) * 100;
+        const y = (clientY / window.innerHeight) * 100;
+        root.style.setProperty('--mx', x + '%');
+        root.style.setProperty('--my', y + '%');
+      };
+
+      window.addEventListener('pointermove', (e) => setAmbient(e.clientX, e.clientY), { passive: true });
+
+      // Soft spotlight on buttons
+      document.querySelectorAll('.btn').forEach((btn) => {
+        btn.addEventListener('pointermove', (e) => {
+          const r = btn.getBoundingClientRect();
+          btn.style.setProperty('--bx', ((e.clientX - r.left) / r.width) * 100 + '%');
+          btn.style.setProperty('--by', ((e.clientY - r.top) / r.height) * 100 + '%');
+        });
+      });
+
+      // 3D tilt on photo
+      if (hero && !reduce) {
+        const resetTilt = () => {
+          hero.classList.remove('is-tilting');
+          root.style.setProperty('--tilt-x', '0deg');
+          root.style.setProperty('--tilt-y', '0deg');
+          root.style.setProperty('--mx', '50%');
+          root.style.setProperty('--my', '40%');
+        };
+
+        const tiltFromEvent = (e) => {
+          const r = hero.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          const tiltY = (px - 0.5) * 12;
+          const tiltX = (0.5 - py) * 10;
+          hero.classList.add('is-tilting');
+          root.style.setProperty('--tilt-x', tiltX.toFixed(2) + 'deg');
+          root.style.setProperty('--tilt-y', tiltY.toFixed(2) + 'deg');
+          root.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+          root.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        };
+
+        hero.addEventListener('pointerenter', tiltFromEvent);
+        hero.addEventListener('pointermove', tiltFromEvent);
+        hero.addEventListener('pointerleave', resetTilt);
+        hero.addEventListener('pointercancel', resetTilt);
+      }
+
+      // Save contact feedback
+      if (saveBtn && label) {
+        saveBtn.addEventListener('click', () => {
+          saveBtn.classList.add('saved');
+          label.textContent = 'Gespeichert';
+          if (navigator.vibrate) navigator.vibrate(12);
+          setTimeout(() => {
+            saveBtn.classList.remove('saved');
+            label.textContent = 'Kontakt speichern';
+          }, 2200);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
