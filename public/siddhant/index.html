@@ -288,6 +288,38 @@
     <p class="note">Demo: Wunschdatum &amp; Uhrzeit w&auml;hlen &ndash; die Anfrage geht per E-Mail an contact@norscope.com.</p>
   </main>
 
+  <div class="demo-backdrop" id="demoModal" hidden>
+    <div class="demo-sheet" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+      <h2 id="demoTitle">Demo buchen</h2>
+      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Danach &ouml;ffnet sich Ihre E-Mail an contact@norscope.com mit der Anfrage.</p>
+      <form id="demoForm" class="demo-fields" novalidate>
+        <div class="demo-row">
+          <div class="demo-field">
+            <label for="demoDate">Datum</label>
+            <input id="demoDate" name="date" type="date" required />
+          </div>
+          <div class="demo-field">
+            <label for="demoTime">Uhrzeit</label>
+            <input id="demoTime" name="time" type="time" required />
+          </div>
+        </div>
+        <div class="demo-field">
+          <label for="demoName">Ihr Name (optional)</label>
+          <input id="demoName" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" />
+        </div>
+        <div class="demo-field">
+          <label for="demoContact">Ihre E-Mail oder Telefon (optional)</label>
+          <input id="demoContact" name="contact" type="text" autocomplete="email" placeholder="damit wir antworten k&ouml;nnen" />
+        </div>
+        <p class="demo-error" id="demoError" role="alert">Bitte Datum und Uhrzeit ausw&auml;hlen.</p>
+        <div class="demo-actions">
+          <button type="button" class="btn demo-cancel" id="demoCancel">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Anfrage senden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     (() => {
       const root = document.documentElement;
@@ -397,6 +429,10 @@
       const demoTime = document.getElementById('demoTime');
 
       const openDemo = () => {
+        const demoModal = document.getElementById('demoModal');
+        const demoError = document.getElementById('demoError');
+        const demoDate = document.getElementById('demoDate');
+        const demoTime = document.getElementById('demoTime');
         if (!demoModal) return;
         demoModal.hidden = false;
         document.body.classList.add('demo-open');
@@ -415,6 +451,7 @@
       };
 
       const closeDemo = () => {
+        const demoModal = document.getElementById('demoModal');
         if (!demoModal) return;
         demoModal.classList.remove('open');
         document.body.classList.remove('demo-open');
@@ -485,37 +522,6 @@
     })();
   </script>
 
-  <div class="demo-backdrop" id="demoModal" hidden>
-    <div class="demo-sheet" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
-      <h2 id="demoTitle">Demo buchen</h2>
-      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Danach &ouml;ffnet sich Ihre E-Mail an contact@norscope.com mit der Anfrage.</p>
-      <form id="demoForm" class="demo-fields" novalidate>
-        <div class="demo-row">
-          <div class="demo-field">
-            <label for="demoDate">Datum</label>
-            <input id="demoDate" name="date" type="date" required />
-          </div>
-          <div class="demo-field">
-            <label for="demoTime">Uhrzeit</label>
-            <input id="demoTime" name="time" type="time" required />
-          </div>
-        </div>
-        <div class="demo-field">
-          <label for="demoName">Ihr Name (optional)</label>
-          <input id="demoName" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" />
-        </div>
-        <div class="demo-field">
-          <label for="demoContact">Ihre E-Mail oder Telefon (optional)</label>
-          <input id="demoContact" name="contact" type="text" autocomplete="email" placeholder="damit wir antworten k&ouml;nnen" />
-        </div>
-        <p class="demo-error" id="demoError" role="alert">Bitte Datum und Uhrzeit ausw&auml;hlen.</p>
-        <div class="demo-actions">
-          <button type="button" class="btn demo-cancel" id="demoCancel">Abbrechen</button>
-          <button type="submit" class="btn btn-primary">Anfrage senden</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
 </body>
 </html>
