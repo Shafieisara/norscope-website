@@ -117,7 +117,7 @@
     .hello {
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--muted);
+      color: rgba(90, 107, 125, 0.85);
       letter-spacing: 0.04em;
     }
 
@@ -132,7 +132,7 @@
       mask-image: radial-gradient(white, black);
       transform: translateZ(0);
       animation: fade-up 0.65s 0.12s both;
-      box-shadow: 0 20px 40px rgba(12, 26, 46, 0.14);
+      box-shadow: 0 18px 40px rgba(12, 26, 46, 0.08);
     }
 
     .hero {
@@ -226,18 +226,17 @@
     }
 
     .identity .company {
-      margin-top: 0.55rem;
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      margin-top: 0.45rem;
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 650;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #e7f0fb;
-      padding: 0.3rem 0.55rem;
-      border-radius: 0.45rem;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(0,102,204,0.32);
-      backdrop-filter: blur(8px);
+      color: #cfe0f8;
+      padding: 0;
+      border: none;
+      background: none;
+      backdrop-filter: none;
     }
 
     .actions {
@@ -294,16 +293,21 @@
     .btn-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
 
     .btn-ghost {
-      background: var(--surface);
+      background: rgba(255, 255, 255, 0.28);
       color: var(--ink);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       flex-direction: column;
       gap: 0.2rem;
       min-height: 4rem;
       font-size: 0.78rem;
+      box-shadow: none;
     }
-    .btn-ghost:active { background: #fff; border-color: rgba(var(--brand-rgb), 0.35); }
+    .btn-ghost:active {
+      background: rgba(255, 255, 255, 0.45);
+      border-color: rgba(var(--brand-rgb), 0.25);
+    }
     .btn-ghost .icon { width: 1.2rem; height: 1.2rem; }
 
     .chips {
@@ -319,21 +323,19 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.55rem 0.85rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 999px;
       text-decoration: none;
       font-size: 0.82rem;
       font-weight: 600;
-      color: var(--ink);
-      background: rgba(255,255,255,0.75);
-      border: 1px solid var(--line);
-      backdrop-filter: blur(8px);
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
     .chip:active {
-      transform: scale(0.96);
-      background: #fff;
-      border-color: rgba(var(--brand-rgb), 0.35);
+      transform: scale(0.97);
+      color: var(--brand);
     }
     .chip svg { width: 1rem; height: 1rem; }
 
@@ -393,8 +395,7 @@
       <section class="hero" id="hero" aria-label="Profilfoto">
         <img src="/siddhant-business-card/assets/siddhant.png" alt="Siddhant Rebello" width="800" height="1000" draggable="false" />
         <div class="hero-shine" aria-hidden="true"></div>
-        <span class="badge">Offline AR</span>
-        <div class="identity">
+<div class="identity">
           <h1>Siddhant Rebello</h1>
           <p class="role">Gr&uuml;nder<br />Entwicklung &amp; Produkt</p>
           <p class="company">Norscope</p>
