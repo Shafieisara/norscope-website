@@ -156,6 +156,13 @@
 
 
 
+    .brand a {
+      display: inline-flex;
+      line-height: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .brand img {
 
       width: 7.5rem;
@@ -718,7 +725,14 @@
 
       .hero { transform: none !important; }
 
-      .brand img { animation: none !important; }
+      .brand a {
+      display: inline-flex;
+      line-height: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand img { animation: none !important; }
 
     }
 
@@ -731,9 +745,9 @@
   <main class="stage">
 
     <div class="brand">
-
-      <img src="/sara/assets/norscope-logo.png" alt="Norscope" width="346" height="163" />
-
+      <a href="https://www.norscope.com/" rel="noopener noreferrer" aria-label="Norscope Website">
+        <img src="/sara/assets/norscope-logo.png" alt="Norscope" width="346" height="163" />
+      </a>
     </div>
 
 
