@@ -156,10 +156,61 @@
     .chip:active { transform: scale(0.96); background: #fff; }
     .chip svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 
+
     .note {
       margin-top: 0.85rem; text-align: center; font-size: 0.7rem; color: var(--muted); line-height: 1.35;
       animation: fade-up 0.6s 0.35s both;
     }
+
+    .demo-backdrop {
+      position: fixed; inset: 0; z-index: 40;
+      background: rgba(12, 26, 46, 0.45);
+      backdrop-filter: blur(6px);
+      display: grid; place-items: end center;
+      padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
+      opacity: 0; pointer-events: none; transition: opacity 0.22s ease;
+    }
+    .demo-backdrop.open { opacity: 1; pointer-events: auto; }
+    .demo-sheet {
+      width: min(100%, 24.5rem);
+      background: #fff;
+      border-radius: 1.25rem 1.25rem 1rem 1rem;
+      padding: 1.15rem 1.15rem 1.25rem;
+      box-shadow: 0 24px 48px rgba(12, 26, 46, 0.22);
+      transform: translateY(18px); transition: transform 0.22s ease;
+    }
+    .demo-backdrop.open .demo-sheet { transform: none; }
+    .demo-sheet h2 {
+      font-family: "Sora", sans-serif; font-size: 1.05rem; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.25rem;
+    }
+    .demo-sheet .demo-lead {
+      font-size: 0.78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1rem;
+    }
+    .demo-fields { display: grid; gap: 0.7rem; }
+    .demo-field label {
+      display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 0.3rem; letter-spacing: 0.02em;
+    }
+    .demo-field input {
+      width: 100%; min-height: 2.75rem; padding: 0.65rem 0.75rem;
+      border: 1px solid var(--line); border-radius: 0.75rem;
+      font: inherit; font-size: 0.95rem; color: var(--ink); background: #f7fafc;
+      outline: none;
+    }
+    .demo-field input:focus {
+      border-color: rgba(var(--brand-rgb), 0.55);
+      box-shadow: 0 0 0 3px rgba(var(--brand-rgb), 0.12);
+      background: #fff;
+    }
+    .demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+    .demo-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0.55rem; margin-top: 1rem; }
+    .demo-actions .btn { min-height: 2.85rem; font-size: 0.88rem; }
+    .demo-cancel { background: #eef3f9; color: var(--ink); }
+    .demo-error {
+      display: none; margin-top: 0.55rem; font-size: 0.72rem; color: #b42318; text-align: center;
+    }
+    .demo-error.show { display: block; }
 
     .confetti { position: fixed; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; z-index: 20; animation: confetti-fall 1s ease-out forwards; }
     @keyframes confetti-fall { to { transform: translate(var(--dx), var(--dy)) rotate(240deg); opacity: 0; } }
@@ -208,7 +259,7 @@
         <a class="btn btn-ghost" href="tel:+4915510350105"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Anrufen</a>
         <a class="btn btn-ghost" href="mailto:contact@norscope.com"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>E-Mail</a>
         <button class="btn btn-ghost" id="shareBtn" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2.25"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/></svg>Teilen</button>
-        <a class="btn btn-ghost" id="demoBtn" href="/siddhant/norscope-demo-siddhant.ics" type="text/calendar"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
+        <button class="btn btn-ghost" id="demoBtn" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</button>
       </div>
 </div>
 
@@ -222,7 +273,7 @@
         Website
       </a>
     </nav>
-    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin &ndash; Datum einfach anpassen.</p>
+    <p class="note">Demo: Wunschdatum &amp; Uhrzeit w&auml;hlen &ndash; die Anfrage geht per E-Mail an contact@norscope.com.</p>
   </main>
 
   <script>
@@ -324,17 +375,129 @@
         });
       }
 
+
       const demoBtn = document.getElementById('demoBtn');
+      const demoModal = document.getElementById('demoModal');
+      const demoForm = document.getElementById('demoForm');
+      const demoCancel = document.getElementById('demoCancel');
+      const demoError = document.getElementById('demoError');
+      const demoDate = document.getElementById('demoDate');
+      const demoTime = document.getElementById('demoTime');
+
+      const openDemo = () => {
+        if (!demoModal) return;
+        demoModal.hidden = false;
+        requestAnimationFrame(() => demoModal.classList.add('open'));
+        demoError?.classList.remove('show');
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        if (demoDate) {
+          demoDate.min = yyyy + '-' + mm + '-' + dd;
+          demoDate.value = '';
+        }
+        if (demoTime) demoTime.value = '';
+        setTimeout(() => demoDate?.focus(), 220);
+      };
+
+      const closeDemo = () => {
+        if (!demoModal) return;
+        demoModal.classList.remove('open');
+        setTimeout(() => { demoModal.hidden = true; }, 220);
+      };
+
       if (demoBtn) {
-        const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Norscope+Demo+%E2%80%93+Siddhant+Rebello&dates=20260728T120000Z/20260728T123000Z&details=Demo-Termin+mit+Siddhant+Rebello+(Norscope).+Bitte+Wunschdatum+anpassen+oder+an+contact%40norscope.com+schreiben.%0ATel%3A+%2B4915510350105%0AWebsite%3A+https%3A%2F%2Fwww.norscope.com%2F&location=Online+%2F+nach+Absprache';
         demoBtn.addEventListener('click', (e) => {
-          if (/Android/i.test(navigator.userAgent)) {
-            e.preventDefault();
-            window.location.href = gcal;
-          }
+          e.preventDefault();
+          openDemo();
         });
       }
+      demoCancel?.addEventListener('click', closeDemo);
+      demoModal?.addEventListener('click', (e) => { if (e.target === demoModal) closeDemo(); });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && demoModal && !demoModal.hidden) closeDemo();
+      });
+
+      demoForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const date = demoDate?.value || '';
+        const time = demoTime?.value || '';
+        if (!date || !time) {
+          demoError?.classList.add('show');
+          return;
+        }
+        demoError?.classList.remove('show');
+
+        const name = (document.getElementById('demoName')?.value || '').trim();
+        const contact = (document.getElementById('demoContact')?.value || '').trim();
+        let whenLabel = date + ' ' + time;
+        try {
+          const d = new Date(date + 'T' + time);
+          whenLabel = d.toLocaleString('de-DE', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+            hour: '2-digit', minute: '2-digit'
+          });
+        } catch (_) {}
+
+        const lines = [
+          'Hallo Norscope,',
+          '',
+          'ich moechte gerne eine Demo mit Siddhant Rebello buchen.',
+          '',
+          'Wunschtermin: ' + whenLabel,
+          'Datum: ' + date,
+          'Uhrzeit: ' + time + ' (eigene Ortszeit)',
+        ];
+        if (name) lines.push('Name: ' + name);
+        if (contact) lines.push('Kontakt: ' + contact);
+        lines.push('', 'Viele Gruesse');
+
+        const subject = 'Demo-Anfrage – ' + whenLabel + ' – Siddhant Rebello';
+        const body = lines.join('
+');
+        const mailto = 'mailto:contact@norscope.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+
+        closeDemo();
+        window.location.href = mailto;
+      });
+
     })();
   </script>
+
+  <div class="demo-backdrop" id="demoModal" hidden>
+    <div class="demo-sheet" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+      <h2 id="demoTitle">Demo buchen</h2>
+      <p class="demo-lead">W&auml;hlen Sie Wunschdatum und -uhrzeit. Danach &ouml;ffnet sich Ihre E-Mail an contact@norscope.com mit der Anfrage.</p>
+      <form id="demoForm" class="demo-fields" novalidate>
+        <div class="demo-row">
+          <div class="demo-field">
+            <label for="demoDate">Datum</label>
+            <input id="demoDate" name="date" type="date" required />
+          </div>
+          <div class="demo-field">
+            <label for="demoTime">Uhrzeit</label>
+            <input id="demoTime" name="time" type="time" required />
+          </div>
+        </div>
+        <div class="demo-field">
+          <label for="demoName">Ihr Name (optional)</label>
+          <input id="demoName" name="name" type="text" autocomplete="name" placeholder="Vor- und Nachname" />
+        </div>
+        <div class="demo-field">
+          <label for="demoContact">Ihre E-Mail oder Telefon (optional)</label>
+          <input id="demoContact" name="contact" type="text" autocomplete="email" placeholder="damit wir antworten k&ouml;nnen" />
+        </div>
+        <p class="demo-error" id="demoError" role="alert">Bitte Datum und Uhrzeit ausw&auml;hlen.</p>
+        <div class="demo-actions">
+          <button type="button" class="btn demo-cancel" id="demoCancel">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Anfrage senden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>
