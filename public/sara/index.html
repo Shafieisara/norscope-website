@@ -132,16 +132,7 @@
     }
     .btn-ghost .icon { width: 1.45rem; height: 1.45rem; stroke-width: 2.25; }
     .btn-ghost:active { background: #fff; border-color: rgba(var(--brand-rgb), 0.38); }
-
-    .wallet-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
-    .btn-wallet {
-      min-height: 3rem; flex-direction: row; gap: 0.45rem; font-size: 0.82rem;
-      background: #0c1a2e; color: #fff; border: none;
-    }
-    .btn-wallet.google { background: #1a73e8; }
-    .btn-wallet .icon { width: 1.15rem; height: 1.15rem; color: #fff; }
-
-    .chips { margin-top: 1.15rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; animation: fade-up 0.6s 0.28s both; }
+.chips { margin-top: 1.15rem; display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; animation: fade-up 0.6s 0.28s both; }
     .chip {
       display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.85rem; border-radius: 999px;
       text-decoration: none; font-size: 0.82rem; font-weight: 600; color: var(--ink);
@@ -202,14 +193,9 @@
         <a class="btn btn-ghost" href="tel:+4915252993422"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Anrufen</a>
         <a class="btn btn-ghost" href="mailto:contact@norscope.com"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>E-Mail</a>
         <button class="btn btn-ghost" id="shareBtn" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2.25"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2.25"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/></svg>Teilen</button>
-        <a class="btn btn-ghost" id="demoBtn" href="/sara/norscope-demo-sara.ics" download="Norscope-Demo-Sara.ics"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
+        <a class="btn btn-ghost" id="demoBtn" href="/sara/norscope-demo-sara.ics" type="text/calendar"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.25"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>Demo</a>
       </div>
-
-      <div class="wallet-row">
-        <a class="btn btn-ghost btn-wallet" id="appleWallet" href="/sara/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><path d="M16 3H6a2 2 0 0 0-2 2v2h16V5a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><circle cx="17" cy="14" r="1.4" fill="currentColor"/></svg>Apple Wallet</a>
-        <a class="btn btn-ghost btn-wallet google" id="googleWallet" href="/sara/sara-sarvestani.vcf" download="Sara-Sarvestani.vcf"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><path d="M16 3H6a2 2 0 0 0-2 2v2h16V5a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2.25" stroke-linejoin="round"/><circle cx="17" cy="14" r="1.4" fill="currentColor"/></svg>Google Wallet</a>
-      </div>
-    </div>
+</div>
 
     <nav class="chips" aria-label="Links">
       <a class="chip" href="https://www.linkedin.com/in/sara-sarvestani" rel="noopener noreferrer">
@@ -221,7 +207,7 @@
         Website
       </a>
     </nav>
-    <p class="note">Demo &ouml;ffnet Ihren Kalender. Wallet speichert den Kontakt auf dem Telefon.</p>
+    <p class="note">Demo &ouml;ffnet Ihren Kalender mit einem Vorschlagstermin – einfach verschieben oder anpassen.</p>
   </main>
 
   <script>
@@ -230,7 +216,6 @@
       const hero = document.getElementById('hero');
       const saveBtn = document.getElementById('saveBtn');
       const shareBtn = document.getElementById('shareBtn');
-      const demoBtn = document.getElementById('demoBtn');
       const label = saveBtn?.querySelector('.btn-label');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const fine = window.matchMedia('(pointer: fine)').matches;
@@ -323,25 +308,10 @@
           } catch (_) {}
         });
       }
-
-      // Demo: also offer mail compose as secondary path via long-press alternative — open mail after ics
-      if (demoBtn) {
-        demoBtn.addEventListener('click', () => {
-          // After calendar download, nudge email confirmation in new tab shortly
-          setTimeout(() => {
-            // soft prompt via same-tab only if user stays — skip auto mailto to avoid annoyance
-          }, 400);
+, 400);
         });
       }
-
-      // Wallet buttons: save contact (true Wallet passes need Apple/Google signing certificates)
-      ['appleWallet', 'googleWallet'].forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener('click', () => {
-          if (navigator.vibrate) navigator.vibrate(8);
-        });
-      });
+});
     })();
   </script>
 </body>

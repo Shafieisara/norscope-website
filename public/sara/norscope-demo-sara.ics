@@ -3,12 +3,32 @@ VERSION:2.0
 PRODID:-//Norscope//Demo//DE
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
 UID:demo-sara-sarvestani@norscope.com
-DTSTAMP:20260720T120000Z
+DTSTAMP:20260720T130000Z
+DTSTART;TZID=Europe/Berlin:20260728T140000
+DTEND;TZID=Europe/Berlin:20260728T143000
 SUMMARY:Norscope Demo – Sara Sarvestani
-DESCRIPTION:Demo-Termin mit Sara Sarvestani (Norscope).\nBitte Wunschdatum/-uhrzeit an contact@norscope.com senden oder diesen Termin verschieben.\nWebsite: https://www.norscope.com/
+DESCRIPTION:Demo-Termin mit Sara Sarvestani (Norscope). Bitte Wunschdatum/-uhrzeit anpassen oder an contact@norscope.com schreiben.\nTel: +4915252993422\nWebsite: https://www.norscope.com/
 LOCATION:Online / nach Absprache
 STATUS:TENTATIVE
+ORGANIZER;CN=Norscope:mailto:contact@norscope.com
 END:VEVENT
 END:VCALENDAR
