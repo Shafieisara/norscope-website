@@ -211,12 +211,16 @@ export const aboutT = {
   team: {
     heading: { EN: 'Founding Team', DE: 'Gründungsteam' },
     siddhant: {
-      role:  { EN: 'Founder | Engineering & Product', DE: 'Gründer | Entwicklung & Produkt' },
+      role:  { EN: 'Co-Founder | Technology & Product', DE: 'Mitgründer | Technik & Produkt' },
       bio:   { EN: 'Mechanical engineering background with hands-on experience in industrial machines and intelligent manufacturing systems. Focused on building practical AR solutions grounded in real maintenance workflows.', DE: 'Maschinenbauingenieur mit praktischer Erfahrung in Industriemaschinen und intelligenten Fertigungssystemen. Fokussiert auf praxisorientierte AR-Lösungen, die auf realen Wartungsabläufen basieren.' },
     },
     sara: {
       role:  { EN: 'Co-Founder | Business & Operations', DE: 'Mitgründerin | Geschäftsentwicklung & Vertrieb' },
       bio:   { EN: 'Background in business strategy and operations with experience in startup execution and stakeholder coordination. Focused on translating industrial needs into scalable product and organizational structures.', DE: 'Hintergrund in Unternehmensstrategie und -betrieb mit Erfahrung in der Startup-Umsetzung und Stakeholder-Koordination. Fokussiert auf die Übersetzung industrieller Anforderungen in skalierbare Produkt- und Organisationsstrukturen.' },
+    },
+    wahib: {
+      role:  { EN: 'Co-Founder | AI & System Architecture', DE: 'Mitgründer | KI und Systemarchitektur' },
+      bio:   { EN: 'Wahib is a data scientist and systems architect with a passion for building scalable and efficient AI-driven solutions. With a strong background in software engineering and data analysis, he brings a unique blend of technical expertise and problem-solving skills to the team. Wahib\'s commitment to innovation and excellence makes him a valuable asset in our journey to create cutting-edge technology.', DE: 'Wahib ist Data Scientist und Systemarchitekt mit einer Leidenschaft für skalierbare und effiziente KI-Lösungen. Mit einem starken Hintergrund in Softwareentwicklung und Datenanalyse bringt er technische Expertise und Problemlösungskompetenz ins Team. Sein Anspruch an Innovation und Qualität unterstützt uns dabei, zukunftsweisende Technologie zu entwickeln.' },
     },
   },
   closing: {

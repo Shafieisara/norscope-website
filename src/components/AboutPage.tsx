@@ -1,6 +1,7 @@
 import { Check } from 'lucide-react';
 import saraImg from '../assets/Sara Sarvestani.webp';
 import siddhantImg from '../assets/Siddhant Rebello.webp';
+import wahibImg from '../assets/Wahib Farhat.webp';
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { aboutT, type Lang } from '../i18n/translations';
@@ -114,17 +115,17 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             {aboutT.team.heading[lang]}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 max-w-6xl mx-auto">
             {/* Founder Card 1 - Siddhant */}
-            <div className="card-hover bg-white rounded-lg overflow-hidden">
-              <div className="img-hover-zoom aspect-square">
+            <div className="card-hover bg-white rounded-lg overflow-hidden h-full flex flex-col">
+              <div className="img-hover-zoom aspect-[3/4]">
                 <img
                   src={siddhantImg}
                   alt="Siddhant Rebello"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              <div className="p-6 md:p-8">
+              <div className="p-6 md:p-8 flex-1">
                 <h3
                   className="text-[20px] md:text-[22px] mb-1"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -144,15 +145,15 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
             </div>
 
             {/* Founder Card 2 - Sara */}
-            <div className="card-hover bg-white rounded-lg overflow-hidden">
-              <div className="img-hover-zoom aspect-square">
+            <div className="card-hover bg-white rounded-lg overflow-hidden h-full flex flex-col">
+              <div className="img-hover-zoom aspect-[3/4]">
                 <img
                   src={saraImg}
                   alt="Sara Sarvestani"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[62%_top]"
                 />
               </div>
-              <div className="p-6 md:p-8">
+              <div className="p-6 md:p-8 flex-1">
                 <h3
                   className="text-[20px] md:text-[22px] mb-1"
                   style={{ fontWeight: 600, color: 'var(--dark-text)' }}
@@ -167,6 +168,34 @@ export function AboutPage({ onNavigateHome, currentLanguage, onLanguageChange, o
                 </div>
                 <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
                   {aboutT.team.sara.bio[lang]}
+                </p>
+              </div>
+            </div>
+
+            {/* Founder Card 3 - Wahib */}
+            <div className="card-hover bg-white rounded-lg overflow-hidden h-full flex flex-col">
+              <div className="img-hover-zoom aspect-[3/4]">
+                <img
+                  src={wahibImg}
+                  alt="Wahib Farhat"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="p-6 md:p-8 flex-1">
+                <h3
+                  className="text-[20px] md:text-[22px] mb-1"
+                  style={{ fontWeight: 600, color: 'var(--dark-text)' }}
+                >
+                  Wahib Farhat
+                </h3>
+                <div
+                  className="text-[14px] md:text-[15px] mb-4"
+                  style={{ color: 'var(--industrial-blue)', fontWeight: 500 }}
+                >
+                  {aboutT.team.wahib.role[lang]}
+                </div>
+                <p className="text-[14px] md:text-[15px] text-[var(--text-muted)] leading-relaxed">
+                  {aboutT.team.wahib.bio[lang]}
                 </p>
               </div>
             </div>
